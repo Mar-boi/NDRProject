@@ -22,7 +22,13 @@ public class UserController {
 	@Autowired
 	private UserService service;
 	
-	public void login() {
+	@PostMapping(path = "/login")
+	@ResponseBody
+	public ResponseEntity<?> login(@RequestParam String username,
+			@RequestParam String password) {
+		
+		// pass all args to service layer
+		return service.login(username, password);
 		
 	}
 	
@@ -42,7 +48,7 @@ public class UserController {
 		service.logout();
 	}
 	
-	public void getPreference(int userID) {
-		service.getPreference(userID);
+	public ResponseEntity<?> getPreference(int userID) {
+		return service.getPreference(userID);
 	}
 }

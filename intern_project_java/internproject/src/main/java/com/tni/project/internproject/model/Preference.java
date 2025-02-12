@@ -27,9 +27,13 @@ public class Preference {
 	@JoinColumn(name = "userID")
 	private User user;
 	
+	public Preference() {
+		
+	}
+	
 	public Preference(boolean receiveEmail, User user) {
 		this.receiveEmail = receiveEmail;
-		this.emailSchedule = "";
+		this.emailSchedule = "0 0 8 * * *";
 		this.user = user;
 	}
 

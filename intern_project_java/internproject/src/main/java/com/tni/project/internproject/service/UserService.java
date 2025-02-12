@@ -1,5 +1,7 @@
 package com.tni.project.internproject.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -17,8 +19,14 @@ public class UserService {
 	@Autowired
 	private PreferenceRepo prefRepo;
 
-	public void login() {
-
+	public ResponseEntity<?> login(String nameEmail, String password) {
+		User user = userRepo.findLoginUser(nameEmail, password);
+		if(user == null) {
+			return ResponseEntity.ok("Login error");
+		}
+		else {
+			return ResponseEntity.ok(user);
+		}
 	}
 
 	public ResponseEntity<?> signUp(String username, String password, String confirmPassword, String email, String receiveEmail) {
@@ -51,10 +59,12 @@ public class UserService {
 	}
 
 	public void logout() {
+		
+		// Do some logout stuff
 
 	}
 
-	public Preference getPreference(int userID) {
+	public ResponseEntity<?> getPreference(int userID) {
 		return null;
 	}
 }
