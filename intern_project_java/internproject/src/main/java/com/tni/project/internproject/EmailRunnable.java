@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.tni.project.internproject.controller.EmailController;
-import com.tni.project.internproject.controller.EmailTempController;
 import com.tni.project.internproject.model.User;
 
 

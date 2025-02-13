@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 import com.tni.project.internproject.EmailRunnable;
 import com.tni.project.internproject.EmailScheduler;
 import com.tni.project.internproject.controller.EmailController;
-import com.tni.project.internproject.controller.EmailTempController;
 import com.tni.project.internproject.model.Preference;
 import com.tni.project.internproject.model.User;
 
