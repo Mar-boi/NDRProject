@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 
 import com.tni.project.internproject.EmailRunnable;
 import com.tni.project.internproject.EmailScheduler;
+import com.tni.project.internproject.controller.EmailController;
+import com.tni.project.internproject.controller.EmailTempController;
 import com.tni.project.internproject.model.Preference;
 import com.tni.project.internproject.model.User;
 
@@ -20,6 +22,10 @@ public class EmailRepo {
 	
 	@Autowired
 	EmailScheduler scheduler;
+	
+	@Autowired
+	EmailController emailController;
+	
 	
 	HashMap<Integer, ScheduledFuture<?>> mailList = new HashMap<Integer, ScheduledFuture<?>>();
 	
@@ -35,7 +41,10 @@ public class EmailRepo {
 			User user = preference.getUser();
 			
 			// Make ScheduledFuture using the info
-			ScheduledFuture<?> future = scheduler.schedule(new EmailRunnable(user), new CronTrigger(preference.getEmailSchedule()));
+			//ScheduledFuture<?> future = scheduler.schedule(new EmailRunnable(user), new CronTrigger(preference.getEmailSchedule()));
+			
+			ScheduledFuture<?> future = scheduler.schedule(new EmailRunnable(user, emailController), new CronTrigger(preference.getEmailSchedule()));
+			
 			
 			// put it in the list
 			mailList.put(user.getUserID(), future);

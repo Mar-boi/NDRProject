@@ -1,18 +1,17 @@
 package com.tni.project.internproject.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.tni.project.internproject.model.User;
 import com.tni.project.internproject.service.EmailService;
 
-@RestController
-@Scope("prototype")
-public class EmailController {
-	
-	@Autowired
+public class EmailTempController {
+
 	private EmailService emailService;
+	
+	public EmailTempController() {
+		this.emailService = new EmailService();
+	}
 	
 
 	public void sendEmail(User user) {
@@ -22,5 +21,4 @@ public class EmailController {
 		System.out.println("User = " + user.getUserID() + " : " +  user.getUserName());
 		
 	}
-	
 }
