@@ -1,40 +1,37 @@
 package com.tni.project.internproject;
 
-import org.apache.catalina.core.ApplicationContext;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import com.tni.project.internproject.controller.EmailController;
-import com.tni.project.internproject.model.User;
+
 
 
 public class EmailRunnable implements Runnable {
 	
-	private User user;
+	private int userID;
 	@Autowired
 	private final EmailController emailController;
 
 
 	
-	public EmailRunnable(User user, EmailController emailController) {
-		this.user = user;
+	public EmailRunnable(int userID, EmailController emailController) {
+		this.userID = userID;
 		this.emailController = emailController;
 	}
 	
 	@Override
 	public void run() {
-		//System.out.println("Hi from: " + user.getUserName());
-		emailController.sendEmail(user);
+		System.out.println("Hi from: " + userID);
+		//emailController.sendEmail(userID);
 		
 	}
 
-	public User getUser() {
-		return user;
+	public int getUserID() {
+		return userID;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser(int userID) {
+		this.userID = userID;
 	}
 	
 	

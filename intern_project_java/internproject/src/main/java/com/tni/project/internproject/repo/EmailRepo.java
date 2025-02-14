@@ -42,7 +42,7 @@ public class EmailRepo {
 			// Make ScheduledFuture using the info
 			//ScheduledFuture<?> future = scheduler.schedule(new EmailRunnable(user), new CronTrigger(preference.getEmailSchedule()));
 			
-			ScheduledFuture<?> future = scheduler.schedule(new EmailRunnable(user, emailController), new CronTrigger(preference.getEmailSchedule()));
+			ScheduledFuture<?> future = scheduler.schedule(new EmailRunnable(user.getUserID(), emailController), new CronTrigger(preference.getEmailSchedule()));
 			
 			
 			// put it in the list
@@ -52,16 +52,21 @@ public class EmailRepo {
 		
 		
 	}
+
 	
-	public void add() {
+	public void remove(int userID) {
+		mailList.remove(userID);
+	}
+	
+	public void cancel(int userID) {
+		mailList.get(userID).cancel(true);
 		
 	}
-	
-	public void delete() {
-			
-	}
-	
-	public void update() {
+
+	public void add(int userID, String cronNotation) {
+		ScheduledFuture<?> future = scheduler.schedule(new EmailRunnable(userID, emailController), new CronTrigger(cronNotation));
+		mailList.put(userID, future);
+		
 		
 	}
 }

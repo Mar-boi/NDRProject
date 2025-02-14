@@ -1,17 +1,23 @@
 package com.tni.project.internproject.controller;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tni.project.internproject.model.Industry;
 import com.tni.project.internproject.model.User;
 import com.tni.project.internproject.service.UserService;
 
@@ -50,7 +56,24 @@ public class UserController {
 		service.logout();
 	}
 	
+	// Haven't used yet cause I have no idea where to use
+	@GetMapping(path = "/getPreference") // probably
 	public ResponseEntity<?> getPreference(int userID) {
 		return service.getPreference(userID);
+	}
+	
+	@RequestMapping("/updateProfile")
+	public String updatePreference(@RequestBody Map<String, Object> requestBody) {
+		 List<Integer> days = (List<Integer>) requestBody.get("days");
+		 int hour = (Integer) requestBody.get("hour");
+		 int min =  (Integer) requestBody.get("min");
+		 String period = (String) requestBody.get("period");
+		 boolean receiveEmail = (Boolean) requestBody.get("receiveEmail");
+		 List<Integer> industries = (List<Integer>) requestBody.get("industries");
+		 int userID =  (Integer) requestBody.get("userID");
+		 
+		 
+		 return service.updatePreference(days,hour,min,period,receiveEmail,industries,userID);
+		
 	}
 }

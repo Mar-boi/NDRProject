@@ -15,11 +15,10 @@ public class EmailController {
 	private EmailService emailService;
 	
 
-	public void sendEmail(User user) {
+	public void sendEmail(int userID) {
 		
 		// call Service email controller
-		emailService.sendEmail(user);
-		System.out.println("User = " + user.getUserID() + " : " +  user.getUserName());
+		emailService.sendEmail(userID);
 		
 	}
 	

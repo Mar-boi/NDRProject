@@ -1,5 +1,6 @@
 package com.tni.project.internproject.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,14 +22,14 @@ public class UserIndustry {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "userID")
 	private User user;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "industryID")
 	private Industry industry;
-
+	
 	public int getId() {
 		return id;
 	}
@@ -51,6 +52,11 @@ public class UserIndustry {
 
 	public void setIndustry(Industry industry) {
 		this.industry = industry;
+	}
+
+	@Override
+	public String toString() {
+		return "UserIndustry [id=" + id + ", user=" + user + ", industry=" + industry + "]";
 	}
 	
 	

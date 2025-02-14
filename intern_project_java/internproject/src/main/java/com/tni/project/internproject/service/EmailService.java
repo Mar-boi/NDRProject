@@ -20,8 +20,10 @@ import org.springframework.stereotype.Service;
 
 import com.tni.project.internproject.controller.EmailController;
 import com.tni.project.internproject.model.User;
+import com.tni.project.internproject.repo.EmailRepo;
 import com.tni.project.internproject.repo.IndustryRepo;
 import com.tni.project.internproject.repo.UserIndustryRepo;
+import com.tni.project.internproject.repo.UserRepo;
 
 import jakarta.mail.internet.MimeMessage;
 import lombok.experimental.var;
@@ -36,15 +38,19 @@ public class EmailService {
 	@Autowired
 	IndustryRepo industryRepo;
 	@Autowired
+	UserRepo userRepo;
+	@Autowired
 	private JavaMailSender mailSender;
 
 
-	public void sendEmail(User user) {
+	public void sendEmail(int userID) {
+		// Query a user
+		User user = userRepo.findById(userID).orElse(null);
 		// 1. Get a user's industry list
 		// 1.1 call userIndustry repo for the list
-		List<String> industryList = userIndustryRepo.findByUserID(user.getUserID()); // Should actually be int type(?)
+		List<String> industryList = userIndustryRepo.findNameByUserID(user.getUserID()); // Should actually be int type(?)
 		
-		
+		 
 		
 		// 2 Write an email [to be refined]
 		// 2.05 return a industry list of the user (temp)
@@ -60,9 +66,7 @@ public class EmailService {
 		// Probably need to use JSoup along with file editor because that is so sad TT
 	
 		
-		
-		
-		
+
 		// 2.4 Send an email
 		try {
 			MimeMessage message = mailSender.createMimeMessage();
@@ -111,7 +115,5 @@ public class EmailService {
 			e.printStackTrace();
 		}
 	}
-	
-	
 
 }

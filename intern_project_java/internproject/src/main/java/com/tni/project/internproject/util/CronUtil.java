@@ -1,23 +1,33 @@
 package com.tni.project.internproject.util;
 
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-public class CronUtil {
-	private List<Integer> days;
-	// String hour
-	// String min
+public final class CronUtil {
 	
-	public CronUtil(List<Integer> days) {
-		this.days = days;
+	
+	public CronUtil() {
+		
+	}
+	public static String getCronNotation(List<Integer> days, int hour, int min, String period) {
+		String weekdays = getDaysCronNotation(days);
+		int hourCorrection = hour;
+		
+		if ("pm".equals(period) && hour != 12) {
+		    hourCorrection += 12;
+		} else if ("am".equals(period) && hour == 12) {
+		    hourCorrection -= 12;
+		}
+		
+		return "0 " + min + " " + hourCorrection + " * * " + weekdays;
 	}
 	
-	private String getCronNotation() {
-		String weekdays = getDaysCronNotation();
-		return "0 " + "min" + " " + "hour" + " * * " + weekdays;
-	}
-	
-	private String getDaysCronNotation() {
+	public static String getDaysCronNotation(List<Integer> days) {
+		
+		Collections.sort(days);
+		
         // If all days are selected, return "*"
         if (days.size() == 7) {
             return "*";
@@ -51,11 +61,88 @@ public class CronUtil {
     }
 
     // Helper method to append the range to the StringBuilder
-    private void appendRange(StringBuilder cronNotation, int start, int end) {
+	public static void appendRange(StringBuilder cronNotation, int start, int end) {
         if (start == end) {
             cronNotation.append(start);
         } else {
             cronNotation.append(start).append("-").append(end);
         }
     }
+    
+	public static int getMin (String cron) {
+    	String minString = decomposeCron(cron)[1];
+    	return Integer.parseInt(minString);
+    }
+    
+	public static int getHour (String cron) {
+    	int hour = Integer.parseInt(decomposeCron(cron)[2]);
+    	
+    	if(hour > 12) {
+    		hour-=12;
+    	} else if(hour == 0) {
+    		hour+=12;
+    	}
+    	
+    	return hour;
+    }
+    
+	public static String getPeriod(String cron) {
+    	int hour = Integer.parseInt(decomposeCron(cron)[2]);
+    	if(hour >=12) {
+    		return "pm";
+    	} else {
+    		return "am";
+    	}
+    }
+    
+	public static List<Integer> getDays(String cron) {
+    	String days= decomposeCron(cron)[5];	
+    	List<Integer> daysList = new ArrayList<Integer>();
+    	
+    	 boolean isInRange = false;
+    	    int startDay = -1;
+    	    
+    	    // Iterate through each character in the days string
+    	    for (int i = 0; i < days.length(); i++) {
+    	        char currentChar = days.charAt(i);
+    	        
+    	        // Skip commas (we don't need to handle them)
+    	        if (currentChar == ',') continue;
+
+    	        // If we encounter a hyphen, we are starting a range
+    	        if (currentChar == '-') {
+    	            isInRange = true;
+    	            continue;  // skip the hyphen itself
+    	        }
+
+    	        // Convert current day character to integer
+    	        int currentDay = Character.getNumericValue(currentChar);
+    	        
+    	        // If we're in a range, add the intermediate days
+    	        if (isInRange) {
+    	            while (startDay < currentDay - 1) {
+    	                daysList.add(++startDay);
+    	            }
+    	            daysList.add(currentDay);
+    	            isInRange = false;
+    	        } else {
+    	            // Add individual day if not in a range
+    	            if (startDay != -1 && startDay != currentDay) {
+    	                daysList.add(currentDay);
+    	            } else {
+    	                daysList.add(currentDay);
+    	            }
+    	        }
+
+    	        startDay = currentDay;
+    	    }
+
+    	    return daysList;
+    }
+    
+	public static String[] decomposeCron(String cron) {
+    	String[] cronArray = cron.split(" ");
+    	return cronArray;
+    }
+   
 }

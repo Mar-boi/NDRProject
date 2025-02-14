@@ -68,6 +68,14 @@ public class Preference {
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+	@Override
+	public String toString() {
+		return "Preference [preferenceID=" + preferenceID + ", receiveEmail=" + receiveEmail + ", emailSchedule="
+				+ emailSchedule + ", user=" + user + "]";
+	}
+	
+	
 	
 	
 	

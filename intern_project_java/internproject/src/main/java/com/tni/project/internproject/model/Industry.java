@@ -28,6 +28,10 @@ public class Industry {
 	@OneToMany(mappedBy = "industry", cascade = CascadeType.ALL)
 	Set<Company> company = new HashSet<Company>();
 	
+	public Industry() {
+		
+	}
+	
 	public Industry(int industryID, String industryName, Set<Company> company) {
 		this.industryID = industryID;
 		this.industryName = industryName;
