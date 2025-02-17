@@ -7,7 +7,7 @@ type FormFields = {
   password: string;
 };
 
-function Login() {
+export const Login = () => {
   const {
     register,
     handleSubmit,
@@ -64,7 +64,7 @@ function Login() {
                   },
                 })}
                 className="inputBox"
-                type="text"
+                type="password"
                 id="password"
                 placeholder="Enter password"
               />
@@ -78,18 +78,21 @@ function Login() {
                 value="Login"
                 className="btn loginBtnColor setBtn"
               />
-              <br />
-              <input
-                type="submit"
-                value="Sign up"
-                className="btn signupBtnColor setBtn"
-              />
             </div>
           </form>
+          <div style={{ justifyItems: "center" }}>
+            <div>
+              <a href="http://localhost:5173/signup">
+                <input
+                  type="submit"
+                  value="Sign up"
+                  className="btn signupBtnColor setBtn"
+                />
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </>
   );
-}
-
-export default Login;
+};

@@ -8,7 +8,7 @@ function Compare() {
   useEffect(() => {
     let todayDate = new Date(),
       month = "" + (todayDate.getUTCMonth() + 1),
-      day = "" + (todayDate.getUTCDay() + 9),
+      day = "" + (todayDate.getUTCDay() + 16),
       year = todayDate.getUTCFullYear(),
       hours = todayDate.getHours(),
       minutes = todayDate.getMinutes(),
@@ -25,10 +25,9 @@ function Compare() {
   return (
     <>
       <Navbar />
-
       <div className="setCompareBar">
         <div style={{ display: "flex" }}>
-          <span className="fs-3" style={{ marginRight: 100 }}>
+          <span className="fs-3" style={{ marginRight: 50 }}>
             Comparing
           </span>
           <input
@@ -37,15 +36,15 @@ function Compare() {
             placeholder="Enter Symbol"
             style={{ marginRight: 50 }}
           />
-          <span className="fs-3" style={{ marginRight: 100 }}>
+          <span className="fs-3" style={{ marginRight: 50 }}>
             with
           </span>
-          <input type="text" className="inputBox" placeholder="Enter Symbol" style={{ marginRight: 30 }}/>
-          <button className="btn signupBtnColor setBtn">Compare</button>
+          <input type="text" className="inputBox" placeholder="Enter Symbol" style={{ marginRight: 100 }}/>
+          <button className="btn compareBtn">Compare</button>
         </div>
       </div>
       <div className="setDivTable">
-        <table className="setTable">
+        <table className="setCell">
           <thead>
             <tr className="">
               <th>As of {newDate}</th>
@@ -126,7 +125,7 @@ function Compare() {
           </tbody>
         </table>
         <h2 style={{paddingTop: 30}}>Income Statement</h2>
-        <table className="setTable">
+        <table className="setCell">
           <thead>
             <tr>
               <th>As of {newDate}</th>
@@ -185,7 +184,7 @@ function Compare() {
           </tbody>
         </table>
         <h2 style={{paddingTop: 30}}>Balance Sheet</h2>
-        <table className="setTable">
+        <table className="setCell">
           <thead>
             <tr>
               <th>As of {newDate}</th>
@@ -200,14 +199,14 @@ function Compare() {
               <td className="setcolright">--</td>
             </tr>
             <tr>
-              <td>Account Receivables Turnover</td>
+              <td>Accounts Receivable Turnover</td>
               <td className="setcolright">454.42</td>
               <td className="setcolright">--</td>
             </tr>
           </tbody>
         </table>
         <h2 style={{paddingTop: 30}}>Cash Flow</h2>
-        <table className="setTable">
+        <table className="setCell">
           <thead>
             <tr>
               <th>As of {newDate}</th>

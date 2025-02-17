@@ -123,7 +123,10 @@ function Signup() {
                 role="switch"
                 id="flexSwitchCheckReverse"
               />
-              <label className="form-check-label" htmlFor="flexSwitchCheckReverse">
+              <label
+                className="form-check-label"
+                htmlFor="flexSwitchCheckReverse"
+              >
                 Receive latest IPO companies via email
               </label>
             </div>
@@ -134,13 +137,19 @@ function Signup() {
                 className="btn signupBtnColor setBtn"
               />
               <br />
-              <input
-                type="submit"
-                value="Login"
-                className="btn loginBtnColor setBtn"
-              />
             </div>
           </form>
+          <div style={{ justifyItems: "center" }}>
+            <div>
+            <a href="http://localhost:5173/login">
+                <input
+                  type="submit"
+                  value="Login"
+                  className="btn loginBtnColor setBtn"
+                />
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </>
