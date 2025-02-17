@@ -1,0 +1,75 @@
+.setBg{
+    max-width: 600px;
+    min-height: 673px;
+    height: 100%;
+    padding: 10px;
+    margin-top: 75px;
+    margin-left: 31.5%; 
+    border: 1px solid #2E3E8B;/*solid, dotted, double, ridge, groove, inset, outset*/
+    border-radius: 35px;
+
+}
+
+.setHeader{
+    font-weight: bolder;
+    color: #2E3E8B;
+}
+
+.setTextAlignmentCenter{
+    text-align: center;
+}
+
+.setForms{
+    padding-top: 10px;
+}
+
+.setBtn{
+    width: 220px;
+    height: 50px;
+    font-size: 24px;
+    border-radius: 20px;
+    margin-top: 15px;
+    /* border-color: transparent; */
+
+}
+
+.signupBtnColor{
+    font-weight: bold;
+    background-color: #D9D9D9;
+    border-color: transparent;
+    --bs-btn-border-color: transparent;
+    --bs-btn-hover-color: #FFFFFF;
+    --bs-btn-hover-bg: #2E3E8B;
+
+}
+
+.loginBtnColor{
+    font-weight: bold;
+    background-color: #FFFFFF;
+    color: #000000;
+    border-color: transparent;
+    --bs-btn-border-color: transparent;
+    --bs-btn-hover-color: #000000;
+    --bs-btn-hover-bg: transparent;
+}
+
+.inputBox{
+    height: 45px;
+    width: 300px;
+    outline: none;
+    border-radius: 30px;
+    padding-left: 15px;
+    font-size: 16px;
+    border: 1px solid white;
+    background: linear-gradient(0deg in hsl shorter hue, #D9D9D9 5%,white 50%, #D9D9D9 100%);
+}
+
+.form-check-input{
+    background-color: white;
+    border-color: #2E3E8B;
+}
+
+.form-check-input:checked {
+    background-color: #2E3E8B;
+    border-color: white;
+}

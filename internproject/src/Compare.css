@@ -1,0 +1,50 @@
+.setDivTable {
+  background-color: #ececec;
+  width: 1160px;
+  padding: 20px;
+  margin-top: 10px;
+  margin-left: 250px;
+  margin-right: 250px;
+}
+
+.setcolright {
+  text-align: right;
+}
+
+.setCompareBar {
+  display: flex;
+  margin-left: 250px;
+  margin-top: 150px;
+  width: 1160px;
+}
+
+.setTable {
+  width: 1080px;
+}
+
+.inputBox{
+    height: 45px;
+    width: 300px;
+    outline: none;
+    border-radius: 30px;
+    padding-left: 15px;
+    font-size: 16px;
+    border: 1px solid white;
+    background: linear-gradient(0deg in hsl shorter hue, #D9D9D9 5%,white 50%, #D9D9D9 100%);
+}
+
+.setBtn{
+    border-radius: 20px;
+
+}
+
+.signupBtnColor{
+    font-weight: bold;
+    background-color: #2E3E8B;
+    border-color: transparent;
+    --bs-btn-border-color: transparent;
+    --bs-btn-hover-color: black;
+    --bs-btn-hover-bg: #D9D9D9;
+    color: white;
+
+}

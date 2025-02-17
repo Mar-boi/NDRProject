@@ -1,0 +1,24 @@
+.table{
+    background-color: gray;
+}
+
+.setTable {
+  margin: 100px;
+  text-align: center;
+}
+
+.headerColumn {
+  color: White;
+  /* background-color: #12216B; */
+  background-color: #2e3e8b;
+  height: 50px;
+}
+
+.bodyColumn {
+  background-color: #ececec;
+  /* height: 40px; */
+}
+
+.celltextalignleft{
+    text-align: left;
+}
