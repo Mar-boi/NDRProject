@@ -25,8 +25,7 @@ public class Industry {
 	@Column(nullable = false)
 	private String industryName;
 	
-	@OneToMany(mappedBy = "industry", cascade = CascadeType.ALL)
-	Set<Company> company = new HashSet<Company>();
+
 	
 	public Industry() {
 		
@@ -35,7 +34,7 @@ public class Industry {
 	public Industry(int industryID, String industryName, Set<Company> company) {
 		this.industryID = industryID;
 		this.industryName = industryName;
-		this.company = company;
+
 	}
 
 	public int getIndustryID() {
@@ -54,14 +53,6 @@ public class Industry {
 		this.industryName = industryName;
 	}
 
-	public Set<Company> getCompany() {
-		return company;
-	}
 
-	public void setCompany(Set<Company> company) {
-		this.company = company;
-	}
-	
-	
 	
 }

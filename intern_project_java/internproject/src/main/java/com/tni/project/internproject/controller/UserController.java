@@ -1,4 +1,4 @@
-package com.tni.project.internproject.controller;
+ package com.tni.project.internproject.controller;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
@@ -62,7 +62,7 @@ public class UserController {
 		return service.getPreference(userID);
 	}
 	
-	@RequestMapping("/updateProfile")
+	@RequestMapping("/updatePreference")
 	public String updatePreference(@RequestBody Map<String, Object> requestBody) {
 		 List<Integer> days = (List<Integer>) requestBody.get("days");
 		 int hour = (Integer) requestBody.get("hour");

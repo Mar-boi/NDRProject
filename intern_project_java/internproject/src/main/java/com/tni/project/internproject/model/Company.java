@@ -34,6 +34,7 @@ public class Company {
 	private double firstClose;
 	private double currentPrice;
 	private double returnRate;
+	private String compLink;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "industryID")
@@ -43,9 +44,8 @@ public class Company {
 		
 	}
 
-	public Company(int compID, String name, String symbol, Date offerDate, double shares, double offerPrice, double firstClose,
-			double currentPrice, double returnRate, Industry industry) {
-		this.compID = compID;
+	public Company(String name, String symbol, Date offerDate, double shares, double offerPrice, double firstClose,
+			double currentPrice, double returnRate, Industry industry, String compLink) {
 		this.name = name;
 		this.symbol = symbol;
 		this.offerDate = offerDate;
@@ -55,6 +55,7 @@ public class Company {
 		this.currentPrice = currentPrice;
 		this.returnRate = returnRate;
 		this.industry = industry;
+		this.compLink = compLink;
 	}
 	
 	public int getCompID() {
@@ -118,6 +119,16 @@ public class Company {
 	public void setOfferPrice(double offerPrice) {
 		this.offerPrice = offerPrice;
 	}
+
+	public String getCompLink() {
+		return compLink;
+	}
+
+	public void setCompLink(String compLink) {
+		this.compLink = compLink;
+	}
+	
+	
 	
 	
 

@@ -26,7 +26,7 @@ public class EmailRepo {
 	EmailController emailController;
 	
 	
-	HashMap<Integer, ScheduledFuture<?>> mailList = new HashMap<Integer, ScheduledFuture<?>>();
+	HashMap<Integer, ScheduledFuture<?>> emailList = new HashMap<Integer, ScheduledFuture<?>>();
 	
 	// for load all the schedule when started
 	public void loadAll() {
@@ -44,28 +44,26 @@ public class EmailRepo {
 			
 			ScheduledFuture<?> future = scheduler.schedule(new EmailRunnable(user.getUserID(), emailController), new CronTrigger(preference.getEmailSchedule()));
 			
-			
 			// put it in the list
-			mailList.put(user.getUserID(), future);
+			emailList.put(user.getUserID(), future);
 			
 		}
-		
 		
 	}
 
 	
 	public void remove(int userID) {
-		mailList.remove(userID);
+		emailList.remove(userID);
 	}
 	
 	public void cancel(int userID) {
-		mailList.get(userID).cancel(true);
+		emailList.get(userID).cancel(true);
 		
 	}
 
 	public void add(int userID, String cronNotation) {
 		ScheduledFuture<?> future = scheduler.schedule(new EmailRunnable(userID, emailController), new CronTrigger(cronNotation));
-		mailList.put(userID, future);
+		emailList.put(userID, future);
 		
 		
 	}

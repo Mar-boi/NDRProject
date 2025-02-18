@@ -21,8 +21,8 @@ public class EmailRunnable implements Runnable {
 	
 	@Override
 	public void run() {
-		System.out.println("Hi from: " + userID);
-		//emailController.sendEmail(userID);
+		//System.out.println("Hi from: " + userID);
+		emailController.sendEmail(userID);
 		
 	}
 
