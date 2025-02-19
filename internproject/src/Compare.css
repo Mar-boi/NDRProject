@@ -1,0 +1,52 @@
+.setDivTable {
+  background-color: #ececec;
+  width: 1160px;
+  padding: 10px;
+  margin-top: 10px;
+  margin-left: 250px;
+  margin-right: 250px;
+}
+
+.setcolright {
+  text-align: right;
+}
+
+.setCompareBar {
+  display: flex;
+  margin-left: 250px;
+  margin-top: 150px;
+  width: 1160px;
+}
+
+.setCell {
+  width: 1080px;
+}
+
+.inputBox {
+  height: 45px;
+  width: 300px;
+  outline: none;
+  border-radius: 30px;
+  padding-left: 15px;
+  font-size: 16px;
+  border: 1px solid white;
+  background: linear-gradient(
+    0deg in hsl shorter hue,
+    #d9d9d9 5%,
+    white 50%,
+    #d9d9d9 100%
+  );
+}
+
+.compareBtn {
+  font-weight: bold;
+  background-color: #2e3e8b;
+  border-color: transparent;
+  --bs-btn-border-color: transparent;
+  --bs-btn-hover-color: black;
+  --bs-btn-hover-bg: #d9d9d9;
+  color: white;
+  width: 100px;
+  height: 45px;
+  border-radius: 100px;
+}

@@ -1,0 +1,39 @@
+[
+    {
+        "compID": 1,
+        "compName": "Titan America",
+        "symbol": "TTAM",
+        "industryID": "Industrials",
+        "offerDate": "2/12/2025",
+        "shares": 3.8,
+        "offerPrice": 1,
+        "firstClose": 1,
+        "currentPrice": 1,
+        "returnRate": 1,
+        "link": "https://reg.tni.ac.th/registrar/auth_needed.asp"
+    },
+    {
+        "compID": 2,
+        "compName": "Titan Ame",
+        "symbol": "TTAM",
+        "industryID": "Industrials",
+        "offerDate": "2/12/2025",
+        "shares": 3.7,
+        "offerPrice": 1,
+        "firstClose": 1,
+        "currentPrice": 1,
+        "returnRate": 1
+    },
+    {
+        "compID": 3,
+        "compName": "Titan",
+        "symbol": "TTAM",
+        "industryID": "Industrials",
+        "offerDate": "2/12/2025",
+        "shares": 3.6,
+        "offerPrice": 1,
+        "firstClose": 1,
+        "currentPrice": 1,
+        "returnRate": 1
+    }
+]
