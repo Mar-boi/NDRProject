@@ -5,7 +5,6 @@ import "./Table.css";
 function App() {
   return (
     <>
-      <Navbar />
       <div style={{ justifyItems: "center" }}>
         <div className="setFilter" style={{marginLeft: 120}}>
           <span className="fs-4">

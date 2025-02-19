@@ -32,8 +32,10 @@ public class UserController {
 	
 	@PostMapping(path = "/login")
 	@ResponseBody
-	public ResponseEntity<?> login(@RequestParam String username,
-			@RequestParam String password) {
+	public ResponseEntity<?> login(@RequestBody Map<String, Object> requestBody) {
+		
+		String username = (String) requestBody.get("username");
+		String password = (String) requestBody.get("password");
 		
 		// pass all args to service layer
 		return service.login(username, password);
@@ -42,11 +44,12 @@ public class UserController {
 	
 	@PostMapping(path = "/signup")
 	@ResponseBody
-	public ResponseEntity<?> signUp(@RequestParam String username,
-			@RequestParam String password,
-			@RequestParam String confirmPassword,
-			@RequestParam String email,
-			@RequestParam String receiveEmail) {
+	public ResponseEntity<?> signUp(@RequestBody Map<String, Object> requestBody) {
+		String username = (String) requestBody.get("username");
+		String email = (String) requestBody.get("email");
+		String password = (String) requestBody.get("password");
+		String confirmPassword = (String) requestBody.get("cfpassword");
+		boolean receiveEmail = (Boolean) requestBody.get("receiveEmail");
 		
 		// pass all args to service layer
 		return service.signUp(username, password, confirmPassword, email, receiveEmail);

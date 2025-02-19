@@ -1,10 +1,26 @@
-import React, { useState } from "react";
-import Navbar from "./Navbar"
-import Table from "./Table"
+import Table from "./Table";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./Login";
+import Signup from "./Signup";
+import Compare from "./Compare";
+import { AuthProvider } from "./AuthContext";
+import Navbar from "./Navbar";
+;
+
 
 function App() {
   return (
-      <Table/>
+    <AuthProvider>
+    <BrowserRouter>
+    <Navbar/>
+      <Routes>
+        <Route path="/" element={<Table />} />
+        <Route path="/compare" element={<Compare />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+      </Routes>
+    </BrowserRouter>
+    </AuthProvider>
   );
 }
 

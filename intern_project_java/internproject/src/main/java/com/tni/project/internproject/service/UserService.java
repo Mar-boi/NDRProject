@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -40,27 +41,31 @@ public class UserService {
 	public ResponseEntity<?> login(String nameEmail, String password) {
 		User user = userRepo.findLoginUser(nameEmail, password);
 		if(user == null) {
-			return ResponseEntity.ok("Login error");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cannot find user");
 		}
 		else {
 			return ResponseEntity.ok(user);
 		}
 	}
 
-	public ResponseEntity<?> signUp(String username, String password, String confirmPassword, String email, String receiveEmail) {
+	public ResponseEntity<?> signUp(String username, String password, String confirmPassword, String email, boolean receiveEmail) {
 
 		// check email validation (HANDLE AT FRONT END?)
 		// check if the email already exists
 		if (userRepo.findByUserEmail(email) != null) {
-			return ResponseEntity.ok("Email is already taken");
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Email is already taken");
 		}
 		// check if the username already exists
 		if (userRepo.findByUserName(username) != null) {
-			return ResponseEntity.ok("Username is already taken");
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Username is already taken");
 
 		}
+		// check if the pass = confirm pass
+		if (!password.equals(confirmPassword)) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Passwords don't match");
 
-		// check if the pass = confirm pass (HANDLE AT FRONT END?)
+		}
+		
 		// if all correct, call repo to save
 		userRepo.save(new User(username, password, email));
 
@@ -68,13 +73,14 @@ public class UserService {
 		User user = userRepo.findByUserName(username);
 
 		// call repo to save a user pref
-		Preference pref = new Preference(receiveEmail.equals("1"), user);
+		Preference pref = new Preference(receiveEmail, user);
 		prefRepo.save(pref);
 		
 		// Include a new user to the current mailRepo list
 		
 		// return User
-		return ResponseEntity.ok(user);
+		System.out.println(user);
+		return ResponseEntity.status(HttpStatus.CREATED).body(user);
 
 	}
 

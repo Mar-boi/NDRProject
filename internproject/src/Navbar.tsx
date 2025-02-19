@@ -1,6 +1,10 @@
 import "./Navbar.css";
+import { useAuth } from "./AuthContext";
+import { Link } from "react-router-dom";
 
 function Navbar() {
+  const { user, login, logout } = useAuth();
+
   return (
     <>
       <div className="container-fluid" style={{ backgroundColor: "#2E3E8B" }}>
@@ -16,14 +20,28 @@ function Navbar() {
                 Last 100 IPO Companies
               </a>
             </h2>
-            <a href="http://localhost:5173/login">
-              <input
-                type="submit"
-                value="Login"
-                className="btn"
-                style={{ backgroundColor: "white" }}
-              />
-            </a>
+
+            {user ? (
+              <>
+                <button className="btn" style={{ backgroundColor: "white" }}>
+                  <Link
+                    to="/login"
+                    style={{ textDecoration: "none", color: "black" }}
+                  >
+                    {user.username}
+                  </Link>
+                </button>
+              </>
+            ) : (
+              <button className="btn" style={{ backgroundColor: "white" }}>
+                <Link
+                  to="/login"
+                  style={{ textDecoration: "none", color: "black" }}
+                >
+                  Login
+                </Link>
+              </button>
+            )}
           </div>
         </nav>
       </div>
