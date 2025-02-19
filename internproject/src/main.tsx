@@ -6,6 +6,7 @@ import App from "./App";
 import { Login } from "./Login";
 import Signup from "./Signup";
 import Compare from "./Compare";
+import { Profile } from "./Profile";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
   {
     path: '/compare',
     element: <Compare/>
+  },
+  {
+    path: '/profile',
+    element: <Profile/>
   }
 ])
 
