@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, ReactNode } from "react";
-import { AuthContextType, User } from "./context";
+import { AuthContextType, User } from "./assets/model/context";
 
 // Create AuthContext with default value as undefined (so TypeScript enforces correct usage)
 const AuthContext = createContext<AuthContextType | undefined>(undefined);

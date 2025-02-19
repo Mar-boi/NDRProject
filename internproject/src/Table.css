@@ -45,3 +45,9 @@
   height: 45px;
   border-radius: 100px;
 }
+
+a {
+  text-decoration: none;
+  color: black;
+  
+}

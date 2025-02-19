@@ -36,6 +36,9 @@ class StockDataResponse(BaseModel):
     ceo_title: str
     extracted_at: str
 
+# User Agent
+# Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36
+
 # Updated function to fetch stock data
 def get_stock_data(ticker: str):
     stock = yf.Ticker(ticker)

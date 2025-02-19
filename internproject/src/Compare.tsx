@@ -1,4 +1,4 @@
-import Navbar from "./Navbar";
+
 import "./Compare.css";
 import React, { useEffect, useState } from "react";
 
@@ -8,7 +8,7 @@ const StockDataFetcher = () => {
   const [dataA, setDataA] = useState(null);
   const [dataB, setDataB] = useState(null);
 
-  const formatNumber = (value) => {
+  const formatNumber = (value: number) => {
     if (value >= 1_000_000_000_000) {
       return "$" + (value / 1_000_000_000_000).toFixed(1) + "T"; // Tillion
     } else if (value >= 1_000_000_000) {
@@ -56,7 +56,6 @@ const StockDataFetcher = () => {
 
   return (
     <>
-      <Navbar />
       <div className="setCompareBar">
         <div style={{ display: "flex" }}>
           <span className="fs-3" style={{ marginRight: 50 }}>
