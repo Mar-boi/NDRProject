@@ -1,25 +1,58 @@
+import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import "./Register.css";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useState } from "react";
+import axios from "axios";
+import { useAuth } from "./AuthContext";
 
 type FormFields = {
   username: string;
   password: string;
 };
+ const Login = () => {
+  const { user, login, logout } = useAuth();
+  const navigate = useNavigate();
 
-export const Login = () => {
+  const [data, setData] = useState<any>();
+
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors, isSubmitting },
   } = useForm<FormFields>();
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    console.log(data);
+    const userData = {
+      username: data.username,
+      password: data.password
+    }
+    console.log(userData);
+    try {
+      const response = await axios.post("http://localhost:8080/login", data);
+      
+      console.log(response);
+      if (response.status === 200) {
+        console.log("Signup successful! Redirecting...");
+        login({
+          userId: response.data.userID,
+          username: response.data.userName
+        });
+        navigate("/"); // ✅ Redirect to the main page on success
+      }
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response) {
+        if (error.response.status === 404) {
+            setError("password", { type: "server", message: "Username or password is wrong"}); // ✅ Show error on form
+        } else {
+          alert("Something went wrong! Please try again."); // Handle other errors
+        }
+      }
   };
+}
   return (
+   
     <>
-      <Navbar />
       <div className="">
         <div className="setBg">
           <h1
@@ -96,3 +129,5 @@ export const Login = () => {
     </>
   );
 };
+
+export default Login;

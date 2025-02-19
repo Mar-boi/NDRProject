@@ -1,30 +1,69 @@
-import React from "react";
+import { useState } from "react";
 import Navbar from "./Navbar";
 import "./Register.css";
 import { SubmitHandler, useForm } from "react-hook-form";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 type FormFields = {
   email: string;
   username: string;
   password: string;
   cfpassword: string;
+  receiveEmail: boolean;
 };
 function Signup() {
+  const navigate = useNavigate();
+
+  const [data, setData] = useState<any>();
   const {
     register,
     handleSubmit,
     setError,
+    setValue,
+    watch,
     formState: { errors, isSubmitting },
   } = useForm<FormFields>();
+
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    console.log(data);
-  };
+    const userData = {
+      email: data.email,
+      username: data.username,
+      password: data.password,
+      cfpassword: data.cfpassword,
+      receiveEmail: data.receiveEmail,
+    };
+    console.log(userData);
+    try {
+      const response = await axios.post("http://localhost:8080/signup", data);
+      
+      console.log(response);
+      if (response.status === 200) {
+        console.log("Signup successful! Redirecting...");
+        navigate("/"); // ✅ Redirect to the main page on success
+      }
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response) {
+        if (error.response.status === 400) {
+          if(error.response.data === "Email is already taken") {
+            setError("email", { type: "server", message: error.response.data}); // ✅ Show error on form
+          } else if(error.response.data === "Username is already taken") {
+            setError("username", { type: "server", message: error.response.data });
+          } else if(error.response.data === "Passwords don't match") {
+            setError("cfpassword", { type: "server", message: error.response.data });
+          } 
+        } else {
+          alert("Something went wrong! Please try again."); // Handle other errors
+        }
+      }
+    }
+  }
   return (
+    
     <>
-      <Navbar />
       <div className="">
         <div className="setBg">
+          
           <h1 className="setTextAlignmentCenter">Sign up</h1>
           <form
             style={{ justifyItems: "center" }}
@@ -38,7 +77,7 @@ function Signup() {
               <div>
                 <input
                   {...register("email", {
-                    required: "Email is require",
+                    required: "Email is required",
                     // pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
                     validate: (value) => {
                       if (!value.includes("@")) {
@@ -64,7 +103,7 @@ function Signup() {
               <br />
               <input
                 {...register("username", {
-                  required: "Username is require",
+                  required: "Username is required",
                 })}
                 className="inputBox"
                 type="text"
@@ -82,7 +121,7 @@ function Signup() {
               <br />
               <input
                 {...register("password", {
-                  required: "Password is require",
+                  required: "Password is required",
                   minLength: {
                     value: 8,
                     message: "Password must have at least 8 characters",
@@ -121,15 +160,16 @@ function Signup() {
                 className="form-check-input"
                 type="checkbox"
                 role="switch"
-                id="flexSwitchCheckReverse"
+                id="receiveEmail"
+                {...register("receiveEmail")}
+                checked={watch("receiveEmail")}
+                onChange={(e) => setValue("receiveEmail", e.target.checked)}
               />
-              <label
-                className="form-check-label"
-                htmlFor="flexSwitchCheckReverse"
-              >
+              <label className="form-check-label" htmlFor="receiveMail">
                 Receive latest IPO companies via email
               </label>
             </div>
+
             <div>
               <input
                 type="submit"
@@ -141,13 +181,13 @@ function Signup() {
           </form>
           <div style={{ justifyItems: "center" }}>
             <div>
-            <a href="http://localhost:5173/login">
                 <input
                   type="submit"
                   value="Login"
                   className="btn loginBtnColor setBtn"
+                  onClick={() => navigate("/login")}
+                  
                 />
-              </a>
             </div>
           </div>
         </div>

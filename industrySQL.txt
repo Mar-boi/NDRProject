@@ -1,0 +1,12 @@
+
+#Inserting Industry (this is fixed)
+INSERT INTO `internfinance`.`industry` (`industry_name`) VALUES ('Basic Materials');
+INSERT INTO `internfinance`.`industry` (`industry_name`) VALUES ('Blank Check');
+INSERT INTO `internfinance`.`industry` (`industry_name`) VALUES ('Consumer Goods');
+INSERT INTO `internfinance`.`industry` (`industry_name`) VALUES ('Consumer Services');
+INSERT INTO `internfinance`.`industry` (`industry_name`) VALUES ('Financials');
+INSERT INTO `internfinance`.`industry` (`industry_name`) VALUES ('Health Care');
+INSERT INTO `internfinance`.`industry` (`industry_name`) VALUES ('Industrials');
+INSERT INTO `internfinance`.`industry` (`industry_name`) VALUES ('Oil & Gas');
+INSERT INTO `internfinance`.`industry` (`industry_name`) VALUES ('Other');
+INSERT INTO `internfinance`.`industry` (`industry_name`) VALUES ('Technology');
