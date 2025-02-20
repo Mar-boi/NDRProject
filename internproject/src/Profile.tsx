@@ -145,9 +145,13 @@ export const Profile = () => {
             <div style={{ display: "flex", marginLeft: 425 }}>
               <div style={{ marginRight: 10 }}>
                 <input
-                  type="submit"
+                  type="button"
                   value="Logout"
                   className="btn setProfileLogoutBtnColor setProfileLogoutBtn"
+                  onClick={() => {
+                    logout(); // Call logout function
+                    window.location.reload(); // Refresh the page
+                  }}
                 />
               </div>
               <div>
