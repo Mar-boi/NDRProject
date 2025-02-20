@@ -3,8 +3,10 @@ import React, { useEffect, useState } from "react";
 import "bootstrap/dist/js/bootstrap.bundle.min.js"; // Import Bootstrap JS (this includes Popper.js)
 import { useAuth } from "./AuthContext";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export const Profile = () => {
+  const navigate = useNavigate();
   const [activeDays, setActiveDays] = useState<number[]>([]); // Track an array of active days
   const [selectedIndustries, setSelectedIndustries] = useState<number[]>([]);
 
@@ -194,6 +196,10 @@ export const Profile = () => {
                   type="submit"
                   value="Logout"
                   className="btn setProfileLogoutBtnColor setProfileLogoutBtn"
+                  onClick={() => {
+                    logout();
+                    navigate("/");
+                  }}
                 />
               </div>
               <div>
