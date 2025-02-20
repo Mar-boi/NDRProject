@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -66,7 +67,7 @@ public class UserController {
 		return service.getPreference(userID);
 	}
 	
-	@RequestMapping("/updatePreference")
+	@PutMapping("/updatePreference")
 	public ResponseEntity<?> updatePreference(@RequestBody Map<String, Object> requestBody) {
 		 List<Integer> days = (List<Integer>) requestBody.get("days");
 		 int hour = (Integer) requestBody.get("hour");
@@ -78,6 +79,17 @@ public class UserController {
 		 
 		 
 		 return service.updatePreference(days,hour,min,period,receiveEmail,industries,userID);
+		
+	}
+	
+	@PutMapping("/updateProfile")
+	public ResponseEntity<?> updateProfile(@RequestBody Map<String, Object> requestBody) {
+		 int userID =  (Integer) requestBody.get("userID");
+		 String username = (String) requestBody.get("username");
+		 String email = (String) requestBody.get("email");
+		 
+		 
+		 return service.updateProfile(username, email, userID);
 		
 	}
 }

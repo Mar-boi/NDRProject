@@ -58,6 +58,8 @@ export const Profile = () => {
     });
   };
 
+
+
   const handleIndustryClick = (key: number) => {
     setSelectedIndustries((prev) => {
       const updatedIndustries = prev.includes(key)
@@ -66,6 +68,22 @@ export const Profile = () => {
       return updatedIndustries.sort();
     });
   };
+
+  const handleOnSubmitProfile = (event: React.FormEvent) => {
+    event.preventDefault();
+    const updateProfile = {
+      username: username,
+      email: email,
+      userID: user?.userId
+    }
+    console.log(updateProfile);
+    axios
+    .put("http://localhost:8080/updateProfile", updateProfile)
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((e) => console.log(e));
+  }
 
   const handleOnSubmitPref = (event: React.FormEvent) => {
       // Prevent form default submission behavior
@@ -179,11 +197,13 @@ export const Profile = () => {
                 />
               </div>
               <div>
-                <input
+              <button
                   type="submit"
-                  value="Save Changes"
                   className="btn setProfileBtnColor setProfileBtn"
-                />
+                  onClick={handleOnSubmitProfile}
+                >
+                  Save Changes
+                </button>
               </div>
             </div>
           </form>

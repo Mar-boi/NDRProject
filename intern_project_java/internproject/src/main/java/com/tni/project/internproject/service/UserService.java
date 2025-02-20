@@ -184,4 +184,27 @@ public class UserService {
 			}
 		}
 	}
+
+	public ResponseEntity<?> updateProfile(String username, String email, int userID) {
+		try {
+			
+			if (userRepo.findByUserName(username) != null) {
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Username is already taken");
+
+			}
+			
+			if (userRepo.findByUserEmail(email) != null) {
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Email is already taken");
+			}
+			
+			userRepo.updateProfile(username, email, userID);
+			
+			return ResponseEntity.status(HttpStatus.OK).body("Update Successful");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error Updating");
+			
+		}
+	}
 }
