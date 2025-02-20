@@ -1,16 +1,1 @@
-{
-    "longName": "Delta Air Lines, Inc.",
-    "ticker": "DAL",
-    "marketcap": 42013368320,
-    "enterprisevalue": 62084931584,
-    "sector": "Industrials",
-    "industry": "Airlines",
-    "ceo_name": "Mr. Edward H. Bastian",
-    "ceo_title": "CEO & Director",
-    "revenue": 61643001856,
-    "grossProfits": 13473999872,
-    "operatingCashflow": 8024999936,
-    "freeCashflow": 1584125056,
-    "inventory": 0,
-    "extracted_at": "2025-02-20"
-}
+{"longName": "Pony AI Inc.", "ticker": "PONY", "marketcap": 6434859008, "enterprisevalue": 2649094400, "sector": "Technology", "industry": "Information Technology Services", "ceo_name": "Dr. Jun  Peng", "ceo_title": "Co-founder, CEO & Chairman of the Board", "revenue": 84331000, "grossProfits": 19244000, "operatingCashflow": -111725000, "freeCashflow": -99587624, "inventory": 0, "extracted_at": "2025-02-20"}

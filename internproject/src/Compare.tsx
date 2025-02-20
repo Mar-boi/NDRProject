@@ -177,14 +177,14 @@ const StockDataFetcher = () => {
                   <tr>
                     <td>Operating Expenses</td>
 
-                    <td className="setCompareCell"></td>
-                    <td className="setCompareCell"></td>
+                    <td className="setCompareCell">--</td>
+                    <td className="setCompareCell">--</td>
                   </tr>
                   <tr>
                     <td>Operating Income</td>
 
-                    <td className="setCompareCell"></td>
-                    <td className="setCompareCell"></td>
+                    <td className="setCompareCell">--</td>
+                    <td className="setCompareCell">--</td>
                   </tr>
                   <tr>
                     <td>Gross Profit</td>
@@ -213,13 +213,13 @@ const StockDataFetcher = () => {
                 <tbody>
                   <tr>
                     <td>Inventory</td>
-                    <td className="setCompareCell">{dataA.inventory}</td>
-                    <td className="setCompareCell">{dataB.inventory}</td>
+                    <td className="setCompareCell">{dataA.inventory}--</td>
+                    <td className="setCompareCell">{dataB.inventory}--</td>
                   </tr>
                   <tr>
                     <td>Equity</td>
-                    <td className="setCompareCell"></td>
-                    <td className="setCompareCell"></td>
+                    <td className="setCompareCell">--</td>
+                    <td className="setCompareCell">--</td>
                   </tr>
                 </tbody>
               </table>
@@ -248,13 +248,13 @@ const StockDataFetcher = () => {
                   </tr>
                   <tr>
                     <td>Capital Expenditures</td>
-                    <td className="setCompareCell"></td>
-                    <td className="setCompareCell"></td>
+                    <td className="setCompareCell">--</td>
+                    <td className="setCompareCell">--</td>
                   </tr>
                   <tr>
                     <td>Cash Flow from Investing Activities</td>
-                    <td className="setCompareCell"></td>
-                    <td className="setCompareCell"></td>
+                    <td className="setCompareCell">--</td>
+                    <td className="setCompareCell">--</td>
                   </tr>
                   <tr>
                     <td>Free Cash Flow</td>
