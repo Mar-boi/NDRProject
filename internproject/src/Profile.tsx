@@ -5,19 +5,27 @@ import { useAuth } from "./AuthContext";
 import axios from "axios";
 
 export const Profile = () => {
-  const [activeDays, setActiveDays] = useState([]); // Track an array of active days
+  const [activeDays, setActiveDays] = useState<number[]>([]); // Track an array of active days
   const [hour, setHour] = useState(0);
   const [min, setMin] = useState(0);
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [receiveEmail, setReceiveEmail] = useState(false);
-
-  
+ 
   // State to store the selected period (AM/PM)
   const [selectedPeriod, setSelectedPeriod] = useState("");
 
   const { user, login, logout } = useAuth();
+  const days = {
+    0: "Sun",
+    1: "Mon",
+    2: "Tue",
+    3: "Wed",
+    4: "Thu",
+    5: "Fri",
+    6: "Sat"
+    }
 
   useEffect(() => {
     fetchUser();
@@ -34,20 +42,23 @@ export const Profile = () => {
          setEmail(response.data.email);
          setHour(response.data.hour);
          setSelectedPeriod(response.data.period.toUpperCase());
+         setActiveDays(response.data.days);
+         setReceiveEmail(response.data.receiveEmail);
       } catch(e) {
         console.log(e);
       }
     }
   }
 
-  const handleClick = (day: string) => {
-    if (activeDays.includes(day)) {
+  const handleClick = (key: number) => {
+    if (activeDays.includes(key)) {
       // If the day is already active, remove it from the array (toggle off)
-      setActiveDays(activeDays.filter((item) => item !== day));
+      setActiveDays(activeDays.filter((item) => item !== key));
     } else {
       // If the day is not active, add it to the array (toggle on)
-      setActiveDays([...activeDays, day]);
+      setActiveDays([...activeDays, key]);
     }
+    console.log(activeDays)
   };
 
   // Function to handle the selection of AM or PM
@@ -55,7 +66,7 @@ export const Profile = () => {
     setSelectedPeriod(period); // Update the state with the selected value
   };
 
-  const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
   return (
     <>
       <div>
@@ -181,7 +192,7 @@ export const Profile = () => {
                     placeholder="00"
                     min="0"
                     max="59"
-                    value={min}
+                    value={min.toString().padStart(2, '0')}
 
                     style={{
                       width: "75px",
@@ -259,18 +270,18 @@ export const Profile = () => {
 
                 {/* Container for the days buttons */}
 
-                <div style={{marginTop: 20}}>
-                  {days.map((day) => (
+                <div>
+                  {Object.entries(days).map(([key, day]) => (
                     <label htmlFor="">
-                      <p
-                        key={day}
+                      <input
+                        key={key}
+                        type="button"
                         className={`dayBtn ${
-                          activeDays.includes(day) ? "active" : ""
+                          activeDays.includes(Number(key)) ? "active" : ""
                         }`} // Apply active class if the day is in the activeDays array
-                        onClick={() => handleClick(day)}
-                      >
-                        {day}
-                      </p>
+                        value={day}
+                        onClick={() => handleClick(Number(key))}
+                      />
                     </label>
 
                   ))}
@@ -355,6 +366,8 @@ export const Profile = () => {
                   type="checkbox"
                   role="switch"
                   id="flexSwitchCheckReverse"
+                  checked= {receiveEmail}
+                  onChange={e => setReceiveEmail(e.target.checked)}
                 />
                 <label
                   className="form-check-label"

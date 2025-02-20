@@ -11,6 +11,7 @@ public class UserSetting {
 	private int hour;
 	private int min;
 	private String period;
+	private List<Integer> days;
 	private boolean receiveEmail;
 	private List<String> industries;
 	
@@ -21,18 +22,22 @@ public class UserSetting {
 	}
 
 
-	public UserSetting(int userID, String username, String email, int hour, int min, String period,
+	
+
+	public UserSetting(int userID, String username, String email, int hour, int min, String period, List<Integer> days,
 			boolean receiveEmail, List<String> industries) {
-		
+		super();
 		this.userID = userID;
 		this.username = username;
 		this.email = email;
 		this.hour = hour;
 		this.min = min;
 		this.period = period;
+		this.days = days;
 		this.receiveEmail = receiveEmail;
 		this.industries = industries;
 	}
+
 
 
 	public int getUserID() {
@@ -82,6 +87,15 @@ public class UserSetting {
 	}
 	public void setIndustries(List<String> industries) {
 		this.industries = industries;
+	}
+	
+	public List<Integer> getDays() {
+		return days;
+	}
+
+
+	public void setDays(List<Integer> days) {
+		this.days = days;
 	}
 	
 	

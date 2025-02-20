@@ -118,6 +118,7 @@ public class UserService {
 			userSetting.setHour(CronUtil.getHour(cron));
 			userSetting.setMin(CronUtil.getMin(cron));
 			userSetting.setPeriod(CronUtil.getPeriod(cron));
+			userSetting.setDays(CronUtil.getDays(cron));
 
 			userSetting.setIndustries(industry);
 

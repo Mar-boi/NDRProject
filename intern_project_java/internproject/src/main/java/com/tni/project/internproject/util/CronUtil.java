@@ -2,6 +2,7 @@ package com.tni.project.internproject.util;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -115,6 +116,10 @@ public final class CronUtil {
 	public static List<Integer> getDays(String cron) {
     	String days= decomposeCron(cron)[5];	
     	List<Integer> daysList = new ArrayList<Integer>();
+    	
+    	 if(days.equals("*")) {
+ 	    	return Arrays.asList(0,1,2,3,4,5,6);
+ 	    }
     	
     	 boolean isInRange = false;
     	    int startDay = -1;
