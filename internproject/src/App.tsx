@@ -19,11 +19,7 @@ function App() {
         <Route path="/compare" element={<Compare />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-<<<<<<< HEAD
         <Route path="/profile" element={<Profile />} />
-=======
-        <Route path="/profile" element = {<Profile />} />
->>>>>>> main
       </Routes>
     </BrowserRouter>
     </AuthProvider>
