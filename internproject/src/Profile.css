@@ -37,3 +37,66 @@
   background-color: #2e3e8b;
   color: white; /* Text color when active */
 }
+
+.setProfileLogoutBtn{
+  width: 100px;
+  height: 50px;
+  font-size: 20px;
+  border-radius: 20px;
+  margin-top: 15px;
+
+}
+
+.setProfileBtn{
+  width: 200px;
+  height: 50px;
+  font-size: 20px;
+  border-radius: 20px;
+  margin-top: 15px;
+
+}
+
+.setProfileLogoutBtnColor{
+  background-color: #ff7f7f;
+  border-color: transparent;
+  --bs-btn-border-color: transparent;
+  --bs-btn-hover-color: #FFFFFF;
+  --bs-btn-hover-bg: #696969;
+
+}
+
+.setProfileBtnColor{
+  background-color: #D9D9D9;
+  border-color: transparent;
+  --bs-btn-border-color: transparent;
+  --bs-btn-hover-color: #FFFFFF;
+  --bs-btn-hover-bg: #2E3E8B;
+
+}
+
+.ddIndustry{
+  --bs-dropdown-link-active-bg: #2E3E8B;
+}
+
+.setIndustriesBtn{
+  color: white;
+  background-color: #2E3E8B;
+  border-color: transparent;
+  --bs-btn-border-color: transparent;
+  --bs-btn-hover-color: black;
+  --bs-btn-hover-bg: #ff7f7f;
+}
+
+.setDDIndustries{
+  background-color: #D9D9D9;
+  border-color: transparent;
+  --bs-btn-border-color: transparent;
+  --bs-btn-hover-color: white;
+  --bs-btn-hover-bg: #2E3E8B;
+}
+
+.setDDIndustries.show{
+  background-color: #2E3E8B;
+  border-color: transparent;
+  color: white;
+}
