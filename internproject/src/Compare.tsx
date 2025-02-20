@@ -1,4 +1,3 @@
-
 import "./Compare.css";
 import React, { useEffect, useState } from "react";
 
@@ -9,17 +8,27 @@ const StockDataFetcher = () => {
   const [dataB, setDataB] = useState(null);
 
   const formatNumber = (value: number) => {
-    if (value >= 1_000_000_000_000) {
-      return "$" + (value / 1_000_000_000_000).toFixed(1) + "T"; // Tillion
-    } else if (value >= 1_000_000_000) {
-      return "$" + (value / 1_000_000_000).toFixed(1) + "B"; // Billion
-    } else if (value >= 1_000_000) {
-      return "$" + (value / 1_000_000).toFixed(1) + "M"; // Million
-    } else if (value >= 1_000) {
-      return "$" + value.toString(); // Simply return as a string with thousands (e.g., 1000, 2500)
+    // Check if the value is negative and store the absolute value
+    const isNegative = value < 0;
+    const positiveValue = Math.abs(value);
+
+    // Format the number as before, but maintain the negative sign if needed
+    let formattedValue = "";
+
+    if (positiveValue >= 1_000_000_000_000) {
+      formattedValue = (positiveValue / 1_000_000_000_000).toFixed(1) + "T"; // Trillion
+    } else if (positiveValue >= 1_000_000_000) {
+      formattedValue = (positiveValue / 1_000_000_000).toFixed(1) + "B"; // Billion
+    } else if (positiveValue >= 1_000_000) {
+      formattedValue = (positiveValue / 1_000_000).toFixed(1) + "M"; // Million
+    } else if (positiveValue >= 1_000) {
+      formattedValue = (positiveValue / 1_000).toFixed(2); // Thousand
     } else {
-      return "$" + value.toFixed(2); // For values less than 1000, return with 2 decimal places
+      formattedValue = positiveValue.toFixed(2); // Less than a thousand
     }
+
+    // If the value was negative, add the minus sign
+    return isNegative ? "$-" + formattedValue : "$" + formattedValue;
   };
 
   const handleInputChange1 = (event) => {
@@ -89,139 +98,172 @@ const StockDataFetcher = () => {
         {dataA && dataB && (
           <div>
             <div className="setDivTable">
-              <table className="setCell">
+              <table className="setCompareTable">
                 <thead>
-                  <tr className="">
+                  <tr>
                     <th>As of {dataA.extracted_at}</th>
-                    <th className="setcolright">{dataA.ticker}</th>
-                    <th className="setcolright">{dataB.ticker}</th>
+                    <th className="setCompareCell">
+                      {dataA.ticker} {dataA.longName}
+                    </th>
+                    <th className="setCompareCell ">
+                      {dataB.ticker} {dataB.longName}
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td>Market Value</td>
-
-                    <td className="setcolright ">
+                    <td className="setCompareCell ">
                       {formatNumber(dataA.marketcap)}
                     </td>
-                    <td className="setcolright ">
+                    <td className="setCompareCell ">
                       {formatNumber(dataB.marketcap)}
                     </td>
                   </tr>
                   <tr>
                     <td>Enterprise Value</td>
-                    <td className="setcolright ">
+                    <td className="setCompareCell ">
                       {formatNumber(dataA.enterprisevalue)}
                     </td>
-                    <td className="setcolright">
+                    <td className="setCompareCell">
                       {formatNumber(dataB.enterprisevalue)}
                     </td>
                   </tr>
                   <tr>
                     <td>Price to Earnings</td>
-                    <td className="setcolright ">--</td>
-                    <td className="setcolright">--</td>
+                    <td className="setCompareCell ">--</td>
+                    <td className="setCompareCell">--</td>
                   </tr>
                   <tr>
                     <td>Sector</td>
-                    <td className="setcolright">{dataA.sector}</td>
-                    <td className="setcolright">{dataB.sector}</td>
+                    <td className="setCompareCell">{dataA.sector}</td>
+                    <td className="setCompareCell">{dataB.sector}</td>
                   </tr>
                   <tr>
                     <td>Industry</td>
-                    <td className="setcolright ">{dataA.industry}</td>
-                    <td className="setcolright">{dataB.industry}</td>
+                    <td className="setCompareCell ">{dataA.industry}</td>
+                    <td className="setCompareCell">{dataB.industry}</td>
                   </tr>
                   <tr>
                     <td>CEO</td>
-                    <td className="setcolright ">{dataA.ceo_name}</td>
-                    <td className="setcolright">{dataB.ceo_name}</td>
+                    <td className="setCompareCell ">{dataA.ceo_name}</td>
+                    <td className="setCompareCell">{dataB.ceo_name}</td>
                   </tr>
                 </tbody>
               </table>
               <h2 style={{ paddingTop: 30 }}>Income Statement</h2>
-              <table className="setCell">
+              <table className="setCompareTable">
                 <thead>
                   <tr>
                     <th>As of {dataA.extracted_at}</th>
-                    <td className="setcolright "></td>
-                    <th className="setcolright"></th>
+                    <th className="setCompareCell">
+                      {dataA.ticker} {dataA.longName}
+                    </th>
+                    <th className="setCompareCell">
+                      {dataB.ticker} {dataB.longName}
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td>Revenue</td>
-                    <td className="setcolright ">{dataA.revenue}</td>
-                    <td className="setcolright">{dataB.revenue}</td>
+                    <td className="setCompareCell ">
+                      {formatNumber(dataA.revenue)}
+                    </td>
+                    <td className="setCompareCell">
+                      {formatNumber(dataB.revenue)}
+                    </td>
                   </tr>
                   <tr>
                     <td>Operating Expenses</td>
 
-                    <td className="setcolright"></td>
+                    <td className="setCompareCell"></td>
+                    <td className="setCompareCell"></td>
                   </tr>
                   <tr>
                     <td>Operating Income</td>
 
-                    <td className="setcolright"></td>
+                    <td className="setCompareCell"></td>
+                    <td className="setCompareCell"></td>
                   </tr>
                   <tr>
                     <td>Gross Profit</td>
-
-                    <td className="setcolright"></td>
+                    <td className="setCompareCell">
+                      {formatNumber(dataA.grossProfits)}
+                    </td>
+                    <td className="setCompareCell">
+                      {formatNumber(dataB.grossProfits)}
+                    </td>
                   </tr>
                 </tbody>
               </table>
               <h2 style={{ paddingTop: 30 }}>Balance Sheet</h2>
-              <table className="setCell">
+              <table className="setCompareTable">
                 <thead>
                   <tr>
                     <th>As of {dataA.extracted_at}</th>
-                    <th className="setcolright"></th>
-                    <th className="setcolright"></th>
+                    <th className="setCompareCell">
+                      {dataA.ticker} {dataA.longName}
+                    </th>
+                    <th className="setCompareCell">
+                      {dataB.ticker} {dataB.longName}
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td>Inventory</td>
-                    <td className="setcolright"></td>
-                    <td className="setcolright"></td>
+                    <td className="setCompareCell">{dataA.inventory}</td>
+                    <td className="setCompareCell">{dataB.inventory}</td>
                   </tr>
                   <tr>
-                    <td>Accounts Receivable Turnover</td>
-                    <td className="setcolright"></td>
-                    <td className="setcolright"></td>
+                    <td>Equity</td>
+                    <td className="setCompareCell"></td>
+                    <td className="setCompareCell"></td>
                   </tr>
                 </tbody>
               </table>
               <h2 style={{ paddingTop: 30 }}>Cash Flow</h2>
-              <table className="setCell">
+              <table className="setCompareTable">
                 <thead>
                   <tr>
                     <th>As of {dataA.extracted_at}</th>
-                    <th className="setcolright"></th>
-                    <th className="setcolright"></th>
+                    <th className="setCompareCell">
+                      {dataA.ticker} {dataA.longName}
+                    </th>
+                    <th className="setCompareCell">
+                      {dataB.ticker} {dataB.longName}
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td>Cash Flow from Operations</td>
-                    <td className="setcolright"></td>
-                    <td className="setcolright"></td>
+                    <td className="setCompareCell">
+                      {formatNumber(dataA.operatingCashflow)}
+                    </td>
+                    <td className="setCompareCell">
+                      {formatNumber(dataB.operatingCashflow)}
+                    </td>
                   </tr>
                   <tr>
                     <td>Capital Expenditures</td>
-                    <td className="setcolright"></td>
-                    <td className="setcolright"></td>
+                    <td className="setCompareCell"></td>
+                    <td className="setCompareCell"></td>
                   </tr>
                   <tr>
                     <td>Cash Flow from Investing Activities</td>
-                    <td className="setcolright"></td>
-                    <td className="setcolright"></td>
+                    <td className="setCompareCell"></td>
+                    <td className="setCompareCell"></td>
                   </tr>
                   <tr>
                     <td>Free Cash Flow</td>
-                    <td className="setcolright"></td>
-                    <td className="setcolright"></td>
+                    <td className="setCompareCell">
+                      {formatNumber(dataA.freeCashflow)}
+                    </td>
+                    <td className="setCompareCell">
+                      {formatNumber(dataB.freeCashflow)}
+                    </td>
                   </tr>
                 </tbody>
               </table>
