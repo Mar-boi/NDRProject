@@ -6,7 +6,7 @@ import axios from "axios";
 
 export const Profile = () => {
   const [activeDays, setActiveDays] = useState<number[]>([]); // Track an array of active days
-  const [selectedIndustries, setSelectedIndustries] = useState([]);
+  const [selectedIndustries, setSelectedIndustries] = useState<number[]>([]);
 
   const [hour, setHour] = useState(0);
   const [min, setMin] = useState(0);
@@ -14,8 +14,6 @@ export const Profile = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [receiveEmail, setReceiveEmail] = useState(false);
- 
-  // State to store the selected period (AM/PM)
 
   const [selectedPeriod, setSelectedPeriod] = useState("");
 
@@ -39,6 +37,7 @@ export const Profile = () => {
          setSelectedPeriod(response.data.period.toUpperCase());
          setActiveDays(response.data.days);
          setReceiveEmail(response.data.receiveEmail);
+         setSelectedIndustries(response.data.industries);
       } catch(e) {
         console.log(e);
       }
@@ -51,7 +50,7 @@ export const Profile = () => {
     setSelectedPeriod(period); // Update the state with the selected value
   };
 
-  const handleClick = (key: number) => {
+  const handleDaysClick = (key: number) => {
     setActiveDays((prev) => {
       return prev.includes(key)
         ? prev.filter((item) => item !== key)
@@ -59,11 +58,11 @@ export const Profile = () => {
     });
   };
 
-  const handleIndustryClick = (industry) => {
+  const handleIndustryClick = (key: number) => {
     setSelectedIndustries((prev) => {
-      const updatedIndustries = prev.includes(industry)
-        ? prev.filter((item) => item !== industry)
-        : [...prev, industry];
+      const updatedIndustries = prev.includes(key)
+        ? prev.filter((item) => item !== key)
+        : [...prev, key];
       return updatedIndustries.sort();
     });
   };
@@ -77,18 +76,18 @@ export const Profile = () => {
     5: "Fri",
     6: "Sat",
   };
-  const industries = [
-    "Basic Materials",
-    "Blank Check",
-    "Consumer Goods",
-    "Consumer Services",
-    "Financials",
-    "Health Care",
-    "Industrials",
-    "Oil & Gas",
-    "Other",
-    "Technology",
-  ];
+  const industries: {[key: number]: string} = {
+    1:"Basic Materials",
+    2:"Blank Check",
+    3:"Consumer Goods",
+    4:"Consumer Services",
+    5:"Financials",
+    6:"Health Care",
+    7:"Industrials",
+    8:"Oil & Gas",
+    9:"Other",
+    10:"Technology",
+  };
 
   return (
     <>
@@ -308,7 +307,7 @@ export const Profile = () => {
                           activeDays.includes(Number(key)) ? "active" : ""
                         }`} // Apply active class if the day is in the activeDays array
                         value={day}
-                        onClick={() => handleClick(Number(key))}
+                        onClick={() => handleDaysClick(Number(key))}
                       />
                     </label>
                   ))}
@@ -336,17 +335,12 @@ export const Profile = () => {
                     Look up industries
                   </button>
                   <ul className="dropdown-menu ddIndustry">
-                    {industries
-                      .filter(
-                        (industry) => !selectedIndustries.includes(industry)
-                      )
-                      .map((industry) => (
-                        <li key={industry}>
-                          <a
-                            className="dropdown-item"
-                            onClick={() => handleIndustryClick(industry)}
-                          >
-                            {industry}
+                    {Object.entries(industries)
+                      .filter(([key]) => !selectedIndustries.includes(+key)) // Convert key to number
+                      .map(([key, industryName]) => (
+                        <li key={key}>
+                          <a className="dropdown-item" onClick={() => handleIndustryClick(+key)}>
+                            {industryName}
                           </a>
                         </li>
                       ))}
@@ -359,13 +353,13 @@ export const Profile = () => {
                       marginLeft: "10px",
                     }}
                   >
-                    {selectedIndustries.map((industry) => (
+                    {selectedIndustries.map((key:number) => (
                       <button
-                        key={industry}
+                        key={key}
                         className="btn setIndustriesBtn"
-                        onClick={() => handleIndustryClick(industry)}
+                        onClick={() => handleIndustryClick(key)}
                       >
-                        {industry} ✖
+                        {industries[key]} ✖
                       </button>
                     ))}
                   </div>

@@ -103,7 +103,7 @@ public class UserService {
 			Preference pref = prefRepo.findByUserID(userID);
 
 			// find inudusry name from userID -> List<String>
-			List<String> industry = userInRepo.findNameByUserID(userID);
+			List<Integer> industry = userInRepo.findByUserID(userID).orElse(null);
 
 			// create a new UserSetting DTO
 			UserSetting userSetting = new UserSetting();
