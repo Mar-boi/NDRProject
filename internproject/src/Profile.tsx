@@ -4,6 +4,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js"; // Import Bootstrap JS (this
 import { useAuth } from "./AuthContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { days, industries } from "./assets/model/model";
 
 export const Profile = () => {
   const navigate = useNavigate();
@@ -108,27 +109,7 @@ export const Profile = () => {
       .catch((e) => console.log(e));
   };
 
-  const days = {
-    0: "Sun",
-    1: "Mon",
-    2: "Tue",
-    3: "Wed",
-    4: "Thu",
-    5: "Fri",
-    6: "Sat",
-  };
-  const industries: { [key: number]: string } = {
-    1: "Basic Materials",
-    2: "Blank Check",
-    3: "Consumer Goods",
-    4: "Consumer Services",
-    5: "Financials",
-    6: "Health Care",
-    7: "Industrials",
-    8: "Oil & Gas",
-    9: "Other",
-    10: "Technology",
-  };
+ 
 
   return (
     <>

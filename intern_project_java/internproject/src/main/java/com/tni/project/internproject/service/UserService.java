@@ -86,12 +86,6 @@ public class UserService {
 
 	}
 
-	public void logout() {
-
-		// Do some logout stuff
-
-	}
-
 	public ResponseEntity<?> getPreference(int userID) {
 
 		User user = userRepo.findById(userID).orElse(null);

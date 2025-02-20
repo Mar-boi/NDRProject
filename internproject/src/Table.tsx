@@ -138,7 +138,7 @@ function App() {
                     <td>${data.offerPrice}</td>
                     <td>${data.firstClose}</td>
                     <td>${data.currentPrice}</td>
-                    <td>{data.returnRate}</td>
+                    <td>{data.returnRate}%</td>
                   </tr>
                 );
               })}
