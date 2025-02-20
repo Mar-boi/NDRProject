@@ -1,6 +1,5 @@
 import "./Profile.css";
 import React, { useEffect, useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
 import "bootstrap/dist/js/bootstrap.bundle.min.js"; // Import Bootstrap JS (this includes Popper.js)
 import { useAuth } from "./AuthContext";
 import axios from "axios";
