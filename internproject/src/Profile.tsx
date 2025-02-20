@@ -313,7 +313,7 @@ export const Profile = () => {
                       <li>
                         <a
                           className="dropdown-item"
-                          href="#"
+                   
                           onClick={() => handleSelectPeriod("AM")}
                           style={{
                             padding: "10px 20px",
@@ -326,7 +326,7 @@ export const Profile = () => {
                       <li>
                         <a
                           className="dropdown-item"
-                          href="#"
+                         
                           onClick={() => handleSelectPeriod("PM")}
                           style={{
                             padding: "10px 20px",
