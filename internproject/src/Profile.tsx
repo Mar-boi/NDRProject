@@ -1,13 +1,47 @@
-import Navbar from "./Navbar";
 import "./Profile.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
 import "bootstrap/dist/js/bootstrap.bundle.min.js"; // Import Bootstrap JS (this includes Popper.js)
+import { useAuth } from "./AuthContext";
+import axios from "axios";
 
 export const Profile = () => {
   const [activeDays, setActiveDays] = useState([]); // Track an array of active days
+  const [hour, setHour] = useState(0);
+  const [min, setMin] = useState(0);
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [receiveEmail, setReceiveEmail] = useState(false);
 
-  const handleClick = (day) => {
+  
+  // State to store the selected period (AM/PM)
+  const [selectedPeriod, setSelectedPeriod] = useState("");
+
+  const { user, login, logout } = useAuth();
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
+
+  const fetchUser = async ()  => { 
+    if(user!= null) {
+      console.log("Hi" + user.userId);
+      // call spring boot for user & user preference
+      try {
+        const response = await axios.get("http://localhost:8080/getPreference?userID=" + user.userId);
+        console.log(response);
+         setUsername(response.data.username);
+         setEmail(response.data.email);
+         setHour(response.data.hour);
+         setSelectedPeriod(response.data.period.toUpperCase());
+      } catch(e) {
+        console.log(e);
+      }
+    }
+  }
+
+  const handleClick = (day: string) => {
     if (activeDays.includes(day)) {
       // If the day is already active, remove it from the array (toggle off)
       setActiveDays(activeDays.filter((item) => item !== day));
@@ -17,11 +51,8 @@ export const Profile = () => {
     }
   };
 
-  // State to store the selected period (AM/PM)
-  const [selectedPeriod, setSelectedPeriod] = useState("Period");
-
   // Function to handle the selection of AM or PM
-  const handleSelectPeriod = (period) => {
+  const handleSelectPeriod = (period: string) => {
     setSelectedPeriod(period); // Update the state with the selected value
   };
 
@@ -42,6 +73,8 @@ export const Profile = () => {
                 type="text"
                 id="email"
                 placeholder="Email"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
               />
             </div>
             <div className="" style={{ paddingTop: 10 }}>
@@ -54,6 +87,8 @@ export const Profile = () => {
                 type="text"
                 id="username"
                 placeholder="Username"
+                value = {username}
+                onChange={(event) => setUsername(event.target.value)}
               />
             </div>
             <div className="" style={{ paddingTop: 10 }}>
@@ -66,6 +101,8 @@ export const Profile = () => {
                 type="password"
                 id="password"
                 placeholder="Password"
+                onChange={(event) => setPassword(event.target.value)}
+                
               />
             </div>
             <div className="" style={{ paddingTop: 10 }}>
@@ -78,6 +115,7 @@ export const Profile = () => {
                 type="password"
                 id="password"
                 placeholder="Confirm Password"
+                onChange={(event) => setPassword(event.target.value)}
               />
             </div>
             <div style={{ display: "flex", marginLeft: 585 }}>
@@ -123,6 +161,7 @@ export const Profile = () => {
                     placeholder="10"
                     min="0"
                     max="12"
+                    value={hour}
                     style={{
                       width: "75px",
                       padding: "8px",
@@ -133,6 +172,7 @@ export const Profile = () => {
                       outline: "none",
                       color: "#000000",
                     }}
+                    onChange={(event) => setHour(event.target.valueAsNumber)}
                   />
                   <span style={{ fontSize: "24px", margin: "0 5px" }}>:</span>
                   {/* Second input (Minutes) */}
@@ -141,6 +181,7 @@ export const Profile = () => {
                     placeholder="00"
                     min="0"
                     max="59"
+                    value={min}
                     style={{
                       width: "75px",
                       padding: "8px",
@@ -151,6 +192,7 @@ export const Profile = () => {
                       outline: "none",
                       color: "#000000",
                     }}
+                    onChange={(event) => setMin(event.target.valueAsNumber)}
                   />
                   {/* Dropdown for AM/PM */}
                   <div className="dropdown">
@@ -172,9 +214,11 @@ export const Profile = () => {
                     >
                       {selectedPeriod}
                     </button>
+
                     <ul
                       className="dropdown-menu"
                       aria-labelledby="dropdownMenuButton"
+               
                       style={{
                         borderRadius: "5px",
                         padding: "5px 0",
