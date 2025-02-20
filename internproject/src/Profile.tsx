@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import "bootstrap/dist/js/bootstrap.bundle.min.js"; // Import Bootstrap JS (this includes Popper.js)
 import { useAuth } from "./AuthContext";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export const Profile = () => {
   const [activeDays, setActiveDays] = useState([]);
@@ -15,6 +16,8 @@ export const Profile = () => {
   const [selectedPeriod, setSelectedPeriod] = useState("");
 
   const { user, login, logout } = useAuth();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchUser();
@@ -149,8 +152,8 @@ export const Profile = () => {
                   value="Logout"
                   className="btn setProfileLogoutBtnColor setProfileLogoutBtn"
                   onClick={() => {
-                    logout(); // Call logout function
-                    window.location.reload(); // Refresh the page
+                    logout();
+                    navigate("/");
                   }}
                 />
               </div>
