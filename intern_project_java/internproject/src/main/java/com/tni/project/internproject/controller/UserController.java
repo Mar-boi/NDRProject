@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -21,10 +22,10 @@ import com.tni.project.internproject.model.Industry;
 import com.tni.project.internproject.model.User;
 import com.tni.project.internproject.service.UserService;
 
-import ch.qos.logback.core.joran.spi.HttpUtil.RequestMethod;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(  methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT}, 
+allowedHeaders = "*" )
 public class UserController {
 
 	@Autowired

@@ -12,7 +12,7 @@ import com.tni.project.internproject.model.Company;
 import com.tni.project.internproject.service.CompanyService;
 
 @RestController
-@CrossOrigin
+@CrossOrigin("*")
 public class CompanyController {
 	
 	@Autowired

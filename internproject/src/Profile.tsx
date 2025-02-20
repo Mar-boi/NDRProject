@@ -17,7 +17,7 @@ export const Profile = () => {
 
   const [selectedPeriod, setSelectedPeriod] = useState("");
 
-  const { user, login, logout } = useAuth();
+  const { user, logout } = useAuth();
   useEffect(() => {
     fetchUser();
   }, []);
@@ -31,19 +31,19 @@ export const Profile = () => {
           "http://localhost:8080/getPreference?userID=" + user.userId
         );
         console.log(response);
-         setUsername(response.data.username);
-         setEmail(response.data.email);
-         setHour(response.data.hour);
-         setSelectedPeriod(response.data.period.toUpperCase());
-         setActiveDays(response.data.days);
-         setReceiveEmail(response.data.receiveEmail);
-         setSelectedIndustries(response.data.industries);
-      } catch(e) {
+        setUsername(response.data.username);
+        setEmail(response.data.email);
+        setHour(response.data.hour);
+        setMin(response.data.min);
+        setSelectedPeriod(response.data.period.toUpperCase());
+        setActiveDays(response.data.days);
+        setReceiveEmail(response.data.receiveEmail);
+        setSelectedIndustries(response.data.industries);
+      } catch (e) {
         console.log(e);
       }
     }
-  }
-
+  };
 
   // Function to handle the selection of AM or PM
   const handleSelectPeriod = (period: string) => {
@@ -67,6 +67,27 @@ export const Profile = () => {
     });
   };
 
+  const handleOnSubmitPref = (event: React.FormEvent) => {
+      // Prevent form default submission behavior
+    event.preventDefault();
+    const updatePref = {
+      days: activeDays,
+      hour: hour,
+      min: min,
+      period: selectedPeriod.toLowerCase(),
+      receiveEmail: receiveEmail,
+      industries: selectedIndustries,
+      userID: user?.userId,
+    };
+    console.log(updatePref); // Log to check the data
+    axios
+      .put("http://localhost:8080/updatePreference", updatePref)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((e) => console.log(e));
+  };
+
   const days = {
     0: "Sun",
     1: "Mon",
@@ -76,17 +97,17 @@ export const Profile = () => {
     5: "Fri",
     6: "Sat",
   };
-  const industries: {[key: number]: string} = {
-    1:"Basic Materials",
-    2:"Blank Check",
-    3:"Consumer Goods",
-    4:"Consumer Services",
-    5:"Financials",
-    6:"Health Care",
-    7:"Industrials",
-    8:"Oil & Gas",
-    9:"Other",
-    10:"Technology",
+  const industries: { [key: number]: string } = {
+    1: "Basic Materials",
+    2: "Blank Check",
+    3: "Consumer Goods",
+    4: "Consumer Services",
+    5: "Financials",
+    6: "Health Care",
+    7: "Industrials",
+    8: "Oil & Gas",
+    9: "Other",
+    10: "Technology",
   };
 
   return (
@@ -220,9 +241,7 @@ export const Profile = () => {
                     placeholder="00"
                     min="0"
                     max="59"
-
-                    value={min.toString().padStart(2, '0')}
-
+                    value={min.toString().padStart(2, "0")}
                     style={{
                       width: "75px",
                       padding: "8px",
@@ -339,7 +358,10 @@ export const Profile = () => {
                       .filter(([key]) => !selectedIndustries.includes(+key)) // Convert key to number
                       .map(([key, industryName]) => (
                         <li key={key}>
-                          <a className="dropdown-item" onClick={() => handleIndustryClick(+key)}>
+                          <a
+                            className="dropdown-item"
+                            onClick={() => handleIndustryClick(+key)}
+                          >
                             {industryName}
                           </a>
                         </li>
@@ -353,7 +375,7 @@ export const Profile = () => {
                       marginLeft: "10px",
                     }}
                   >
-                    {selectedIndustries.map((key:number) => (
+                    {selectedIndustries.map((key: number) => (
                       <button
                         key={key}
                         className="btn setIndustriesBtn"
@@ -371,8 +393,8 @@ export const Profile = () => {
                   type="checkbox"
                   role="switch"
                   id="flexSwitchCheckReverse"
-                  checked= {receiveEmail}
-                  onChange={e => setReceiveEmail(e.target.checked)}
+                  checked={receiveEmail}
+                  onChange={(e) => setReceiveEmail(e.target.checked)}
                 />
                 <label
                   className="form-check-label"
@@ -382,11 +404,13 @@ export const Profile = () => {
                 </label>
               </div>
               <div style={{ marginLeft: 535 }}>
-                <input
+                <button
                   type="submit"
-                  value="Save Changes"
                   className="btn setProfileBtnColor setProfileBtn"
-                />
+                  onClick={handleOnSubmitPref}
+                >
+                  Save Changes
+                </button>
               </div>
             </form>
           </div>
