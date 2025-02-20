@@ -25,7 +25,7 @@ function Navbar() {
               <>
                 <button className="btn" style={{ backgroundColor: "white" }}>
                   <Link
-                    to="/login"
+                    to="/profile"
                     style={{ textDecoration: "none", color: "black" }}
                   >
                     {user.username}

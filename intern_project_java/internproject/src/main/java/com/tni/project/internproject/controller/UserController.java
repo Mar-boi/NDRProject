@@ -61,12 +61,12 @@ public class UserController {
 	
 	// Haven't used yet cause I have no idea where to use
 	@GetMapping(path = "/getPreference") // probably
-	public ResponseEntity<?> getPreference(int userID) {
+	public ResponseEntity<?> getPreference(@RequestParam int userID) {
 		return service.getPreference(userID);
 	}
 	
 	@RequestMapping("/updatePreference")
-	public String updatePreference(@RequestBody Map<String, Object> requestBody) {
+	public ResponseEntity<?> updatePreference(@RequestBody Map<String, Object> requestBody) {
 		 List<Integer> days = (List<Integer>) requestBody.get("days");
 		 int hour = (Integer) requestBody.get("hour");
 		 int min =  (Integer) requestBody.get("min");

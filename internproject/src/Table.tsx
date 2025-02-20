@@ -13,7 +13,7 @@ function App() {
   const [company, setCompany] = useState<Company[]>([]);
 
   useEffect(() => {
-    fetchData();
+    //fetchData();
   }, []);
 
   const fetchData = async () => {

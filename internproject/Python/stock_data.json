@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
     "longName": "Microsoft Corporation",
     "ticker": "MSFT",
@@ -14,3 +15,6 @@
     "inventory": 0,
     "extracted_at": "2025-02-20"
 }
+=======
+{"ticker": "MSFT", "marketcap": 3083391729664, "enterprisevalue": 3076610588672, "sector": "Technology", "industry": "Software - Infrastructure", "ceo_name": "Mr. Satya  Nadella", "ceo_title": "Chairman & CEO", "revenue": null, "operatingExpenses": null, "operatingIncome": null, "grossProfit": null, "extracted_at": "2025-02-20"}
+>>>>>>> main

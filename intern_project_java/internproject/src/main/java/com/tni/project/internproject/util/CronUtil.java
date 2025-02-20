@@ -70,29 +70,46 @@ public final class CronUtil {
     }
     
 	public static int getMin (String cron) {
-    	String minString = decomposeCron(cron)[1];
-    	return Integer.parseInt(minString);
+		String minString = decomposeCron(cron)[1];
+		
+		try {
+	    	return Integer.parseInt(minString);
+		} catch (NumberFormatException e) {
+			return 0;
+		}
+    
     }
     
 	public static int getHour (String cron) {
-    	int hour = Integer.parseInt(decomposeCron(cron)[2]);
+		
+		try {
+			int hour = Integer.parseInt(decomposeCron(cron)[2]);
+			if(hour > 12) {
+	    		hour-=12;
+	    	} else if(hour == 0) {
+	    		hour+=12;
+	    	}
+	    	
+	    	return hour;
+		} catch (NumberFormatException e) {
+			return 0; // might change to 12!
+		}
     	
-    	if(hour > 12) {
-    		hour-=12;
-    	} else if(hour == 0) {
-    		hour+=12;
-    	}
     	
-    	return hour;
     }
     
 	public static String getPeriod(String cron) {
-    	int hour = Integer.parseInt(decomposeCron(cron)[2]);
-    	if(hour >=12) {
-    		return "pm";
-    	} else {
-    		return "am";
-    	}
+		try {
+			int hour = Integer.parseInt(decomposeCron(cron)[2]);
+	    	if(hour >=12) {
+	    		return "pm";
+	    	} else {
+	    		return "am";
+	    	}
+		} catch (NumberFormatException e) {
+			return "am";
+		}
+    	
     }
     
 	public static List<Integer> getDays(String cron) {
