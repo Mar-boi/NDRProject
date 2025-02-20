@@ -5,16 +5,13 @@ import { useAuth } from "./AuthContext";
 import axios from "axios";
 
 export const Profile = () => {
-  const [activeDays, setActiveDays] = useState([]); // Track an array of active days
+  const [activeDays, setActiveDays] = useState([]);
+  const [selectedIndustries, setSelectedIndustries] = useState([]);
   const [hour, setHour] = useState(0);
   const [min, setMin] = useState(0);
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [receiveEmail, setReceiveEmail] = useState(false);
-
-  
-  // State to store the selected period (AM/PM)
   const [selectedPeriod, setSelectedPeriod] = useState("");
 
   const { user, login, logout } = useAuth();
@@ -23,39 +20,60 @@ export const Profile = () => {
     fetchUser();
   }, []);
 
-  const fetchUser = async ()  => { 
-    if(user!= null) {
+  const fetchUser = async () => {
+    if (user != null) {
       console.log("Hi" + user.userId);
       // call spring boot for user & user preference
       try {
-        const response = await axios.get("http://localhost:8080/getPreference?userID=" + user.userId);
+        const response = await axios.get(
+          "http://localhost:8080/getPreference?userID=" + user.userId
+        );
         console.log(response);
-         setUsername(response.data.username);
-         setEmail(response.data.email);
-         setHour(response.data.hour);
-         setSelectedPeriod(response.data.period.toUpperCase());
-      } catch(e) {
+        setUsername(response.data.username);
+        setEmail(response.data.email);
+        setHour(response.data.hour);
+        setSelectedPeriod(response.data.period.toUpperCase());
+      } catch (e) {
         console.log(e);
       }
     }
-  }
-
-  const handleClick = (day: string) => {
-    if (activeDays.includes(day)) {
-      // If the day is already active, remove it from the array (toggle off)
-      setActiveDays(activeDays.filter((item) => item !== day));
-    } else {
-      // If the day is not active, add it to the array (toggle on)
-      setActiveDays([...activeDays, day]);
-    }
   };
-
   // Function to handle the selection of AM or PM
   const handleSelectPeriod = (period: string) => {
     setSelectedPeriod(period); // Update the state with the selected value
   };
 
+  const handleClick = (day) => {
+    setActiveDays((prev) => {
+      return prev.includes(day)
+        ? prev.filter((item) => item !== day)
+        : [...prev, day];
+    });
+  };
+
+  const handleIndustryClick = (industry) => {
+    setSelectedIndustries((prev) => {
+      const updatedIndustries = prev.includes(industry)
+        ? prev.filter((item) => item !== industry)
+        : [...prev, industry];
+      return updatedIndustries.sort();
+    });
+  };
+
   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const industries = [
+    "Basic Materials",
+    "Blank Check",
+    "Consumer Goods",
+    "Consumer Services",
+    "Financials",
+    "Health Care",
+    "Industrials",
+    "Oil & Gas",
+    "Other",
+    "Technology",
+  ];
+
   return (
     <>
       <div>
@@ -86,7 +104,7 @@ export const Profile = () => {
                 type="text"
                 id="username"
                 placeholder="Username"
-                value = {username}
+                value={username}
                 onChange={(event) => setUsername(event.target.value)}
               />
             </div>
@@ -101,7 +119,6 @@ export const Profile = () => {
                 id="password"
                 placeholder="Password"
                 onChange={(event) => setPassword(event.target.value)}
-                
               />
             </div>
             <div className="" style={{ paddingTop: 10 }}>
@@ -117,12 +134,20 @@ export const Profile = () => {
                 onChange={(event) => setPassword(event.target.value)}
               />
             </div>
-            <div style={{ display: "flex", marginLeft: 585 }}>
-              <div>
-                <input type="submit" value="Logout" className="" />
+            <div style={{ display: "flex", marginLeft: 425 }}>
+              <div style={{ marginRight: 10 }}>
+                <input
+                  type="submit"
+                  value="Logout"
+                  className="btn setProfileLogoutBtnColor setProfileLogoutBtn"
+                />
               </div>
               <div>
-                <input type="submit" value="Save Changes" />
+                <input
+                  type="submit"
+                  value="Save Changes"
+                  className="btn setProfileBtnColor setProfileBtn"
+                />
               </div>
             </div>
           </form>
@@ -169,10 +194,9 @@ export const Profile = () => {
                       border: "none",
                       backgroundColor: "transparent",
                       outline: "none",
-                      color: "#000000",
+                      color: "#696969",
                     }}
                     onChange={(event) => setHour(event.target.valueAsNumber)}
-
                   />
                   <span style={{ fontSize: "24px", margin: "0 5px" }}>:</span>
                   {/* Second input (Minutes) */}
@@ -182,7 +206,6 @@ export const Profile = () => {
                     min="0"
                     max="59"
                     value={min}
-
                     style={{
                       width: "75px",
                       padding: "8px",
@@ -191,10 +214,9 @@ export const Profile = () => {
                       border: "none",
                       backgroundColor: "transparent",
                       outline: "none",
-                      color: "#000000",
+                      color: "#696969",
                     }}
                     onChange={(event) => setMin(event.target.valueAsNumber)}
-
                   />
                   {/* Dropdown for AM/PM */}
                   <div className="dropdown">
@@ -220,7 +242,6 @@ export const Profile = () => {
                     <ul
                       className="dropdown-menu"
                       aria-labelledby="dropdownMenuButton"
-
                       style={{
                         borderRadius: "5px",
                         padding: "5px 0",
@@ -259,20 +280,19 @@ export const Profile = () => {
 
                 {/* Container for the days buttons */}
 
-                <div style={{marginTop: 20}}>
+                <div>
                   {days.map((day) => (
                     <label htmlFor="">
-                      <p
+                      <input
                         key={day}
+                        type="button"
                         className={`dayBtn ${
                           activeDays.includes(day) ? "active" : ""
                         }`} // Apply active class if the day is in the activeDays array
+                        value={day}
                         onClick={() => handleClick(day)}
-                      >
-                        {day}
-                      </p>
+                      />
                     </label>
-
                   ))}
                 </div>
               </div>
@@ -282,71 +302,55 @@ export const Profile = () => {
                 them anytime by clicking
               </p>
               <div>
-                <div className="dropdown">
+                <div
+                  className="dropdown"
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
                   <button
-                    className="btn btn-secondary dropdown-toggle"
+                    className="btn dropdown-toggle setDDIndustries"
                     type="button"
-                    id="dropdownMenuButton"
                     data-bs-toggle="dropdown"
-                    aria-expanded="false"
                   >
                     Look up industries
                   </button>
-                  <ul
-                    className="dropdown-menu"
-                    aria-labelledby="dropdownMenuButton"
-                  >
-                    <li>
-                      <a className="dropdown-item" href="#">
-                        Basic Materials
-                      </a>
-                    </li>
-                    <li>
-                      <a className="dropdown-item" href="#">
-                        Blank Check
-                      </a>
-                    </li>
-                    <li>
-                      <a className="dropdown-item" href="#">
-                        Consumer Goods
-                      </a>
-                    </li>
-                    <li>
-                      <a className="dropdown-item" href="#">
-                        Consumer Services
-                      </a>
-                    </li>
-                    <li>
-                      <a className="dropdown-item" href="#">
-                        Financials
-                      </a>
-                    </li>
-                    <li>
-                      <a className="dropdown-item" href="#">
-                        Health Care
-                      </a>
-                    </li>
-                    <li>
-                      <a className="dropdown-item" href="#">
-                        Industrials
-                      </a>
-                    </li>
-                    <li>
-                      <a className="dropdown-item" href="#">
-                        Oil & Gas
-                      </a>
-                    </li>
-                    <li>
-                      <a className="dropdown-item" href="#">
-                        Other
-                      </a>
-                    </li>
-                    <li>
-                      <a className="dropdown-item" href="#">
-                        Technology
-                      </a>
-                    </li>
+                  <ul className="dropdown-menu ddIndustry">
+                    {industries
+                      .filter(
+                        (industry) => !selectedIndustries.includes(industry)
+                      )
+                      .map((industry) => (
+                        <li key={industry}>
+                          <a
+                            className="dropdown-item"
+                            onClick={() => handleIndustryClick(industry)}
+                          >
+                            {industry}
+                          </a>
+                        </li>
+                      ))}
                   </ul>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexWrap: "wrap",
+                      gap: "5px",
+                      marginLeft: "10px",
+                    }}
+                  >
+                    {selectedIndustries.map((industry) => (
+                      <button
+                        key={industry}
+                        className="btn setIndustriesBtn"
+                        onClick={() => handleIndustryClick(industry)}
+                      >
+                        {industry} ✖
+                      </button>
+                    ))}
+                  </div>
                 </div>
               </div>
               <div className="form-check form-switch form-check-reverse setForms">
@@ -363,8 +367,12 @@ export const Profile = () => {
                   Receive latest IPO companies via email
                 </label>
               </div>
-              <div style={{ marginLeft: 650 }}>
-                <input type="submit" value="Save Changes" />
+              <div style={{ marginLeft: 535 }}>
+                <input
+                  type="submit"
+                  value="Save Changes"
+                  className="btn setProfileBtnColor setProfileBtn"
+                />
               </div>
             </form>
           </div>
