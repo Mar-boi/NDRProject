@@ -1,11 +1,24 @@
-import { createContext, useContext, useState, ReactNode } from "react";
+import Cookies from "js-cookie";
+import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import { AuthContextType, User } from "./assets/model/context";
 
-// Create AuthContext with default value as undefined (so TypeScript enforces correct usage)
+// Create AuthContext
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<User | null>(() => {
+    // Load user from cookies
+    const storedUser = Cookies.get("user");
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
+
+  useEffect(() => {
+    if (user) {
+      Cookies.set("user", JSON.stringify(user), { expires: 1 }); // Expires in 1 day
+    } else {
+      Cookies.remove("user");
+    }
+  }, [user]);
 
   const login = (userData: User) => {
     setUser(userData);
