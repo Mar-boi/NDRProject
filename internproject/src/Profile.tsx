@@ -43,11 +43,11 @@ export const Profile = () => {
     setSelectedPeriod(period); // Update the state with the selected value
   };
 
-  const handleClick = (day) => {
+  const handleClick = (key: number) => {
     setActiveDays((prev) => {
-      return prev.includes(day)
-        ? prev.filter((item) => item !== day)
-        : [...prev, day];
+      return prev.includes(key)
+        ? prev.filter((item) => item !== key)
+        : [...prev, key];
     });
   };
 
@@ -60,7 +60,15 @@ export const Profile = () => {
     });
   };
 
-  const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const days = {
+    0: "Sun",
+    1: "Mon",
+    2: "Tue",
+    3: "Wed",
+    4: "Thu",
+    5: "Fri",
+    6: "Sat",
+  };
   const industries = [
     "Basic Materials",
     "Blank Check",
@@ -281,16 +289,16 @@ export const Profile = () => {
                 {/* Container for the days buttons */}
 
                 <div>
-                  {days.map((day) => (
+                  {Object.entries(days).map(([key, day]) => (
                     <label htmlFor="">
                       <input
-                        key={day}
+                        key={key}
                         type="button"
                         className={`dayBtn ${
-                          activeDays.includes(day) ? "active" : ""
+                          activeDays.includes(Number(key)) ? "active" : ""
                         }`} // Apply active class if the day is in the activeDays array
                         value={day}
-                        onClick={() => handleClick(day)}
+                        onClick={() => handleClick(Number(key))}
                       />
                     </label>
                   ))}
