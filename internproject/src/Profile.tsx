@@ -106,6 +106,9 @@ export const Profile = () => {
   const handleOnSubmitPref = (event: React.FormEvent) => {
     // Prevent form default submission behavior
     event.preventDefault();
+
+    checkDays();
+
     const updatePref = {
       days: activeDays,
       hour: hour,
@@ -120,9 +123,22 @@ export const Profile = () => {
       .put("http://localhost:8080/updatePreference", updatePref)
       .then((response) => {
         console.log(response);
+        showAlert("Update successful", "success");
       })
-      .catch((e) => console.log(e));
+      .catch((e) => {
+        if (e.response && e.response.status === 400) {
+          showAlert(e.response.data, "danger");
+        } else {
+          console.error("An error occurred:", e);
+        }
+      })
   };
+
+  const checkDays = () => {
+    if(activeDays.length == 0 && receiveEmail) {
+      showAlert("You must select at least one day", "danger");
+    }
+  }
 
   const showAlert = (message: string, type: "success" | "danger") => {
     setAlertMessage(message);

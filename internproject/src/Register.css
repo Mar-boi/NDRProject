@@ -33,7 +33,7 @@
 
 }
 
-.signupBtnColor{
+.mainBtnColor{
     font-weight: bold;
     background-color: #D9D9D9;
     border-color: transparent;
@@ -43,7 +43,7 @@
 
 }
 
-.loginBtnColor{
+.subBtnColor{
     font-weight: bold;
     background-color: #FFFFFF;
     color: #000000;

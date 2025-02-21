@@ -174,7 +174,7 @@ function Signup() {
               <input
                 type="submit"
                 value="Sign up"
-                className="btn signupBtnColor setBtn"
+                className="btn mainBtnColor setBtn"
               />
               <br />
             </div>
@@ -184,7 +184,7 @@ function Signup() {
                 <input
                   type="submit"
                   value="Login"
-                  className="btn loginBtnColor setBtn"
+                  className="btn subBtnColor setBtn"
                   onClick={() => navigate("/login")}
                   
                 />

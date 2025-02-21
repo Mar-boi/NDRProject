@@ -98,7 +98,16 @@ const StockDataFetcher = () => {
 
       {
         (dataA === null && dataB === null) && (
-          <div className="setDivTable" style = {{display:"flex", justifyContent: "center", alignItems: "center", height: "30rem", border: "grey 2px solid", borderRadius: 30}}>
+          <div className="setDivTable" style = {{
+            display:"flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "30rem",
+            borderRadius: "62px",
+            background: "#efefef",
+            boxShadow: "22px 22px 44px #bebebe, -22px -22px 44px #ffffff",
+            marginTop: "50px"
+            }}>
            Type in companies symbol to start comparing!
           </div>
         )
