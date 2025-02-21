@@ -29,7 +29,7 @@ function App() {
   };
 
   const [sortConfig, setSortConfig] = useState({
-    key: "compID",
+    key: "offerDate",
     ascending: true,
   });
 
@@ -85,9 +85,8 @@ function App() {
         <div className="setTable">
           <table className="table">
             <thead className="headerColumn">
-              <tr>
+              <tr className="">
                 {[
-                  { key: "compID", label: "ID", type: "number" },
                   { key: "name", label: "Company", type: "text" },
                   { key: "symbol", label: "Symbol", type: "text" },
                   {
@@ -124,8 +123,7 @@ function App() {
             <tbody>
               {company.map((data) => {
                 return (
-                  <tr className="bodyColumn" key={data.compID}>
-                    <td>{data.compID}</td>
+                  <tr className="bodyColumn" key={data.name}>
                     <td className="celltextalignleft">
                       <a href={data.compLink}>{data.name}</a>
                     </td>
@@ -138,7 +136,7 @@ function App() {
                     <td>${data.offerPrice}</td>
                     <td>${data.firstClose}</td>
                     <td>${data.currentPrice}</td>
-                    <td>{data.returnRate}</td>
+                    <td>{data.returnRate}%</td>
                   </tr>
                 );
               })}
