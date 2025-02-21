@@ -39,6 +39,11 @@ public class EmailSubService {
 	}
 	
 	public void cancel(int userID) {
-		emailRepo.cancel(userID);
+		try {
+			emailRepo.cancel(userID);
+		} catch (NullPointerException e) {
+			System.out.println(e);
+		}
+		
 	}
 }

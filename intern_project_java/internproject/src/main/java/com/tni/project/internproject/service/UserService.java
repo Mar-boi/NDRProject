@@ -43,7 +43,7 @@ public class UserService {
 	public ResponseEntity<?> login(String nameEmail, String password) {
 		User user = userRepo.findLoginUser(nameEmail, password);
 		if (user == null) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cannot find user");
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Cannot find user");
 		} else {
 			return ResponseEntity.ok(user);
 		}
@@ -79,6 +79,8 @@ public class UserService {
 		prefRepo.save(pref);
 
 		// Include a new user to the current mailRepo list
+		if(receiveEmail) { emailSubService.add(user.getUserID(), pref.getEmailSchedule()); }
+		
 
 		// return User
 		System.out.println(user);
@@ -90,9 +92,10 @@ public class UserService {
 
 		User user = userRepo.findById(userID).orElse(null);
 		if (user == null) {
-			return ResponseEntity.status(HttpStatus.OK).body("User not found"); // should not happen cause they should
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User not found"); // should not happen cause they should
 																				// access in the first place
 		} else {
+		
 			// find Preference from userID -> Preference
 			Preference pref = prefRepo.findByUserID(userID);
 
@@ -144,6 +147,7 @@ public class UserService {
 
 			return ResponseEntity.status(HttpStatus.OK).body(getPreference(userID));
 		} catch (Exception e) {
+			System.out.println(e);
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error Updating");
 		}
 

@@ -64,6 +64,7 @@ public class EmailRepo {
 	public void add(int userID, String cronNotation) {
 		ScheduledFuture<?> future = scheduler.schedule(new EmailRunnable(userID, emailController), new CronTrigger(cronNotation));
 		emailList.put(userID, future);
+		System.out.println("User add!");
 		
 		
 	}
