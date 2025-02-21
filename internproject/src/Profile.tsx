@@ -24,7 +24,7 @@ export const Profile = () => {
   const [alertMessage, setAlertMessage] = useState("");
   const [alertType, setAlertType] = useState<"success" | "danger">("success");
 
-  const { user, logout } = useAuth();
+  const { user, login, logout } = useAuth();
   useEffect(() => {
     fetchUser();
   }, []);
@@ -88,6 +88,9 @@ export const Profile = () => {
         console.log(response);
 
         showAlert("Update successful", "success");
+
+        const updatedUser = { ...user!, username }; // Create updated user object
+        login(updatedUser); // Update the AuthContext state
       })
       .catch((e) => {
         if (e.response && e.response.status === 400) {
