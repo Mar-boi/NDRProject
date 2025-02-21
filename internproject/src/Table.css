@@ -1,6 +1,6 @@
-.table{
-    background-color: gray;
-    width: 1160px;
+.table {
+  background-color: gray;
+  width: 1160px;
 }
 
 .setTable {
@@ -22,8 +22,8 @@
   /* height: 40px; */
 }
 
-.celltextalignleft{
-    text-align: left;
+.celltextalignleft {
+  text-align: left;
 }
 
 .setFilter {
@@ -49,12 +49,15 @@
 a {
   text-decoration: none;
   color: black;
-  
 }
 
 .active-sort {
-  background-color: #12216B !important; /* Highlight color */
+  background-color: #12216b !important; /* Highlight color */
   color: white !important; /* Text color for better contrast */
   font-weight: bold;
 }
 
+.bodyColumn:hover {
+  background-color: #dfdfdf; /* Light blue hover effect */
+  transition: background-color 0.2s ease-in-out;
+}

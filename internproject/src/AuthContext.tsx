@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const logout = () => {
-    Cookies.remove("user");
+    Cookies.remove("user"); // Remove user cookie
     setUser(null);
     
   };

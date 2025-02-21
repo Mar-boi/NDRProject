@@ -1,5 +1,4 @@
 import yfinance as yf
-import requests_cache
 from fastapi import FastAPI
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
@@ -41,9 +40,7 @@ class StockDataResponse(BaseModel):
 
 # Updated function to fetch stock data
 def get_stock_data(ticker: str):
-    session = requests_cache.CachedSession('yfinance.cache')
-    session.headers['User-agent'] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36'
-    stock = yf.Ticker(ticker, session=session)
+    stock = yf.Ticker(ticker)
     info = stock.info
     incomestmt = stock.quarterly_incomestmt
     balancesheet = stock.quarterly_balancesheet
