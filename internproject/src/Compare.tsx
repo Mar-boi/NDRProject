@@ -64,7 +64,6 @@ const StockDataFetcher = () => {
   };
 
   return (
-
     <>
       <div className="setCompareBar">
         <div style={{ display: "flex" }}>
@@ -96,13 +95,21 @@ const StockDataFetcher = () => {
         </div>
       </div>
 
-      {
-        (dataA === null && dataB === null) && (
-          <div className="setDivTable" style = {{display:"flex", justifyContent: "center", alignItems: "center", height: "30rem", border: "grey 2px solid", borderRadius: 30}}>
-           Type in companies symbol to start comparing!
-          </div>
-        )
-      }
+      {dataA === null && dataB === null && (
+        <div
+          className="setDivTable"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "30rem",
+            border: "grey 2px solid",
+            borderRadius: 30,
+          }}
+        >
+          Type in companies symbol to start comparing!
+        </div>
+      )}
 
       <div>
         {dataA && dataB && (
@@ -141,8 +148,12 @@ const StockDataFetcher = () => {
                   </tr>
                   <tr>
                     <td>Price to Earnings</td>
-                    <td className="setCompareCell ">--</td>
-                    <td className="setCompareCell">--</td>
+                    <td className="setCompareCell ">
+                      {formatNumber(dataA.priceEpsCurrentYear)}
+                    </td>
+                    <td className="setCompareCell">
+                      {formatNumber(dataB.priceEpsCurrentYear)}
+                    </td>
                   </tr>
                   <tr>
                     <td>Sector</td>
@@ -187,14 +198,22 @@ const StockDataFetcher = () => {
                   <tr>
                     <td>Operating Expenses</td>
 
-                    <td className="setCompareCell">--</td>
-                    <td className="setCompareCell">--</td>
+                    <td className="setCompareCell">
+                      {formatNumber(dataA.operatingExpense)}
+                    </td>
+                    <td className="setCompareCell">
+                      {formatNumber(dataB.operatingExpense)}
+                    </td>
                   </tr>
                   <tr>
                     <td>Operating Income</td>
 
-                    <td className="setCompareCell">--</td>
-                    <td className="setCompareCell">--</td>
+                    <td className="setCompareCell">
+                      {formatNumber(dataA.operatingIncome)}
+                    </td>
+                    <td className="setCompareCell">
+                      {formatNumber(dataB.operatingIncome)}
+                    </td>
                   </tr>
                   <tr>
                     <td>Gross Profit</td>
@@ -223,13 +242,21 @@ const StockDataFetcher = () => {
                 <tbody>
                   <tr>
                     <td>Inventory</td>
-                    <td className="setCompareCell">{dataA.inventory}--</td>
-                    <td className="setCompareCell">{dataB.inventory}--</td>
+                    <td className="setCompareCell">
+                      {formatNumber(dataA.inventory)}
+                    </td>
+                    <td className="setCompareCell">
+                      {formatNumber(dataB.inventory)}
+                    </td>
                   </tr>
                   <tr>
                     <td>Equity</td>
-                    <td className="setCompareCell">--</td>
-                    <td className="setCompareCell">--</td>
+                    <td className="setCompareCell">
+                      {formatNumber(dataA.equity)}
+                    </td>
+                    <td className="setCompareCell">
+                      {formatNumber(dataB.equity)}
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -258,13 +285,21 @@ const StockDataFetcher = () => {
                   </tr>
                   <tr>
                     <td>Capital Expenditures</td>
-                    <td className="setCompareCell">--</td>
-                    <td className="setCompareCell">--</td>
+                    <td className="setCompareCell">
+                      {formatNumber(dataA.capitalExpenditure)}
+                    </td>
+                    <td className="setCompareCell">
+                      {formatNumber(dataB.capitalExpenditure)}
+                    </td>
                   </tr>
                   <tr>
                     <td>Cash Flow from Investing Activities</td>
-                    <td className="setCompareCell">--</td>
-                    <td className="setCompareCell">--</td>
+                    <td className="setCompareCell">
+                      {formatNumber(dataA.investingCashflow)}
+                    </td>
+                    <td className="setCompareCell">
+                      {formatNumber(dataB.investingCashflow)}
+                    </td>
                   </tr>
                   <tr>
                     <td>Free Cash Flow</td>

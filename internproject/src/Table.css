@@ -1,12 +1,8 @@
 .table {
-  background-color: gray;
-  width: 1160px;
+  min-height: 525px;
 }
 
 .setTable {
-  margin-left: 100px;
-  margin-right: 100px;
-  margin-top: 20px;
   text-align: center;
 }
 
@@ -18,8 +14,7 @@
 }
 
 .bodyColumn {
-  background-color: #ececec;
-  /* height: 40px; */
+  background-color: #ffffff;
 }
 
 .celltextalignleft {
@@ -27,10 +22,7 @@
 }
 
 .setFilter {
-  display: flex;
-  margin-left: 100px;
-  margin-top: 150px;
-  width: 1280px;
+  margin-top: 50px;
 }
 
 .toComparing {
@@ -52,12 +44,66 @@ a {
 }
 
 .active-sort {
-  background-color: #12216b !important; /* Highlight color */
-  color: white !important; /* Text color for better contrast */
+  background-color: #12216b;
+  color: white;
   font-weight: bold;
 }
 
 .bodyColumn:hover {
   background-color: #dfdfdf; /* Light blue hover effect */
   transition: background-color 0.2s ease-in-out;
+}
+
+th .arrows {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 12px;
+  line-height: 11px; /* Reduce space between arrows */
+}
+
+th .arrow {
+  opacity: 0.3;
+  transition: opacity 0.3s ease-in-out;
+  font-size: 10px;
+}
+
+th.sorted .arrow.active {
+  opacity: 1;
+}
+
+.mainBgColor {
+  background-color: #ffffff;
+  padding: 10px;
+  width: 1320px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.2);
+}
+.setSelectPageBtn {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.setSelectPageBtn button {
+  border: 1px solid #2e3e8b;
+  border-radius: 30px;
+  background-color: white;
+  padding: 6px 15px;
+  margin: 2px;
+  cursor: pointer;
+}
+
+.setSelectPageBtn button.active {
+  background-color: #2e3e8b;
+  color: white;
+  font-weight: bold;
+}
+
+.setSelectPageBtn button:disabled {
+  cursor: not-allowed;
+  color: #dfdfdf;
+  opacity: 0.1;
 }
