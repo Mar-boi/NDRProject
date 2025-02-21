@@ -20,6 +20,10 @@ export const Profile = () => {
 
   const [selectedPeriod, setSelectedPeriod] = useState("");
 
+  const [alertVisible, setAlertVisible] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+  const [alertType, setAlertType] = useState<"success" | "danger">("success");
+
   const { user, logout } = useAuth();
   useEffect(() => {
     fetchUser();
@@ -61,8 +65,6 @@ export const Profile = () => {
     });
   };
 
-
-
   const handleIndustryClick = (key: number) => {
     setSelectedIndustries((prev) => {
       const updatedIndustries = prev.includes(key)
@@ -77,19 +79,27 @@ export const Profile = () => {
     const updateProfile = {
       username: username,
       email: email,
-      userID: user?.userId
-    }
+      userID: user?.userId,
+    };
     console.log(updateProfile);
     axios
-    .put("http://localhost:8080/updateProfile", updateProfile)
-    .then((response) => {
-      console.log(response);
-    })
-    .catch((e) => console.log(e));
-  }
+      .put("http://localhost:8080/updateProfile", updateProfile)
+      .then((response) => {
+        console.log(response);
+
+        showAlert("Update successful", "success");
+      })
+      .catch((e) => {
+        if (e.response && e.response.status === 400) {
+          showAlert(e.response.data, "danger");
+        } else {
+          console.error("An error occurred:", e);
+        }
+      });
+  };
 
   const handleOnSubmitPref = (event: React.FormEvent) => {
-      // Prevent form default submission behavior
+    // Prevent form default submission behavior
     event.preventDefault();
     const updatePref = {
       days: activeDays,
@@ -109,10 +119,34 @@ export const Profile = () => {
       .catch((e) => console.log(e));
   };
 
- 
+  const showAlert = (message: string, type: "success" | "danger") => {
+    setAlertMessage(message);
+    setAlertType(type);
+    setAlertVisible(false); // Reset visibility to allow re-trigger
+    setTimeout(() => setAlertVisible(true), 10); // Small delay to re-trigger Bootstrap's animation
+  };
 
   return (
     <>
+      <div
+        className="position-fixed bottom-0 end-0 p-3"
+        style={{ zIndex: 1050 }}
+      >
+        {alertVisible && (
+          <div
+            className={`alert alert-${alertType} alert-dismissible fade show`}
+            role="alert"
+          >
+            <button
+              type="button"
+              className="btn-close"
+              onClick={() => setAlertVisible(false)} // Correctly update state on dismiss
+            ></button>
+            {alertMessage}
+          </div>
+        )}
+      </div>
+
       <div>
         <div className="setProfileBG">
           <h1>Profile</h1>
@@ -184,7 +218,7 @@ export const Profile = () => {
                 />
               </div>
               <div>
-              <button
+                <button
                   type="submit"
                   className="btn setProfileBtnColor setProfileBtn"
                   onClick={handleOnSubmitProfile}
@@ -294,7 +328,6 @@ export const Profile = () => {
                       <li>
                         <a
                           className="dropdown-item"
-                   
                           onClick={() => handleSelectPeriod("AM")}
                           style={{
                             padding: "10px 20px",
@@ -307,7 +340,6 @@ export const Profile = () => {
                       <li>
                         <a
                           className="dropdown-item"
-                         
                           onClick={() => handleSelectPeriod("PM")}
                           style={{
                             padding: "10px 20px",

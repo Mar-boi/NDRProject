@@ -180,14 +180,20 @@ public class UserService {
 	}
 
 	public ResponseEntity<?> updateProfile(String username, String email, int userID) {
+		
+		// check if the email is already existed for different user
+		// check if the username is already existed for different user
+		
+		// additional step if you want a password to check you need to send it
+		
 		try {
 			
-			if (userRepo.findByUserName(username) != null) {
+			if (userRepo.findOtherByUsername(username, userID).orElse(null) != null) {
 				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Username is already taken");
 
 			}
 			
-			if (userRepo.findByUserEmail(email) != null) {
+			if (userRepo.findOtherByEmail(username, userID).orElse(null) != null) {
 				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Email is already taken");
 			}
 			
