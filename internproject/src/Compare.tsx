@@ -31,11 +31,11 @@ const StockDataFetcher = () => {
     return isNegative ? "$-" + formattedValue : "$" + formattedValue;
   };
 
-  const handleInputChange1 = (event) => {
+  const handleInputChange1 = (event: any) => {
     setSymbolA(event.target.value);
   };
 
-  const handleInputChange2 = (event) => {
+  const handleInputChange2 = (event: any) => {
     setSymbolB(event.target.value);
   };
 
@@ -64,6 +64,7 @@ const StockDataFetcher = () => {
   };
 
   return (
+
     <>
       <div className="setCompareBar">
         <div style={{ display: "flex" }}>
@@ -94,6 +95,15 @@ const StockDataFetcher = () => {
           </button>
         </div>
       </div>
+
+      {
+        (dataA === null && dataB === null) && (
+          <div className="setDivTable" style = {{display:"flex", justifyContent: "center", alignItems: "center", height: "30rem", border: "grey 2px solid", borderRadius: 30}}>
+           Type in companies symbol to start comparing!
+          </div>
+        )
+      }
+
       <div>
         {dataA && dataB && (
           <div>

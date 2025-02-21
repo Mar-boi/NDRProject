@@ -86,12 +86,6 @@ public class UserService {
 
 	}
 
-	public void logout() {
-
-		// Do some logout stuff
-
-	}
-
 	public ResponseEntity<?> getPreference(int userID) {
 
 		User user = userRepo.findById(userID).orElse(null);
@@ -103,7 +97,7 @@ public class UserService {
 			Preference pref = prefRepo.findByUserID(userID);
 
 			// find inudusry name from userID -> List<String>
-			List<String> industry = userInRepo.findNameByUserID(userID);
+			List<Integer> industry = userInRepo.findByUserID(userID).orElse(null);
 
 			// create a new UserSetting DTO
 			UserSetting userSetting = new UserSetting();
@@ -118,6 +112,7 @@ public class UserService {
 			userSetting.setHour(CronUtil.getHour(cron));
 			userSetting.setMin(CronUtil.getMin(cron));
 			userSetting.setPeriod(CronUtil.getPeriod(cron));
+			userSetting.setDays(CronUtil.getDays(cron));
 
 			userSetting.setIndustries(industry);
 
@@ -181,6 +176,35 @@ public class UserService {
 				// delete from DB
 				userInRepo.deleteByUserID(userID, inID);
 			}
+		}
+	}
+
+	public ResponseEntity<?> updateProfile(String username, String email, int userID) {
+		
+		// check if the email is already existed for different user
+		// check if the username is already existed for different user
+		
+		// additional step if you want a password to check you need to send it
+		
+		try {
+			
+			if (userRepo.findOtherByUsername(username, userID).orElse(null) != null) {
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Username is already taken");
+
+			}
+			
+			if (userRepo.findOtherByEmail(username, userID).orElse(null) != null) {
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Email is already taken");
+			}
+			
+			userRepo.updateProfile(username, email, userID);
+			
+			return ResponseEntity.status(HttpStatus.OK).body("Update Successful");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error Updating");
+			
 		}
 	}
 }

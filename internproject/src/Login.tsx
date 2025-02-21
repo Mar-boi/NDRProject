@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import Navbar from "./Navbar";
 import "./Register.css";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useState } from "react";

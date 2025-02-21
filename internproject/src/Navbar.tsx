@@ -23,24 +23,28 @@ function Navbar() {
 
             {user ? (
               <>
-                <button className="btn" style={{ backgroundColor: "white" }}>
-                  <Link
-                    to="/profile"
-                    style={{ textDecoration: "none", color: "black" }}
-                  >
-                    {user.username}
-                  </Link>
-                </button>
-              </>
-            ) : (
-              <button className="btn" style={{ backgroundColor: "white" }}>
                 <Link
-                  to="/login"
+                  to="/profile"
                   style={{ textDecoration: "none", color: "black" }}
                 >
-                  Login
+                  <button
+                    className="btn"
+                    style={{ backgroundColor: "white" }}
+                  >  {user.username}</button>
+                
                 </Link>
-              </button>
+              </>
+            ) : (
+              <Link
+                to="/login"
+                style={{ textDecoration: "none", color: "black" }}
+              >
+                <button
+                  className="btn"
+                  style={{ backgroundColor: "white" }}
+                > Login</button>
+               
+              </Link>
             )}
           </div>
         </nav>

@@ -38,7 +38,7 @@ function Signup() {
       const response = await axios.post("http://localhost:8080/signup", data);
       
       console.log(response);
-      if (response.status === 200) {
+      if (response.status === 201) {
         console.log("Signup successful! Redirecting...");
         navigate("/"); // ✅ Redirect to the main page on success
       }

@@ -4,21 +4,27 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js"; // Import Bootstrap JS (this
 import { useAuth } from "./AuthContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { days, industries } from "./assets/model/model";
 
 export const Profile = () => {
-  const [activeDays, setActiveDays] = useState([]);
-  const [selectedIndustries, setSelectedIndustries] = useState([]);
+  const navigate = useNavigate();
+  const [activeDays, setActiveDays] = useState<number[]>([]); // Track an array of active days
+  const [selectedIndustries, setSelectedIndustries] = useState<number[]>([]);
+
   const [hour, setHour] = useState(0);
   const [min, setMin] = useState(0);
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [receiveEmail, setReceiveEmail] = useState(false);
+
   const [selectedPeriod, setSelectedPeriod] = useState("");
 
-  const { user, login, logout } = useAuth();
+  const [alertVisible, setAlertVisible] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+  const [alertType, setAlertType] = useState<"success" | "danger">("success");
 
-  const navigate = useNavigate();
-
+  const { user, logout } = useAuth();
   useEffect(() => {
     fetchUser();
   }, []);
@@ -35,18 +41,23 @@ export const Profile = () => {
         setUsername(response.data.username);
         setEmail(response.data.email);
         setHour(response.data.hour);
+        setMin(response.data.min);
         setSelectedPeriod(response.data.period.toUpperCase());
+        setActiveDays(response.data.days);
+        setReceiveEmail(response.data.receiveEmail);
+        setSelectedIndustries(response.data.industries);
       } catch (e) {
         console.log(e);
       }
     }
   };
+
   // Function to handle the selection of AM or PM
   const handleSelectPeriod = (period: string) => {
     setSelectedPeriod(period); // Update the state with the selected value
   };
 
-  const handleClick = (key: number) => {
+  const handleDaysClick = (key: number) => {
     setActiveDays((prev) => {
       return prev.includes(key)
         ? prev.filter((item) => item !== key)
@@ -54,39 +65,88 @@ export const Profile = () => {
     });
   };
 
-  const handleIndustryClick = (industry) => {
+  const handleIndustryClick = (key: number) => {
     setSelectedIndustries((prev) => {
-      const updatedIndustries = prev.includes(industry)
-        ? prev.filter((item) => item !== industry)
-        : [...prev, industry];
+      const updatedIndustries = prev.includes(key)
+        ? prev.filter((item) => item !== key)
+        : [...prev, key];
       return updatedIndustries.sort();
     });
   };
 
-  const days = {
-    0: "Sun",
-    1: "Mon",
-    2: "Tue",
-    3: "Wed",
-    4: "Thu",
-    5: "Fri",
-    6: "Sat",
+  const handleOnSubmitProfile = (event: React.FormEvent) => {
+    event.preventDefault();
+    const updateProfile = {
+      username: username,
+      email: email,
+      userID: user?.userId,
+    };
+    console.log(updateProfile);
+    axios
+      .put("http://localhost:8080/updateProfile", updateProfile)
+      .then((response) => {
+        console.log(response);
+
+        showAlert("Update successful", "success");
+      })
+      .catch((e) => {
+        if (e.response && e.response.status === 400) {
+          showAlert(e.response.data, "danger");
+        } else {
+          console.error("An error occurred:", e);
+        }
+      });
   };
-  const industries = [
-    "Basic Materials",
-    "Blank Check",
-    "Consumer Goods",
-    "Consumer Services",
-    "Financials",
-    "Health Care",
-    "Industrials",
-    "Oil & Gas",
-    "Other",
-    "Technology",
-  ];
+
+  const handleOnSubmitPref = (event: React.FormEvent) => {
+    // Prevent form default submission behavior
+    event.preventDefault();
+    const updatePref = {
+      days: activeDays,
+      hour: hour,
+      min: min,
+      period: selectedPeriod.toLowerCase(),
+      receiveEmail: receiveEmail,
+      industries: selectedIndustries,
+      userID: user?.userId,
+    };
+    console.log(updatePref); // Log to check the data
+    axios
+      .put("http://localhost:8080/updatePreference", updatePref)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((e) => console.log(e));
+  };
+
+  const showAlert = (message: string, type: "success" | "danger") => {
+    setAlertMessage(message);
+    setAlertType(type);
+    setAlertVisible(false); // Reset visibility to allow re-trigger
+    setTimeout(() => setAlertVisible(true), 10); // Small delay to re-trigger Bootstrap's animation
+  };
 
   return (
     <>
+      <div
+        className="position-fixed bottom-0 end-0 p-3"
+        style={{ zIndex: 1050 }}
+      >
+        {alertVisible && (
+          <div
+            className={`alert alert-${alertType} alert-dismissible fade show`}
+            role="alert"
+          >
+            <button
+              type="button"
+              className="btn-close"
+              onClick={() => setAlertVisible(false)} // Correctly update state on dismiss
+            ></button>
+            {alertMessage}
+          </div>
+        )}
+      </div>
+
       <div>
         <div className="setProfileBG">
           <h1>Profile</h1>
@@ -148,7 +208,7 @@ export const Profile = () => {
             <div style={{ display: "flex", marginLeft: 425 }}>
               <div style={{ marginRight: 10 }}>
                 <input
-                  type="button"
+                  type="submit"
                   value="Logout"
                   className="btn setProfileLogoutBtnColor setProfileLogoutBtn"
                   onClick={() => {
@@ -158,11 +218,13 @@ export const Profile = () => {
                 />
               </div>
               <div>
-                <input
+                <button
                   type="submit"
-                  value="Save Changes"
                   className="btn setProfileBtnColor setProfileBtn"
-                />
+                  onClick={handleOnSubmitProfile}
+                >
+                  Save Changes
+                </button>
               </div>
             </div>
           </form>
@@ -220,7 +282,7 @@ export const Profile = () => {
                     placeholder="00"
                     min="0"
                     max="59"
-                    value={min}
+                    value={min.toString().padStart(2, "0")}
                     style={{
                       width: "75px",
                       padding: "8px",
@@ -266,7 +328,6 @@ export const Profile = () => {
                       <li>
                         <a
                           className="dropdown-item"
-                          href="#"
                           onClick={() => handleSelectPeriod("AM")}
                           style={{
                             padding: "10px 20px",
@@ -279,7 +340,6 @@ export const Profile = () => {
                       <li>
                         <a
                           className="dropdown-item"
-                          href="#"
                           onClick={() => handleSelectPeriod("PM")}
                           style={{
                             padding: "10px 20px",
@@ -305,7 +365,7 @@ export const Profile = () => {
                           activeDays.includes(Number(key)) ? "active" : ""
                         }`} // Apply active class if the day is in the activeDays array
                         value={day}
-                        onClick={() => handleClick(Number(key))}
+                        onClick={() => handleDaysClick(Number(key))}
                       />
                     </label>
                   ))}
@@ -333,17 +393,15 @@ export const Profile = () => {
                     Look up industries
                   </button>
                   <ul className="dropdown-menu ddIndustry">
-                    {industries
-                      .filter(
-                        (industry) => !selectedIndustries.includes(industry)
-                      )
-                      .map((industry) => (
-                        <li key={industry}>
+                    {Object.entries(industries)
+                      .filter(([key]) => !selectedIndustries.includes(+key)) // Convert key to number
+                      .map(([key, industryName]) => (
+                        <li key={key}>
                           <a
                             className="dropdown-item"
-                            onClick={() => handleIndustryClick(industry)}
+                            onClick={() => handleIndustryClick(+key)}
                           >
-                            {industry}
+                            {industryName}
                           </a>
                         </li>
                       ))}
@@ -356,13 +414,13 @@ export const Profile = () => {
                       marginLeft: "10px",
                     }}
                   >
-                    {selectedIndustries.map((industry) => (
+                    {selectedIndustries.map((key: number) => (
                       <button
-                        key={industry}
+                        key={key}
                         className="btn setIndustriesBtn"
-                        onClick={() => handleIndustryClick(industry)}
+                        onClick={() => handleIndustryClick(key)}
                       >
-                        {industry} ✖
+                        {industries[key]} ✖
                       </button>
                     ))}
                   </div>
@@ -374,6 +432,8 @@ export const Profile = () => {
                   type="checkbox"
                   role="switch"
                   id="flexSwitchCheckReverse"
+                  checked={receiveEmail}
+                  onChange={(e) => setReceiveEmail(e.target.checked)}
                 />
                 <label
                   className="form-check-label"
@@ -383,11 +443,13 @@ export const Profile = () => {
                 </label>
               </div>
               <div style={{ marginLeft: 535 }}>
-                <input
+                <button
                   type="submit"
-                  value="Save Changes"
                   className="btn setProfileBtnColor setProfileBtn"
-                />
+                  onClick={handleOnSubmitPref}
+                >
+                  Save Changes
+                </button>
               </div>
             </form>
           </div>
