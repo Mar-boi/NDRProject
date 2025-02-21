@@ -3,9 +3,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./Login";
 import Signup from "./Signup";
 import Compare from "./Compare";
-import { AuthProvider } from "./AuthContext";
+import { AuthProvider } from "./assets/context/AuthContext";
 import Navbar from "./Navbar";
 import { Profile } from "./Profile";
+import ProtectedRoute from "./assets/model/ProtectedRoute";
 ;
 
 
@@ -19,7 +20,10 @@ function App() {
         <Route path="/compare" element={<Compare />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route 
+            path="/profile" 
+            element={<ProtectedRoute element={<Profile />} />} 
+          />
       </Routes>
     </BrowserRouter>
     </AuthProvider>

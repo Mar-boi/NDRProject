@@ -3,7 +3,7 @@ import "./Register.css";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useState } from "react";
 import axios from "axios";
-import { useAuth } from "./AuthContext";
+import { useAuth } from "./assets/context/AuthContext";
 
 type FormFields = {
   username: string;

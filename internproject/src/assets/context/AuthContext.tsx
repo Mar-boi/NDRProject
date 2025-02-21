@@ -1,6 +1,6 @@
 import Cookies from "js-cookie";
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
-import { AuthContextType, User } from "./assets/model/context";
+import { AuthContextType, User } from "../model/context";
 
 // Create AuthContext
 const AuthContext = createContext<AuthContextType | undefined>(undefined);

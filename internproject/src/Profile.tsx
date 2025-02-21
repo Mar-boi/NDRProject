@@ -1,7 +1,7 @@
 import "./Profile.css";
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/js/bootstrap.bundle.min.js"; // Import Bootstrap JS (this includes Popper.js)
-import { useAuth } from "./AuthContext";
+import { useAuth } from "./assets/context/AuthContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { days, industries } from "./assets/model/model";
@@ -89,6 +89,8 @@ export const Profile = () => {
 
         showAlert("Update successful", "success");
 
+        // in case there's no user, return early
+        if (!user) return; 
         const updatedUser = { ...user!, username }; // Create updated user object
         login(updatedUser); // Update the AuthContext state
       })

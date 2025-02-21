@@ -1,5 +1,5 @@
 import "./Navbar.css";
-import { useAuth } from "./AuthContext";
+import { useAuth } from "./assets/context/AuthContext";
 import { Link } from "react-router-dom";
 
 function Navbar() {
