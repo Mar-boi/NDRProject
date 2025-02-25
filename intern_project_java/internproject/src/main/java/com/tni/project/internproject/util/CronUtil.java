@@ -28,14 +28,14 @@ public final class CronUtil {
 	public static String getDaysCronNotation(List<Integer> days) {
 		
 		Collections.sort(days);
-		
+	
 		// If no days are selected, return "0"
 		if (days.size() == 0) {
 			return "0";
 		}
 		
         // If all days are selected, return "*"
-        if (days.size() == 7) {
+        if (days.size() >= 7) {
             return "*";
         }
 
@@ -79,7 +79,7 @@ public final class CronUtil {
 		String minString = decomposeCron(cron)[1];
 		
 		try {
-	    	return Integer.parseInt(minString);
+	    	return Integer.parseInt(minString)%60;
 		} catch (NumberFormatException e) {
 			return 0;
 		}

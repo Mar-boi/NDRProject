@@ -18,54 +18,64 @@ import com.tni.project.internproject.model.User;
 public class EmailRepo {
 	@Autowired
 	PreferenceRepo prefRepo;
-	
+
 	@Autowired
 	EmailScheduler scheduler;
-	
+
 	@Autowired
 	EmailController emailController;
-	
-	
+
 	HashMap<Integer, ScheduledFuture<?>> emailList = new HashMap<Integer, ScheduledFuture<?>>();
-	
+
 	// for load all the schedule when started
 	public void loadAll() {
-		
+
 		// load all of the User x Pref WHERE receiveEmail = 1
 		List<Preference> prefList = prefRepo.findSubscriber();
-		
+
 		// For each every row
 		for (Preference preference : prefList) {
-			
+
 			User user = preference.getUser();
-			
+
 			// Make ScheduledFuture using the info
-			//ScheduledFuture<?> future = scheduler.schedule(new EmailRunnable(user), new CronTrigger(preference.getEmailSchedule()));
-			
-			ScheduledFuture<?> future = scheduler.schedule(new EmailRunnable(user.getUserID(), emailController), new CronTrigger(preference.getEmailSchedule()));
-			
+			// ScheduledFuture<?> future = scheduler.schedule(new EmailRunnable(user), new
+			// CronTrigger(preference.getEmailSchedule()));
+
+			ScheduledFuture<?> future = scheduler.schedule(new EmailRunnable(user.getUserID(), emailController),
+					new CronTrigger(preference.getEmailSchedule()));
+
 			// put it in the list
 			emailList.put(user.getUserID(), future);
-			
+
 		}
-		
+
 	}
 
-	
-	public void remove(int userID) {
-		emailList.remove(userID);
+	// For testing purpose only
+	public HashMap<Integer, ScheduledFuture<?>> getEmailList() {
+		return emailList;
 	}
-	
+
+	public void remove(int userID) {
+		if (emailList.containsKey(userID)) {
+			emailList.remove(userID);
+		}
+
+	}
+
 	public void cancel(int userID) {
-		emailList.get(userID).cancel(true);
-		
+		if (emailList.containsKey(userID)) {
+			emailList.get(userID).cancel(true);
+		}
+
 	}
 
 	public void add(int userID, String cronNotation) {
-		ScheduledFuture<?> future = scheduler.schedule(new EmailRunnable(userID, emailController), new CronTrigger(cronNotation));
+		ScheduledFuture<?> future = scheduler.schedule(new EmailRunnable(userID, emailController),
+				new CronTrigger(cronNotation));
 		emailList.put(userID, future);
 		System.out.println("User add!");
-		
-		
+
 	}
 }
