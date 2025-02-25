@@ -29,6 +29,11 @@ public final class CronUtil {
 		
 		Collections.sort(days);
 		
+		// If no days are selected, return "0"
+		if (days.size() == 0) {
+			return "0";
+		}
+		
         // If all days are selected, return "*"
         if (days.size() == 7) {
             return "*";

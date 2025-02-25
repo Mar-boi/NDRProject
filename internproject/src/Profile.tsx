@@ -110,7 +110,9 @@ export const Profile = () => {
     // Prevent form default submission behavior
     event.preventDefault();
 
-    checkDays();
+    if(!checkDays()) {
+      return;
+    }
 
     const updatePref = {
       days: activeDays,
@@ -140,6 +142,9 @@ export const Profile = () => {
   const checkDays = () => {
     if(activeDays.length == 0 && receiveEmail) {
       showAlert("You must select at least one day", "danger");
+      return false;
+    } else {
+      return true;
     }
   }
 
