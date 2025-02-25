@@ -127,7 +127,7 @@ export const Profile = () => {
   };
 
   return (
-    <>
+    <div>
       <div
         className="position-fixed bottom-0 end-0 p-3"
         style={{ zIndex: 1050 }}
@@ -157,7 +157,7 @@ export const Profile = () => {
               </label>
               <br />
               <input
-                className="inputBox"
+                className="inputProfileBox"
                 type="text"
                 id="email"
                 placeholder="Email"
@@ -171,7 +171,7 @@ export const Profile = () => {
               </label>
               <br />
               <input
-                className="inputBox"
+                className="inputProfileBox"
                 type="text"
                 id="username"
                 placeholder="Username"
@@ -185,7 +185,7 @@ export const Profile = () => {
               </label>
               <br />
               <input
-                className="inputBox"
+                className="inputProfileBox"
                 type="password"
                 id="password"
                 placeholder="Password"
@@ -198,7 +198,7 @@ export const Profile = () => {
               </label>
               <br />
               <input
-                className="inputBox"
+                className="inputProfileBox"
                 type="password"
                 id="password"
                 placeholder="Confirm Password"
@@ -455,6 +455,6 @@ export const Profile = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };

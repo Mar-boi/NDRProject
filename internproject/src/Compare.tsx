@@ -1,18 +1,19 @@
 import "./Compare.css";
 import React, { useEffect, useState } from "react";
 
-const StockDataFetcher = () => {
+const Compare = () => {
   const [symbolA, setSymbolA] = useState("");
   const [symbolB, setSymbolB] = useState("");
   const [dataA, setDataA] = useState(null);
   const [dataB, setDataB] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const formatNumber = (value: number) => {
-    // Check if the value is negative and store the absolute value
+    if (value === null || value === undefined) return "-"; // Handle null/undefined
+
     const isNegative = value < 0;
     const positiveValue = Math.abs(value);
-
-    // Format the number as before, but maintain the negative sign if needed
     let formattedValue = "";
 
     if (positiveValue >= 1_000_000_000_000) {
@@ -27,7 +28,6 @@ const StockDataFetcher = () => {
       formattedValue = positiveValue.toFixed(2); // Less than a thousand
     }
 
-    // If the value was negative, add the minus sign
     return isNegative ? "$-" + formattedValue : "$" + formattedValue;
   };
 
@@ -39,32 +39,54 @@ const StockDataFetcher = () => {
     setSymbolB(event.target.value);
   };
 
+  const handleKeyDown = (event: any) => {
+    if (event.key === "Enter") {
+      fetchStockData();
+    }
+  };
+
   const fetchStockData = async () => {
     if (!symbolA || !symbolB) {
       alert("Please enter both tickers!");
       return;
     }
 
+    // Reset the data immediately to hide the previous comparison
+    setDataA(null);
+    setDataB(null);
+
+    // Then set loading state to show loading spinner or message
+    setLoading(true);
+    setError("");
+
     try {
-      // Fetch data for both tickers
       const getResponseA = await fetch(
         `http://localhost:8000/get_stock_data/${symbolA}`
       );
+      if (!getResponseA.ok) {
+        throw new Error("Failed to fetch data for Symbol A");
+      }
       const sentDataA = await getResponseA.json();
-      setDataA(sentDataA); // Store data for ticker 1
+      setDataA(sentDataA);
 
       const getResponseB = await fetch(
         `http://localhost:8000/get_stock_data/${symbolB}`
       );
+      if (!getResponseB.ok) {
+        throw new Error("Failed to fetch data for Symbol B");
+      }
       const sentDataB = await getResponseB.json();
-      setDataB(sentDataB); // Store data for ticker 2
+      setDataB(sentDataB);
     } catch (error) {
       console.error("Error fetching stock data:", error);
+      setError("Error fetching stock data. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <>
+    <div style={{ paddingBottom: 50 }}>
       <div className="setCompareBar">
         <div style={{ display: "flex" }}>
           <span className="fs-3" style={{ marginRight: 50 }}>
@@ -77,6 +99,7 @@ const StockDataFetcher = () => {
             style={{ marginRight: 50 }}
             value={symbolA}
             onChange={handleInputChange1}
+            onKeyDown={handleKeyDown}
           />
           <span className="fs-3" style={{ marginRight: 50 }}>
             with
@@ -88,23 +111,46 @@ const StockDataFetcher = () => {
             style={{ marginRight: 100 }}
             value={symbolB}
             onChange={handleInputChange2}
+            onKeyDown={handleKeyDown}
           />
           <button className="btn compareBtn" onClick={fetchStockData}>
             Compare
           </button>
         </div>
       </div>
-
-      {dataA === null && dataB === null && (
+      {loading && (
         <div
-          className="setDivTable"
+          className="setDivBeforeCompare"
           style={{
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            height: "30rem",
-            border: "grey 2px solid",
-            borderRadius: 30,
+          }}
+        >
+          Loading data, please wait...
+        </div>
+      )}
+
+      {error && (
+        <div
+          className="setDivBeforeCompare"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            color: "red",
+          }}
+        >
+          {error}
+        </div>
+      )}
+      {dataA === null && dataB === null && !loading &&(
+        <div
+          className="setDivBeforeCompare"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
           Type in companies symbol to start comparing!
@@ -172,7 +218,9 @@ const StockDataFetcher = () => {
                   </tr>
                 </tbody>
               </table>
-              <h2 style={{ paddingTop: 30 }}>Income Statement</h2>
+              <h2 style={{ paddingTop: 30, color: "#2e3e8b" }}>
+                Income Statement
+              </h2>
               <table className="setCompareTable">
                 <thead>
                   <tr>
@@ -226,7 +274,9 @@ const StockDataFetcher = () => {
                   </tr>
                 </tbody>
               </table>
-              <h2 style={{ paddingTop: 30 }}>Balance Sheet</h2>
+              <h2 style={{ paddingTop: 30, color: "#2e3e8b" }}>
+                Balance Sheet
+              </h2>
               <table className="setCompareTable">
                 <thead>
                   <tr>
@@ -260,7 +310,7 @@ const StockDataFetcher = () => {
                   </tr>
                 </tbody>
               </table>
-              <h2 style={{ paddingTop: 30 }}>Cash Flow</h2>
+              <h2 style={{ paddingTop: 30, color: "#2e3e8b" }}>Cash Flow</h2>
               <table className="setCompareTable">
                 <thead>
                   <tr>
@@ -316,8 +366,8 @@ const StockDataFetcher = () => {
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 };
 
-export default StockDataFetcher;
+export default Compare;

@@ -1,11 +1,10 @@
 .setBg {
-  max-width: 600px;
+  margin-top: 75px;
+  margin-left: 31.5%;
+    max-width: 540px;
   min-height: 673px;
   height: 100%;
   padding: 10px;
-  margin-top: 75px;
-  margin-left: 31.5%;
-  /* border: 1px solid #2e3e8b; */
   border-radius: 35px;
   box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.2);
 }
@@ -17,54 +16,56 @@
 
 .setTextAlignmentCenter {
   text-align: center;
+  justify-items: center;
 }
-
 .setForms {
   padding-top: 10px;
+  position: relative; /* Ensures child elements respect this positioning */
+}
+
+.error-message {
+  color: red;
+  font-size: 0.875rem;
+  position: relative;
+  top: 50px; /* Adjust as needed */
+  left: 5px;
+  display: block;
+  margin-top: 5px; /* Space it below the input */
 }
 
 .setBtn {
-  width: 220px;
+  width: 320px;
   height: 50px;
   font-size: 24px;
   border-radius: 20px;
-  margin-top: 15px;
-  /* border-color: transparent; */
 }
 
 .signupBtnColor {
   font-weight: bold;
-  background-color: #d9d9d9;
-  border-color: transparent;
+  background-color: #2e3e8b;
+  color: white;
   --bs-btn-border-color: transparent;
   --bs-btn-hover-color: #ffffff;
-  --bs-btn-hover-bg: #2e3e8b;
+  --bs-btn-hover-bg: #12216b;
+}
+
+.signupBtnColor:active {
+  background: #e0e0e0;
+  box-shadow: inset 5px 5px 10px #cacaca, inset -5px -5px 10px #f6f6f6;
 }
 
 .loginBtnColor {
   font-weight: bold;
-  background-color: #ffffff;
-  color: #000000;
-  border-color: transparent;
-  --bs-btn-border-color: transparent;
-  --bs-btn-hover-color: #000000;
+  color: #2e3e8b;
+  border-color: #2e3e8b;
+  --bs-btn-hover-color: #12216b;
+  --bs-btn-hover-border-color: #12216b;
   --bs-btn-hover-bg: transparent;
 }
 
-.inputBox {
-  height: 45px;
-  width: 300px;
-  outline: none;
-  border-radius: 30px;
-  padding-left: 15px;
-  font-size: 16px;
-  border: 1px solid white;
-  background: linear-gradient(
-    0deg in hsl shorter hue,
-    #d9d9d9 5%,
-    white 50%,
-    #d9d9d9 100%
-  );
+.loginBtnColor:active {
+  background: #e0e0e0;
+  box-shadow: inset 5px 5px 10px #cacaca, inset -5px -5px 10px #f6f6f6;
 }
 
 .form-check-input {
@@ -75,4 +76,54 @@
 .form-check-input:checked {
   background-color: #2e3e8b;
   border-color: white;
+}
+
+.container {
+  left: -12.5px;
+  width:100%;
+  max-width: 20em;
+  height: 3.5em; /* Increase height to prevent overlap */
+  position: relative;
+  margin-bottom: 20px; /* Ensures spacing for the error message */
+}
+
+.form_input {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: transparent; /* Remove background */
+  border: none; /* Remove all borders */
+  border-bottom: 2px solid #2e3e8b; /* Add bottom border */
+  outline: none;
+  color: black;
+  padding-left: 1em;
+  font-size: 1rem;
+}
+
+.label {
+  position: absolute;
+  background-color: white;
+  color: #2e3e8b;
+  font-family: sans-serif;
+  font-weight: bold;
+  left: 1em;
+  top: 2em;
+  cursor: text;
+  transition: top 350ms ease-in, font-size 350ms ease-in;
+}
+
+.form_input:hover {
+  border-bottom: 3px solid #2e3e8b;
+}
+
+.form_input:focus {
+  border-bottom: 3px solid #12216b;
+}
+
+input[type="text"]:focus ~ label,
+.form_input:focus ~ .label,
+.form_input:not(:placeholder-shown) ~ .label {
+  top: -0.05em;
+  font-size: 0.75rem;
+  padding: 0 0.125em;
 }

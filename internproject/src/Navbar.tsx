@@ -17,7 +17,7 @@ function Navbar() {
                 target=""
                 style={{ textDecoration: "none" }}
               >
-                Last 100 IPO Companies
+                Latest 100 IPO Companies
               </a>
             </h2>
 
@@ -28,7 +28,7 @@ function Navbar() {
                   style={{ textDecoration: "none", color: "black" }}
                 >
                   <button
-                    className="btn"
+                    className="btn setNavLoginBtn"
                     style={{ backgroundColor: "white" }}
                   >  {user.username}</button>
                 
@@ -40,7 +40,7 @@ function Navbar() {
                 style={{ textDecoration: "none", color: "black" }}
               >
                 <button
-                  className="btn"
+                  className="btn setNavLoginBtn"
                   style={{ backgroundColor: "white" }}
                 > Login</button>
                

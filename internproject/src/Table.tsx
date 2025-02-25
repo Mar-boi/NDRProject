@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Moment from "moment";
-import data from "./assets/data.json";
 import Navbar from "./Navbar";
 import "./Table.css";
-import { Company, Industry } from "./assets/model/model";
 import {
   ResponsiveContainer,
   LineChart,
@@ -20,7 +18,6 @@ function App() {
   const [company, setCompany] = useState([]);
   const [filteredCompany, setFilteredCompany] = useState([]);
   const [selectedSymbol, setSelectedSymbol] = useState<string | null>(null);
-  const [selectedCompany, setSelectedCompany] = useState(null);
   const [chartData, setChartData] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
@@ -61,7 +58,7 @@ function App() {
   };
 
   const formatDate = (value: string) => {
-    return Moment(value).format("MMM DD");
+    return Moment(value).format("yyyy/MM/DD");
   };
 
   const fetchChartData = async (symbol: string) => {
@@ -81,7 +78,9 @@ function App() {
 
   const sortTable = (key, type) => {
     const newAscending = sortConfig.key === key ? !sortConfig.ascending : true;
-    const sortedData = [...filteredCompany].sort((a, b) => {
+
+    // Sort the company data, not filteredCompany, to retain sorting across search terms
+    const sortedData = [...company].sort((a, b) => {
       let valA = key.includes(".")
         ? key.split(".").reduce((o, i) => o[i], a)
         : a[key];
@@ -98,8 +97,28 @@ function App() {
           ? new Date(valA) - new Date(valB)
           : new Date(valB) - new Date(valA);
     });
-    setFilteredCompany(sortedData);
+    setCompany(sortedData);
     setSortConfig({ key, ascending: newAscending });
+
+    const sortedFilteredData = [...filteredCompany].sort((a, b) => {
+      let valA = key.includes(".")
+        ? key.split(".").reduce((o, i) => o[i], a)
+        : a[key];
+      let valB = key.includes(".")
+        ? key.split(".").reduce((o, i) => o[i], b)
+        : b[key];
+      if (type === "number") return newAscending ? valA - valB : valB - valA;
+      if (type === "text")
+        return newAscending
+          ? valA.localeCompare(valB)
+          : valB.localeCompare(valA);
+      if (type === "date")
+        return newAscending
+          ? new Date(valA) - new Date(valB)
+          : new Date(valB) - new Date(valA);
+    });
+
+    setFilteredCompany(sortedFilteredData);
   };
 
   const totalPages = Math.ceil(filteredCompany.length / entriesPerPage);
@@ -115,6 +134,10 @@ function App() {
     }
   };
 
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
   return (
     <>
       <div
@@ -122,6 +145,7 @@ function App() {
         style={{
           marginLeft: 200,
           marginRight: 200,
+          paddingBottom: 50,
           paddingLeft: 10,
           paddingRight: 10,
         }}
@@ -216,15 +240,20 @@ function App() {
                     <option value="50">50</option>
                     <option value="100">100</option>
                   </select>
-                  <label style={{ paddingLeft: 10 ,fontWeight: "bold"}} >Entries per page</label>
+                  <label style={{ paddingLeft: 10, fontWeight: "bold" }}>
+                    Entries per page
+                  </label>
                 </div>
                 <div className="" style={{ paddingLeft: 835 }}>
                   <div className="">
-                    <label style={{ paddingRight: 10 , fontWeight: "bold"}}>Search:</label>
+                    <label style={{ paddingRight: 14, fontWeight: "bold" }}>
+                      Search:
+                    </label>
                     <input
+                      className="searchSymbol"
                       type="text"
                       value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
+                      onChange={handleSearchChange}
                       placeholder="Please Enter Ticker"
                     />
                   </div>
@@ -233,6 +262,17 @@ function App() {
               <div id="table" style={{ marginTop: 10, marginBottom: 10 }}>
                 <div className="setTable">
                   <table className="table">
+                    <colgroup>
+                      <col data-dt-column="0" style={{ width: 350 }} />
+                      <col data-dt-column="1" style={{ width: 90 }} />
+                      <col data-dt-column="2" style={{ width: 100 }} />
+                      <col data-dt-column="3" style={{ width: 120 }} />
+                      <col data-dt-column="4" style={{ width: 100 }} />
+                      <col data-dt-column="5" style={{ width: 135 }} />
+                      <col data-dt-column="6" style={{ width: 150 }} />
+                      <col data-dt-column="7" style={{ width: 130 }} />
+                      <col data-dt-column="8" style={{ width: 100 }} />
+                    </colgroup>
                     <thead className="headerColumn">
                       <tr>
                         {[

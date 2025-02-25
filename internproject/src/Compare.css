@@ -1,11 +1,41 @@
-.setDivTable {
-  background-color: #ececec;
+.setDivBeforeCompare {
+  background-color: #ffffff;
   width: 1160px;
+  min-width: 540px;
+  min-height: 480px;
   padding: 10px;
-  margin-top: 10px;
+  margin-top: 50px;
   margin-left: 250px;
   margin-right: 250px;
+  margin-bottom: 50px;
+  border-radius: 35px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+
+}
+
+.setDivTable {
+  background-color: #ffffff;
+  width: 1160px;
+  padding: 25px;
+  margin-top: 50px;
+  margin-left: 250px;
+  margin-right: 250px;
+  margin-bottom: 50px;
   padding-bottom: 40px;
+  border-radius: 35px;
+  box-shadow: 0px 0px 15px #12216b;
+}
+
+.setCompareBg {
+  min-width: 540px;
+  min-height: 480px;
+  padding: 10px;
+  margin-top: 50px;
+  border-radius: 35px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+  background-color: white;
+  transform: scale(1);
+  box-shadow: 0px 0px 10px #969696, 0px 0px 10px #ffffff;
 }
 
 .setCompareCell {
@@ -29,31 +59,65 @@
   border-bottom: 1px solid #d9d9d9;
   padding: 10px;
 }
+/* Alternating row colors */
+.setCompareTable tr:nth-child(odd) {
+  background-color: white;
+}
+
+.setCompareTable tr:hover {
+  background-color: white;
+  transform: scale(1);
+  box-shadow: 0px 0px 10px #969696, 0px 0px 10px #ffffff;
+}
+
+.setCompareTable tr:nth-child(even) {
+  background-color: #f2f2f2; /* Light gray */
+}
 
 .inputBox {
+  border: none;
+  outline: none;
   height: 45px;
   width: 300px;
-  outline: none;
   border-radius: 30px;
-  padding-left: 15px;
-  font-size: 16px;
-  border: 1px solid white;
-  background: linear-gradient(
-    0deg in hsl shorter hue,
-    #d9d9d9 5%,
-    white 50%,
-    #d9d9d9 100%
-  );
+  padding: 1em;
+  background-color: #ccc;
+  box-shadow: inset 2px 5px 10px rgba(0, 0, 0, 0.3);
+  transition: 300ms ease-in-out;
+}
+
+.inputBox:focus {
+  background-color: white;
+  transform: scale(1.05);
+  box-shadow: 0px 0px 10px #969696, 0px 0px 10px #ffffff;
+}
+
+.inputBox:not(:placeholder-shown) {
+  background-color: white;
+  transform: scale(1.05);
+  box-shadow: 0px 0px 10px #969696, 0px 0px 10px #ffffff;
 }
 
 .compareBtn {
-  border-radius: 100px;
-  background: linear-gradient(145deg, #ffffff, #cacaca);
-  box-shadow: 5px 5px 30px #cacaca, -5px -5px 30px #f6f6f6;
+  color: #090909;
+  /* padding: 0.7em 1.7em; */
+  font-size: 18px;
+  border-radius: 1em;
+  background: #2e3e8b;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+  color: white;
+  font-weight: bold;
+}
+
+.compareBtn:hover {
+  background-color: white;
+  color: #2e3e8b;
 }
 
 .compareBtn:active {
-  border-radius: 100px;
-  background: #e0e0e0;
-  box-shadow: inset 5px 5px 30px #b3b3b3, inset -5px -5px 30px #ffffff;
+  color: #2e3e8b;
+  box-shadow: inset 4px 4px 12px #c5c5c5, inset -4px -4px 12px #ffffff;
+  border: none;
 }

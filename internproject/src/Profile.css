@@ -100,3 +100,28 @@
   border-color: transparent;
   color: white;
 }
+
+.inputProfileBox {
+  border: none;
+  outline: none;
+  height: 45px;
+  width: 300px;
+  margin-top: 7px;
+  border-radius: 30px;
+  padding: 1em;
+  background-color: #ccc;
+  box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);
+  transition: 300ms ease-in-out;
+}
+
+.inputProfileBox:focus {
+  background-color: white;
+  transform: scale(1.05);
+  box-shadow: 0px 0px 10px #969696, 0px 0px 1px #ffffff;
+}
+
+.inputProfileBox:not(:placeholder-shown) {
+  background-color: white;
+  transform: scale(1.05);
+  box-shadow: 0px 0px 10px #969696, 0px 0px 1px #ffffff;
+}
