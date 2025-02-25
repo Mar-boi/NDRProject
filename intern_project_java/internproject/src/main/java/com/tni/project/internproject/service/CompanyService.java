@@ -19,6 +19,7 @@ import com.tni.project.internproject.model.Company;
 import com.tni.project.internproject.model.Industry;
 import com.tni.project.internproject.repo.CompanyRepo;
 import com.tni.project.internproject.repo.IndustryRepo;
+import com.tni.project.internproject.util.StringUtil;
 
 @Service
 public class CompanyService {
@@ -68,11 +69,11 @@ public class CompanyService {
 			        System.out.println(utilDate);
 			        java.sql.Date offerDate = new java.sql.Date(utilDate.getTime());
 			        
-			        double shares = getNum(cells.get(4).text());  
-			        double offerPrice = getNum(cells.get(5).text());
-			        double firstClose = getNum(cells.get(6).text());
-			        double currentPrice = getNum(cells.get(7).text());
-			        double returnRate = getNum(cells.get(8).text());
+			        double shares = StringUtil.getNum(cells.get(4).text());  
+			        double offerPrice = StringUtil.getNum(cells.get(5).text());
+			        double firstClose = StringUtil.getNum(cells.get(6).text());
+			        double currentPrice = StringUtil.getNum(cells.get(7).text());
+			        double returnRate = StringUtil.getNum(cells.get(8).text());
 			        
 			        String compLink = productElement.select("a[href]").attr("href");
 			        
@@ -97,17 +98,6 @@ public class CompanyService {
 		}	
 	}
 	
-	
-	// Dealing with text including special char and parse to double
-	public double getNum(String text) {
-		if(text.contains("$")) {
-			return Double.parseDouble(text.substring(1));
-		}
-		if(text.contains("%")) {
-			return Double.parseDouble(text.substring(0, text.length()-1));
-		}
-		return Double.parseDouble(text);
-	}
 	
 	// add a new company to the list only
 	public void filterNewCompany(Company company) {

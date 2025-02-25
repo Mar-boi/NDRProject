@@ -41,7 +41,7 @@ type FormFields = {
       }
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
-        if (error.response.status === 404) {
+        if (error.response.status === 400) {
             setError("password", { type: "server", message: "Username or password is wrong"}); // ✅ Show error on form
         } else {
           alert("Something went wrong! Please try again."); // Handle other errors
@@ -71,7 +71,7 @@ type FormFields = {
               <br />
               <input
                 {...register("username", {
-                  required: "Username is require",
+                  required: "Username is required",
                 })}
                 className="inputBox"
                 type="text"
@@ -89,7 +89,7 @@ type FormFields = {
               <br />
               <input
                 {...register("password", {
-                  required: "Password is require",
+                  required: "Password is required",
                   minLength: {
                     value: 8,
                     message: "Password must have at least 8 characters",
