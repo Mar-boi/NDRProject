@@ -80,9 +80,11 @@ public class UserController {
 		 int userID =  (Integer) requestBody.get("userID");
 		 String username = (String) requestBody.get("username");
 		 String email = (String) requestBody.get("email");
+		 String password = (String) requestBody.get("password");
+		 String newPassword = (String) requestBody.get("newPassword");
 		 
 		 
-		 return service.updateProfile(username, email, userID);
+		 return service.updateProfile(username, email, userID, password, newPassword);
 		
 	}
 }

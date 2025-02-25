@@ -20,14 +20,15 @@ public interface UserRepo extends CrudRepository<User, Integer>{
 
 	User findByUserName(String userName);
 	User findByUserEmail(String userEmail);
+	Optional<User> findByUserID(int userID);
 	
 	@Query("select u from User u where (u.userName = ?1 or u.userEmail = ?1 ) and u.userPass = ?2 ")
 	User findLoginUser(String nameEmail, String password);
 	
 	@Modifying
 	@Transactional
-	@Query("update User u set u.userName = ?1, u.userEmail = ?2 where u.userID = ?3 ")
-	void updateProfile(String username, String email, int userID);
+	@Query("update User u set u.userName = ?1, u.userEmail = ?2 , u.userPass = ?3 where u.userID = ?4 ")
+	void updateProfile(String username, String email, String newPass, int userID);
 	
 	// Not used yet
 	@Query("select u from User u where u.userName = ?1 and u.userID != ?2")
@@ -35,5 +36,7 @@ public interface UserRepo extends CrudRepository<User, Integer>{
 	
 	@Query("select u from User u where u.userEmail = ?1 and u.userID != ?2")
 	Optional<User> findOtherByEmail(String email, int userID);
+	
+
 
 }

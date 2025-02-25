@@ -16,6 +16,7 @@ export const Profile = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
   const [receiveEmail, setReceiveEmail] = useState(false);
 
   const [selectedPeriod, setSelectedPeriod] = useState("");
@@ -80,6 +81,8 @@ export const Profile = () => {
       username: username,
       email: email,
       userID: user?.userId,
+      password: password,
+      newPassword: newPassword
     };
     console.log(updateProfile);
     axios
@@ -202,7 +205,7 @@ export const Profile = () => {
             </div>
             <div className="" style={{ paddingTop: 10 }}>
               <label htmlFor="">
-                <span className="">Password</span>
+                <span className="">Current Password</span>
               </label>
               <br />
               <input
@@ -215,15 +218,15 @@ export const Profile = () => {
             </div>
             <div className="" style={{ paddingTop: 10 }}>
               <label htmlFor="">
-                <span className="">Confirm Password</span>
+                <span className="">New  Password</span>
               </label>
               <br />
               <input
                 className="inputBox"
                 type="password"
-                id="password"
-                placeholder="Confirm Password"
-                onChange={(event) => setPassword(event.target.value)}
+                id="newPassword"
+                placeholder="New Password"
+                onChange={(event) => setNewPassword(event.target.value)}
               />
             </div>
             <div style={{ display: "flex", marginLeft: 425 }}>

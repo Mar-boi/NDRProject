@@ -1,5 +1,6 @@
 package com.tni.project.internproject.service;
 
+import java.net.PasswordAuthentication;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -79,8 +80,9 @@ public class UserService {
 		prefRepo.save(pref);
 
 		// Include a new user to the current mailRepo list
-		if(receiveEmail) { emailSubService.add(user.getUserID(), pref.getEmailSchedule()); }
-		
+		if (receiveEmail) {
+			emailSubService.add(user.getUserID(), pref.getEmailSchedule());
+		}
 
 		// return User
 		System.out.println(user);
@@ -92,10 +94,11 @@ public class UserService {
 
 		User user = userRepo.findById(userID).orElse(null);
 		if (user == null) {
-			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User not found"); // should not happen cause they should
-																				// access in the first place
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User not found"); // should not happen cause
+																							// they should
+			// access in the first place
 		} else {
-		
+
 			// find Preference from userID -> Preference
 			Preference pref = prefRepo.findByUserID(userID);
 
@@ -183,32 +186,55 @@ public class UserService {
 		}
 	}
 
-	public ResponseEntity<?> updateProfile(String username, String email, int userID) {
-		
-		// check if the email is already existed for different user
-		// check if the username is already existed for different user
-		
-		// additional step if you want a password to check you need to send it
+	public ResponseEntity<?> updateProfile(String username, String email, int userID, String pass, String newPass) {
+		username = username.trim();
+		email = email.trim();
+		pass = pass.trim();
+		newPass= newPass.trim();
 		
 		try {
+			// check if the username is already existed for different user
+			if(username.length() == 0) {
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Username cannot be null");
+			}
 			
 			if (userRepo.findOtherByUsername(username, userID).orElse(null) != null) {
 				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Username is already taken");
 
 			}
-			
+
+			// check if the email is already existed for different user
 			if (userRepo.findOtherByEmail(username, userID).orElse(null) != null) {
 				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Email is already taken");
 			}
-			
-			userRepo.updateProfile(username, email, userID);
-			
+
+			User user = userRepo.findByUserID(userID).orElse(null);
+
+			// User does not update password
+			if (pass.equals("") && newPass.equals("")) {
+				newPass = user.getUserPass();
+			} else {
+				
+				
+				if (!user.getUserPass().equals(pass)) {
+					return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Current password does not match");
+				}
+				
+				if(newPass.length() < 8) {
+					return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("New password must contain at least 8 characters");
+				}
+				
+				
+			}
+
+			userRepo.updateProfile(username, email, newPass, userID);
+
 			return ResponseEntity.status(HttpStatus.OK).body("Update Successful");
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error Updating");
-			
+
 		}
 	}
 }
