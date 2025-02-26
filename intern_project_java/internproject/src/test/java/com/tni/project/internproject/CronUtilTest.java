@@ -39,39 +39,66 @@ public class CronUtilTest {
 	}
 	
 	@Test
+	public void testGetCronNotation_invalidArgs() {
+		String[] resultArray = new String[5];
+		resultArray[0] = CronUtil.getCronNotation(Arrays.asList(1,2,3), 13, 10, "am");
+		resultArray[1] = CronUtil.getCronNotation(Arrays.asList(1,2,3), 0, 10, "am");
+		resultArray[2] = CronUtil.getCronNotation(Arrays.asList(1,2,3,5,6), 11, 65, "pm");
+		resultArray[3] = CronUtil.getCronNotation(Arrays.asList(6,0,5,3,1), 12, 10, "period");
+		resultArray[4] = CronUtil.getCronNotation(Arrays.asList(0,3,5,6), 12, 30, "");
+		
+		String[] expectedArray = new String[5];
+		expectedArray[0] = "0 0 8 * * 1-3";
+		expectedArray[1] = "0 0 8 * * 1-3";
+		expectedArray[2] = "0 0 8 * * 1-3,5-6";
+		expectedArray[3] = "0 0 8 * * 0-1,3,5-6";
+		expectedArray[4] = "0 0 8 * * 0,3,5-6";
+		
+		assertArrayEquals(expectedArray, resultArray);
+	}
+	
+	
+	
+	@Test
 	public void testGetCronNotation_noDaysSelected() {
 		var result = CronUtil.getCronNotation(Arrays.asList(), 8, 10, "am");
 		assertEquals("0 10 8 * * 0", result);
 	}
 	
 	@Test
-	public void testGetCronNotation_invalidDaysSize() {
-		var result = CronUtil.getCronNotation(Arrays.asList(), 8, 10, "am");
-		assertEquals("0 10 8 * * 0", result);
+	public void testGetCronNotation_duplicatedDays() {
+		var result = CronUtil.getCronNotation(Arrays.asList(0,1,1,2,2), 8, 10, "am");
+		assertEquals("0 10 8 * * 0-2", result);
+	}
+	
+	@Test
+	public void testGetCronNotation_invalidDays() {
+		var result = CronUtil.getCronNotation(Arrays.asList(0,-1,8,9,6), 8, 10, "am");
+		assertEquals("0 10 8 * * 0,6", result); 
 	}
 	
 
 	@Test
 	public void testGetDays() {
-		List<Integer>[] resultArray = new ArrayList[7];
-		resultArray[0] = CronUtil.getDays("0 10 8 * * 6");
-		resultArray[1] = CronUtil.getDays("0 10 8 * * 1-5");
-		resultArray[2] = CronUtil.getDays("0 10 8 * * 0-3,5-6");
-		resultArray[3] = CronUtil.getDays("0 10 8 * * 0,4-6");
-		resultArray[4] = CronUtil.getDays("0 10 8 * * 2,4,6");
-		resultArray[5] = CronUtil.getDays("0 10 8 * * 0-1,3-4,6");
-		resultArray[6] = CronUtil.getDays("0 10 8 * * *");
-		
-		List<Integer>[] expectedArray = new ArrayList[7];
-		expectedArray[0] = Arrays.asList(6);
-		expectedArray[1] = Arrays.asList(1,2,3,4,5);
-		expectedArray[2] = Arrays.asList(0,1,2,3,5,6);
-		expectedArray[3] = Arrays.asList(0,4,5,6);
-		expectedArray[4] = Arrays.asList(2,4,6);
-		expectedArray[5] = Arrays.asList(0,1,3,4,6);
-		expectedArray[6] = Arrays.asList(0,1,2,3,4,5,6);
-		
-		assertArrayEquals(expectedArray, resultArray);
+	    List<List<Integer>> resultList = new ArrayList<>();
+	    resultList.add(CronUtil.getDays("0 10 8 * * 6"));
+	    resultList.add(CronUtil.getDays("0 10 8 * * 1-5"));
+	    resultList.add(CronUtil.getDays("0 10 8 * * 0-3,5-6"));
+	    resultList.add(CronUtil.getDays("0 10 8 * * 0,4-6"));
+	    resultList.add(CronUtil.getDays("0 10 8 * * 2,4,6"));
+	    resultList.add(CronUtil.getDays("0 10 8 * * 0-1,3-4,6"));
+	    resultList.add(CronUtil.getDays("0 10 8 * * *"));
+	    
+	    List<List<Integer>> expectedList = new ArrayList<>();
+	    expectedList.add(Arrays.asList(6));
+	    expectedList.add(Arrays.asList(1,2,3,4,5));
+	    expectedList.add(Arrays.asList(0,1,2,3,5,6));
+	    expectedList.add(Arrays.asList(0,4,5,6));
+	    expectedList.add(Arrays.asList(2,4,6));
+	    expectedList.add(Arrays.asList(0,1,3,4,6));
+	    expectedList.add(Arrays.asList(0,1,2,3,4,5,6));
+	    
+	    assertEquals(expectedList, resultList);
 	}
 	
 	@Test
@@ -137,6 +164,7 @@ public class CronUtilTest {
 		assertArrayEquals(expectedArray, resultArray);
 	}
 	
+
 	
 	
 	

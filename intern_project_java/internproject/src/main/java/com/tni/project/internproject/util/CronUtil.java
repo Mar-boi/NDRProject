@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public final class CronUtil {
 	
@@ -13,7 +14,12 @@ public final class CronUtil {
 		
 	}
 	public static String getCronNotation(List<Integer> days, int hour, int min, String period) {
+	
 		String weekdays = getDaysCronNotation(days);
+		if(!isTimeInputValid(hour, min, period)) {
+			return "0 0 8 * * " + weekdays;
+		}
+		
 		int hourCorrection = hour;
 		
 		if ("pm".equals(period) && hour != 12) {
@@ -25,9 +31,29 @@ public final class CronUtil {
 		return "0 " + min + " " + hourCorrection + " * * " + weekdays;
 	}
 	
+	private static boolean isTimeInputValid(int hour, int min, String period) {
+		if(hour < 1 || hour > 12) {
+			return false;
+		}
+		if(min < 0 || min > 59) {
+			return false;
+		}
+		if(!(period.equals("am") || period.equals("pm"))) {
+			return false;
+		}
+		return true;
+		
+	}
 	public static String getDaysCronNotation(List<Integer> days) {
 		
+		days = days.stream()
+                .filter(value -> value >= 0 && value < 7)
+                .distinct()  // Removes duplicates
+                .collect(Collectors.toList());
+
+		
 		Collections.sort(days);
+		
 	
 		// If no days are selected, return "0"
 		if (days.size() == 0) {
