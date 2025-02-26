@@ -82,7 +82,7 @@ public class EmailService {
 			MimeMessageHelper helper = new MimeMessageHelper(message, false);
 			helper.setFrom("bank200074@gmail.com");
 			helper.setTo(user.getUserEmail());
-			helper.setSubject("Simplet Text Email: " + Instant.now());
+			helper.setSubject("IPO Companies Update: " + Instant.now());
 
 //			try (var inputStream = Objects.requireNonNull(
 //					EmailService.class.getResourceAsStream("/templates/output_" + user.getUserID() + ".html"))) {
