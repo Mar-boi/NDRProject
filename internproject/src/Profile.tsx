@@ -5,6 +5,7 @@ import { useAuth } from "./assets/context/AuthContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { days, industries } from "./assets/model/model";
+import { useTranslation } from "./TranslationContext";
 
 export const Profile = () => {
   const navigate = useNavigate();
@@ -24,6 +25,8 @@ export const Profile = () => {
   const [alertVisible, setAlertVisible] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [alertType, setAlertType] = useState<"success" | "danger">("success");
+
+  const { language, translations } = useTranslation();
 
   const { user, login, logout } = useAuth();
   useEffect(() => {
@@ -156,7 +159,7 @@ export const Profile = () => {
   };
 
   return (
-    <>
+    <div>
       <div
         className="position-fixed bottom-0 end-0 p-3"
         style={{ zIndex: 1050 }}
@@ -176,69 +179,69 @@ export const Profile = () => {
         )}
       </div>
 
-      <div>
+      <div style={{ paddingBottom: 75 }}>
         <div className="setProfileBG">
-          <h1>Profile</h1>
+          <h1>{translations["profile"]}</h1>
           <form>
             <div className="" style={{ paddingTop: 10 }}>
               <label htmlFor="" className="">
-                <span className="">Email</span>
+                <span className="">{translations["email"]}</span>
               </label>
               <br />
               <input
-                className="inputBox"
+                className="inputProfileBox"
                 type="text"
                 id="email"
-                placeholder="Email"
+                placeholder={translations["mail"]}
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
               />
             </div>
             <div className="" style={{ paddingTop: 10 }}>
               <label htmlFor="" className="">
-                <span className="">Username</span>
+                <span className="">{translations["username"]}</span>
               </label>
               <br />
               <input
-                className="inputBox"
+                className="inputProfileBox"
                 type="text"
                 id="username"
-                placeholder="Username"
+                placeholder={translations["username"]}
                 value={username}
                 onChange={(event) => setUsername(event.target.value)}
               />
             </div>
             <div className="" style={{ paddingTop: 10 }}>
               <label htmlFor="">
-                <span className="">Current Password</span>
+                <span className="">{translations["password"]}</span>
               </label>
               <br />
               <input
-                className="inputBox"
+                className="inputProfileBox"
                 type="password"
                 id="password"
-                placeholder="Password"
+                placeholder={translations["password"]}
                 onChange={(event) => setPassword(event.target.value)}
               />
             </div>
             <div className="" style={{ paddingTop: 10 }}>
               <label htmlFor="">
-                <span className="">New  Password</span>
+                <span className="">{translations["new_password"]}</span>
               </label>
               <br />
               <input
-                className="inputBox"
+                className="inputProfileBox"
                 type="password"
-                id="newPassword"
-                placeholder="New Password"
+                id="password"
+                placeholder={translations["new_password"]}
                 onChange={(event) => setNewPassword(event.target.value)}
               />
             </div>
             <div style={{ display: "flex", marginLeft: 425 }}>
               <div style={{ marginRight: 10 }}>
                 <input
-                  type="button"
-                  value="Logout"
+                  type="submit"
+                  value={translations["logout"]}
                   className="btn setProfileLogoutBtnColor setProfileLogoutBtn"
                   onClick={() => {
                     logout();
@@ -252,7 +255,7 @@ export const Profile = () => {
                   className="btn setProfileBtnColor setProfileBtn"
                   onClick={handleOnSubmitProfile}
                 >
-                  Save Changes
+                  {translations["save_changes"]}
                 </button>
               </div>
             </div>
@@ -260,9 +263,9 @@ export const Profile = () => {
           <div className="createLine"></div>
           <div>
             <form action="">
-              <h1>Email</h1>
-              <h4>Days and Time</h4>
-              <p>Select days and time for email to be sent</p>
+              <h1>{translations["email"]}</h1>
+              <h4>{translations["days_time"]}</h4>
+              <p>{translations["select_days_time"]}</p>
               <div
                 style={{
                   display: "flex",
@@ -357,25 +360,25 @@ export const Profile = () => {
                       <li>
                         <a
                           className="dropdown-item"
-                          onClick={() => handleSelectPeriod("AM")}
+                          onClick={() => handleSelectPeriod(translations["am"])}
                           style={{
                             padding: "10px 20px",
                             fontSize: "16px",
                           }}
                         >
-                          AM
+                          {translations["am"]}
                         </a>
                       </li>
                       <li>
                         <a
                           className="dropdown-item"
-                          onClick={() => handleSelectPeriod("PM")}
+                          onClick={() => handleSelectPeriod(translations["pm"])}
                           style={{
                             padding: "10px 20px",
                             fontSize: "16px",
                           }}
                         >
-                          PM
+                          {translations["pm"]}
                         </a>
                       </li>
                     </ul>
@@ -393,18 +396,15 @@ export const Profile = () => {
                         className={`dayBtn ${
                           activeDays.includes(Number(key)) ? "active" : ""
                         }`} // Apply active class if the day is in the activeDays array
-                        value={day}
+                        value={days[key][language]}
                         onClick={() => handleDaysClick(Number(key))}
                       />
                     </label>
                   ))}
                 </div>
               </div>
-              <h4>Followed Industry</h4>
-              <p>
-                Your followed industries will be show here. You can unfollow
-                them anytime by clicking
-              </p>
+              <h4>{translations["followed_industry"]}</h4>
+              <p>{translations["followed_industries_info"]}</p>
               <div>
                 <div
                   className="dropdown"
@@ -419,18 +419,18 @@ export const Profile = () => {
                     type="button"
                     data-bs-toggle="dropdown"
                   >
-                    Look up industries
+                    {translations["lookup_industries"]}
                   </button>
                   <ul className="dropdown-menu ddIndustry">
                     {Object.entries(industries)
-                      .filter(([key]) => !selectedIndustries.includes(+key)) // Convert key to number
-                      .map(([key, industryName]) => (
+                      .filter(([key]) => !selectedIndustries.includes(+key))
+                      .map(([key]) => (
                         <li key={key}>
                           <a
                             className="dropdown-item"
                             onClick={() => handleIndustryClick(+key)}
                           >
-                            {industryName}
+                            {industries[key][language]}
                           </a>
                         </li>
                       ))}
@@ -449,7 +449,7 @@ export const Profile = () => {
                         className="btn setIndustriesBtn"
                         onClick={() => handleIndustryClick(key)}
                       >
-                        {industries[key]} ✖
+                        {industries[key][language]} ✖
                       </button>
                     ))}
                   </div>
@@ -468,7 +468,7 @@ export const Profile = () => {
                   className="form-check-label"
                   htmlFor="flexSwitchCheckReverse"
                 >
-                  Receive latest IPO companies via email
+                  {translations["receive_ipo_email"]}
                 </label>
               </div>
               <div style={{ marginLeft: 535 }}>
@@ -477,13 +477,13 @@ export const Profile = () => {
                   className="btn setProfileBtnColor setProfileBtn"
                   onClick={handleOnSubmitPref}
                 >
-                  Save Changes
+                  {translations["save_changes"]}
                 </button>
               </div>
             </form>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };

@@ -1,32 +1,32 @@
-import Table from "./Table";
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "./Login";
-import Signup from "./Signup";
-import Compare from "./Compare";
 import { AuthProvider } from "./assets/context/AuthContext";
 import Navbar from "./Navbar";
+import Table from "./Table";
+import { TranslationProvider } from "./TranslationContext"; // Import the TranslationProvider
+import Compare from "./Compare";
+import Login from "./Login";
 import { Profile } from "./Profile";
-import ProtectedRoute from "./assets/model/ProtectedRoute";
-;
-
+import Signup from "./Signup";
 
 function App() {
   return (
-    <AuthProvider>
-    <BrowserRouter>
-    <Navbar/>
-      <Routes>
-        <Route path="/" element={<Table />} />
-        <Route path="/compare" element={<Compare />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route 
-            path="/profile" 
-            element={<ProtectedRoute element={<Profile />} />} 
-          />
-      </Routes>
-    </BrowserRouter>
-    </AuthProvider>
+    <div style={{ backgroundColor: "#f5f5f5" }}>
+      <AuthProvider>
+        <TranslationProvider>
+          <BrowserRouter>
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<Table />} />
+              <Route path="/compare" element={<Compare />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/profile" element={<Profile />} />
+            </Routes>
+          </BrowserRouter>
+        </TranslationProvider>
+      </AuthProvider>
+    </div>
   );
 }
 
