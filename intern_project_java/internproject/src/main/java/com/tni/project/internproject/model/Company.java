@@ -12,13 +12,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MappedSuperclass;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Component
-public class Company {
+@MappedSuperclass
+public abstract class Company {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,10 +29,7 @@ public class Company {
 	private String symbol;
 	@Column(nullable = false)
 	private Date offerDate;
-	private double shares;
 	private double offerPrice;
-	private double firstClose;
-	private double currentPrice;
 	private double returnRate;
 	private String compLink;
 	
@@ -43,81 +40,68 @@ public class Company {
 	public Company () {
 		
 	}
+	
+	public Company(String name, String symbol, Date offerDate, double offerPrice, double returnRate,
+			String compLink, Industry industry) {
+		super();
 
-	public Company(String name, String symbol, Date offerDate, double shares, double offerPrice, double firstClose,
-			double currentPrice, double returnRate, Industry industry, String compLink) {
 		this.name = name;
 		this.symbol = symbol;
 		this.offerDate = offerDate;
-		this.shares = shares;
 		this.offerPrice = offerPrice;
-		this.firstClose = firstClose;
-		this.currentPrice = currentPrice;
 		this.returnRate = returnRate;
-		this.industry = industry;
 		this.compLink = compLink;
+		this.industry = industry;
 	}
-	
+
+
+
 	public int getCompID() {
 		return compID;
 	}
+
 	public void setCompID(int compID) {
 		this.compID = compID;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getSymbol() {
 		return symbol;
 	}
+
 	public void setSymbol(String symbol) {
 		this.symbol = symbol;
 	}
-	public Industry getIndustry() {
-		return industry;
-	}
-	public void setIndustry(Industry industry) {
-		this.industry = industry;
-	}
+
 	public Date getOfferDate() {
 		return offerDate;
 	}
+
 	public void setOfferDate(Date offerDate) {
 		this.offerDate = offerDate;
-	}
-	public double getShares() {
-		return shares;
-	}
-	public void setShares(double shares) {
-		this.shares = shares;
-	}
-	public double getFirstClose() {
-		return firstClose;
-	}
-	public void setFirstClose(double firstClose) {
-		this.firstClose = firstClose;
-	}
-	public double getCurrentPrice() {
-		return currentPrice;
-	}
-	public void setCurrentPrice(double currentPrice) {
-		this.currentPrice = currentPrice;
-	}
-	public double getReturnRate() {
-		return returnRate;
-	}
-	public void setReturnRate(double returnRate) {
-		this.returnRate = returnRate;
 	}
 
 	public double getOfferPrice() {
 		return offerPrice;
 	}
+
 	public void setOfferPrice(double offerPrice) {
 		this.offerPrice = offerPrice;
+	}
+
+	public double getReturnRate() {
+		return returnRate;
+	}
+
+	public void setReturnRate(double returnRate) {
+		this.returnRate = returnRate;
 	}
 
 	public String getCompLink() {
@@ -127,9 +111,15 @@ public class Company {
 	public void setCompLink(String compLink) {
 		this.compLink = compLink;
 	}
-	
-	
-	
-	
 
+	public Industry getIndustry() {
+		return industry;
+	}
+
+	public void setIndustry(Industry industry) {
+		this.industry = industry;
+	}
+
+	
+	
 }
