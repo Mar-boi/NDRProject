@@ -1,9 +1,10 @@
 import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 import translationsEn from './assets/en.json';
 import translationsJa from './assets/ja.json';
+import { Language } from './assets/model/model';
 
 type TranslationContextType = {
-  language: string;
+  language: Language;
   translations: any;
   toggleLanguage: () => void;
 };
@@ -11,11 +12,11 @@ type TranslationContextType = {
 const TranslationContext = createContext<TranslationContextType | undefined>(undefined);
 
 export const TranslationProvider = ({ children }: { children: ReactNode }) => {
-  const [language, setLanguage] = useState<string>("en");
+  const [language, setLanguage] = useState<Language>("en");
   const [translations, setTranslations] = useState<any>(translationsEn);
 
   useEffect(() => {
-    const storedLanguage = localStorage.getItem("language");
+    const storedLanguage = localStorage.getItem("language") as Language | null;
     if (storedLanguage) {
       setLanguage(storedLanguage);
       setTranslations(storedLanguage === "ja" ? translationsJa : translationsEn);
@@ -23,7 +24,7 @@ export const TranslationProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const toggleLanguage = () => {
-    const newLanguage = language === "en" ? "ja" : "en";
+    const newLanguage: Language = language === "en" ? "ja" : "en";
     setLanguage(newLanguage);
     setTranslations(newLanguage === "ja" ? translationsJa : translationsEn);
 

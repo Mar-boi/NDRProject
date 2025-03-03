@@ -1,3 +1,5 @@
+export type Language = "en" | "ja";
+
 export type Company = {
   compID: number;
   name: string;

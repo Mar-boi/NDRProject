@@ -41,15 +41,7 @@ function Table() {
   const [selectedRange, setSelectedRange] = useState("7d");
   const { language } = useTranslation();
 
-  useEffect(() => {
-    const loadTranslations = async () => {
-      const selectedLang = localStorage.getItem("language") || "en";
-      const data = selectedLang === "ja" ? translationsJa : translationsEn;
-      setLanguage(selectedLang);
-      translations(data);
-    };
-    loadTranslations();
-  }, [language]);
+
 
   useEffect(() => {
     fetchData();

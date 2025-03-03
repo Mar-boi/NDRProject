@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { days, industries } from "./assets/model/model";
 import { useTranslation } from "./TranslationContext";
 
+
 export const Profile = () => {
   const navigate = useNavigate();
   const [activeDays, setActiveDays] = useState<number[]>([]); // Track an array of active days
@@ -46,7 +47,7 @@ export const Profile = () => {
         setEmail(response.data.email);
         setHour(response.data.hour);
         setMin(response.data.min);
-        setSelectedPeriod(response.data.period.toUpperCase());
+        setSelectedPeriod(response.data.period);
         setActiveDays(response.data.days);
         setReceiveEmail(response.data.receiveEmail);
         setSelectedIndustries(response.data.industries);
@@ -345,7 +346,8 @@ export const Profile = () => {
                         fontSize: "20px",
                       }}
                     >
-                      {selectedPeriod}
+                     
+                      {translations[selectedPeriod]}
                     </button>
 
                     <ul
@@ -360,7 +362,7 @@ export const Profile = () => {
                       <li>
                         <a
                           className="dropdown-item"
-                          onClick={() => handleSelectPeriod(translations["am"])}
+                          onClick={() => handleSelectPeriod("am")}
                           style={{
                             padding: "10px 20px",
                             fontSize: "16px",
@@ -372,7 +374,7 @@ export const Profile = () => {
                       <li>
                         <a
                           className="dropdown-item"
-                          onClick={() => handleSelectPeriod(translations["pm"])}
+                          onClick={() => handleSelectPeriod("pm")}
                           style={{
                             padding: "10px 20px",
                             fontSize: "16px",
@@ -388,7 +390,10 @@ export const Profile = () => {
                 {/* Container for the days buttons */}
 
                 <div>
-                  {Object.entries(days).map(([key, day]) => (
+                  {Object.entries(days).map(([key, day]: [string, { en: string; ja: string }]) => {
+                  
+                  return (
+                    
                     <label htmlFor="">
                       <input
                         key={key}
@@ -396,11 +401,11 @@ export const Profile = () => {
                         className={`dayBtn ${
                           activeDays.includes(Number(key)) ? "active" : ""
                         }`} // Apply active class if the day is in the activeDays array
-                        value={days[key][language]}
+                        value={days[+key][language]}
                         onClick={() => handleDaysClick(Number(key))}
                       />
                     </label>
-                  ))}
+                  )})}
                 </div>
               </div>
               <h4>{translations["followed_industry"]}</h4>
@@ -430,7 +435,7 @@ export const Profile = () => {
                             className="dropdown-item"
                             onClick={() => handleIndustryClick(+key)}
                           >
-                            {industries[key][language]}
+                            {industries[+key][language]}
                           </a>
                         </li>
                       ))}
