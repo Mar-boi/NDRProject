@@ -97,5 +97,19 @@
   
   "welcome_sign_up_first":"アカウントはお持ちですか？",
   "welcome_sign_up_sec":"最新のIPO企業をEメールで受け取るには、登録してください。",
-  "or": "または"
+  "or": "または",
+
+
+  "emailTaken": "メールアドレスは既に使用されています",
+  "usernameTaken": "ユーザー名は既に使用されています",
+  "passwordMismatch": "パスワードが一致しません",
+  "noPreference": "設定が見つかりません",
+  "errorUpdating": "更新エラー",
+  "usernameCannotBeNull": "ユーザー名は空にできません",
+  "invalidEmailFormat": "無効なメールアドレス形式",
+  "userNotFound": "ユーザーが見つかりません",
+  "currentPasswordMismatch": "現在のパスワードが一致しません",
+  "newPasswordLength": "新しいパスワードは8文字以上でなければなりません",
+  "updateSuccessful": "更新しましたしました",
+  "minDay":"少なくとも1日を選択する必要があります"
 }

@@ -94,7 +94,7 @@ export const Profile = () => {
       .then((response) => {
         console.log(response);
 
-        showAlert("Update successful", "success");
+        showAlert(translations["updateSuccessful"], "success");
 
         // in case there's no user, return early
         if (!user) return; 
@@ -103,7 +103,7 @@ export const Profile = () => {
       })
       .catch((e) => {
         if (e.response && e.response.status === 400) {
-          showAlert(e.response.data, "danger");
+          showAlert(translations[e.response.data], "danger");
         } else {
           console.error("An error occurred:", e);
         }
@@ -132,11 +132,11 @@ export const Profile = () => {
       .put("http://localhost:8080/updatePreference", updatePref)
       .then((response) => {
         console.log(response);
-        showAlert("Update successful", "success");
+        showAlert(translations["updateSuccessful"], "success");
       })
       .catch((e) => {
         if (e.response && e.response.status === 400) {
-          showAlert(e.response.data, "danger");
+          showAlert(translations[e.response.data], "danger");
         } else {
           console.error("An error occurred:", e);
         }
@@ -145,7 +145,7 @@ export const Profile = () => {
 
   const checkDays = () => {
     if(activeDays.length == 0 && receiveEmail) {
-      showAlert("You must select at least one day", "danger");
+      showAlert(translations["minDay"], "danger");
       return false;
     } else {
       return true;

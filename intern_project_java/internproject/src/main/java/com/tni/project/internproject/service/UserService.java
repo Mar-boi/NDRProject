@@ -57,16 +57,16 @@ public class UserService {
 		// check email validation 
 		// check if the email already exists
 		if (userRepo.findByUserEmail(email) != null) {
-			return buildErrorResponse("Email is already taken", HttpStatus.BAD_REQUEST);
+			return buildErrorResponse("emailTaken", HttpStatus.BAD_REQUEST);
 		}
 		// check if the username already exists
 		if (userRepo.findByUserName(username) != null) {
-			return buildErrorResponse("Username is already taken", HttpStatus.BAD_REQUEST);
+			return buildErrorResponse("usernameTaken", HttpStatus.BAD_REQUEST);
 
 		}
 		// check if the pass = confirm pass
 		if (!password.equals(confirmPassword)) {
-			return buildErrorResponse("Passwords don't match", HttpStatus.BAD_REQUEST);
+			return buildErrorResponse("passwordMismatch", HttpStatus.BAD_REQUEST);
 
 		}
 
@@ -95,7 +95,7 @@ public class UserService {
 
 		User user = userRepo.findById(userID).orElse(null);
 		if (user == null) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No preference found"); // should not happen cause
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("noPreference"); // should not happen cause
 																							// they should
 			// access in the first place
 		} else {
@@ -141,7 +141,7 @@ public class UserService {
 			Preference oldPref = prefRepo.findByUserID(userID);
 
 			if (oldPref == null) {
-				return buildErrorResponse("No preference found", HttpStatus.NOT_FOUND);
+				return buildErrorResponse("noPreference", HttpStatus.NOT_FOUND);
 			}
 
 			// Update Email list via emailSubService
@@ -161,7 +161,7 @@ public class UserService {
 			return getPreference(userID);
 		} catch (Exception e) {
 			System.out.println(e);
-			return buildErrorResponse("Error updating", HttpStatus.BAD_REQUEST);
+			return buildErrorResponse("errorUpdating", HttpStatus.BAD_REQUEST);
 		}
 
 	}
@@ -207,43 +207,43 @@ public class UserService {
 	    try {
 	        // Validate the inputs
 	        if (username.isEmpty()) {
-	            return buildErrorResponse("Username cannot be null", HttpStatus.BAD_REQUEST);
+	            return buildErrorResponse("usernameCannotBeNull", HttpStatus.BAD_REQUEST);
 	        }
 
 	        if (isUsernameTaken(username, userID)) {
-	            return buildErrorResponse("Username is already taken", HttpStatus.BAD_REQUEST);
+	            return buildErrorResponse("usernameTaken", HttpStatus.BAD_REQUEST);
 	        }
 
 	        if (isEmailTaken(email, userID)) {
-	            return buildErrorResponse("Email is already taken", HttpStatus.BAD_REQUEST);
+	            return buildErrorResponse("emailTaken", HttpStatus.BAD_REQUEST);
 	        }
 
 	        if (!isValidEmail(email)) {
-	            return buildErrorResponse("Invalid email format", HttpStatus.BAD_REQUEST);
+	            return buildErrorResponse("invalidEmailFormat", HttpStatus.BAD_REQUEST);
 	        }
 
 	        User user = getUser(userID);
 	        if (user == null) {
-	            return buildErrorResponse("User not found", HttpStatus.NOT_FOUND);
+	            return buildErrorResponse("userNotFound", HttpStatus.NOT_FOUND);
 	        }
 
 	     // Password validation: only required if user wants to change password
 	        if (isChangePassword(pass, newPass)) {
 	            if (!isPasswordValid(pass, user)) {
-	                return buildErrorResponse("Current password does not match", HttpStatus.BAD_REQUEST);
+	                return buildErrorResponse("currentPasswordMismatch", HttpStatus.BAD_REQUEST);
 	            }
 	            if (isNewPasswordInvalid(newPass)) {
-	                return buildErrorResponse("New password must contain at least 8 characters", HttpStatus.BAD_REQUEST);
+	                return buildErrorResponse("newPasswordLength", HttpStatus.BAD_REQUEST);
 	            }
 	        }
 
 	        // Update user profile
 	        updateUserProfile(username, email, newPass, userID);
-	        return ResponseEntity.ok("Update Successful");
+	        return ResponseEntity.ok("updateSuccessful");
 
 	    } catch (Exception e) {
 	        e.printStackTrace();
-	        return buildErrorResponse("Error Updating", HttpStatus.INTERNAL_SERVER_ERROR);
+	        return buildErrorResponse("errorUpdating", HttpStatus.INTERNAL_SERVER_ERROR);
 	    }
 	}
 

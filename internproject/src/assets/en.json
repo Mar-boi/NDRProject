@@ -105,5 +105,18 @@
   
   "welcome_sign_up_first":"Do you have an account yet ?",
   "welcome_sign_up_sec":"To receive latest IPO companies via email, Please sign up",
-  "or": "or"
+  "or": "or",
+
+  "emailTaken": "Email is already taken",
+  "usernameTaken": "Username is already taken",
+  "passwordMismatch": "Passwords don't match",
+  "noPreference": "No preference found",
+  "errorUpdating": "Error updating",
+  "usernameCannotBeNull": "Username cannot be null",
+  "invalidEmailFormat": "Invalid email format",
+  "userNotFound": "User not found",
+  "currentPasswordMismatch": "Current password does not match",
+  "newPasswordLength": "New password must contain at least 8 characters",
+  "updateSuccessful": "Update Successful",
+  "minDay":"You must select at least one day"
 }
