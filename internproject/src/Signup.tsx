@@ -4,6 +4,7 @@ import "./Register.css";
 import { SubmitHandler, useForm } from "react-hook-form";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "./TranslationContext";
 
 type FormFields = {
   email: string;
@@ -16,6 +17,8 @@ function Signup() {
   const navigate = useNavigate();
 
   const [data, setData] = useState<any>();
+  const { language, translations } = useTranslation();
+
   const {
     register,
     handleSubmit,
@@ -61,98 +64,101 @@ function Signup() {
   return (
     
     <>
-      <div className="">
+     <div className="" style={{paddingBottom: 79}}>
         <div className="setBg">
-          
-          <h1 className="setTextAlignmentCenter">Sign up</h1>
+          <h1
+            className="setTextAlignmentCenter"
+            style={{
+              paddingTop: 50,
+              paddingBottom: 10,
+              fontFamily: "sans-serif",
+              fontWeight: "bold",
+              color: "#2e3e8b"
+            }}
+          >
+            {translations["sign_up"]}
+          </h1>
+          <div className="setTextAlignmentCenter">
+            <label htmlFor="" style={{ fontSize: 14 }}>
+              {translations["welcome_sign_up_first"]}
+              <br />
+              {translations["welcome_sign_up_sec"]}
+            </label>
+          </div>
           <form
             style={{ justifyItems: "center" }}
             onSubmit={handleSubmit(onSubmit)}
           >
-            <div className="setForms">
-              <label htmlFor="" style={{ paddingBottom: "10px" }}>
-                <span className="setHeader">Email</span>
-              </label>
-              <br />
-              <div>
-                <input
-                  {...register("email", {
-                    required: "Email is required",
-                    // pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
-                    validate: (value) => {
-                      if (!value.includes("@")) {
-                        return "Email is must include @";
-                      }
-                      return true;
-                    },
-                  })}
-                  className="inputBox"
-                  type="text"
-                  id="email"
-                  placeholder="Enter email"
-                />
-                {errors.email && (
-                  <div style={{ color: "red" }}>{errors.email.message}</div>
-                )}
-              </div>
+            <div className="setForms container">
+              <input
+                 {...register("email", {
+                  required: "Email is required",
+                  // pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+                  validate: (value) => {
+                    if (!value.includes("@")) {
+                      return "Email is must include @";
+                    }
+                    return true;
+                  },
+                })}
+
+                type="text"
+                id="email"
+                placeholder=""
+                className="form_input"
+              />
+              <label className="label">{translations["email"]}</label>
+              {errors.email && (
+                <div className="error-message">{errors.email.message}</div>
+              )}
             </div>
-            <div className="setForms ">
-              <label htmlFor="" className="" style={{ paddingBottom: "10px" }}>
-                <span className="setHeader">Username</span>
-              </label>
-              <br />
+            <div className="setForms container">
               <input
                 {...register("username", {
                   required: "Username is required",
                 })}
-                className="inputBox"
+                className="form_input"
                 type="text"
                 id="username"
-                placeholder="Enter username"
+                placeholder=""
               />
+              <label className="label">{translations["username"]}</label>
               {errors.username && (
-                <div style={{ color: "red" }}>{errors.username.message}</div>
+                <div className="error-message">{errors.username.message}</div>
               )}
             </div>
-            <div className="setForms">
-              <label htmlFor="" style={{ paddingBottom: "10px" }}>
-                <span className="setHeader">Password</span>
-              </label>
-              <br />
+            <div className="setForms container">
               <input
                 {...register("password", {
-                  required: "Password is required",
+                  required: "Password is require",
                   minLength: {
                     value: 8,
                     message: "Password must have at least 8 characters",
                   },
                 })}
-                className="inputBox"
                 type="password"
                 id="password"
-                placeholder="Enter password"
+                placeholder=""
+                className="form_input"
               />
+              <label className="label">{translations["password"]}</label>
               {errors.password && (
-                <div style={{ color: "red" }}>{errors.password.message}</div>
+                <div className="error-message">{errors.password.message}</div>
               )}
             </div>
-            <div className="setForms ">
-              <label htmlFor="" style={{ paddingBottom: "10px" }}>
-                <span className="setHeader">Confirm Password</span>
-              </label>
-              <br />
+            <div className="setForms container">
               <input
                 {...register("cfpassword", {
                   required: "Please, confirm password",
-                  //validate: (value) => value.matchAll()
                 })}
-                className="inputBox"
                 type="password"
                 id="cfpassword"
-                placeholder="Confirm password"
+                placeholder=""
+                className="form_input"
               />
+              <label className="label">{translations["confirm_password"]}</label>
               {errors.cfpassword && (
-                <div style={{ color: "red" }}>{errors.cfpassword.message}</div>
+                <div className="error-message">{errors.cfpassword.message}</div>
               )}
             </div>
             <div className="form-check form-switch form-check-reverse setForms">
@@ -166,28 +172,30 @@ function Signup() {
                 onChange={(e) => setValue("receiveEmail", e.target.checked)}
               />
               <label className="form-check-label" htmlFor="receiveMail">
-                Receive latest IPO companies via email
+                {translations["receive_ipo_email"]}
               </label>
             </div>
+
 
             <div>
               <input
                 type="submit"
-                value="Sign up"
-                className="btn mainBtnColor setBtn"
+                value={translations["sign_up"]}
+                className="btn signupBtnColor setBtn"
+                style={{ marginTop: 15 }}
               />
               <br />
             </div>
           </form>
           <div style={{ justifyItems: "center" }}>
-            <div>
-                <input
-                  type="submit"
-                  value="Login"
-                  className="btn subBtnColor setBtn"
-                  onClick={() => navigate("/login")}
-                  
-                />
+          <div>
+              <input
+                type="submit"
+                value={translations["login"]}
+                className="btn loginBtnColor setBtn"
+                style={{ marginTop: 15 }}
+                onClick={() => navigate("/login")}
+              />
             </div>
           </div>
         </div>

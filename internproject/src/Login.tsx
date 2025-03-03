@@ -4,6 +4,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useState } from "react";
 import axios from "axios";
 import { useAuth } from "./assets/context/AuthContext";
+import { useTranslation } from "./TranslationContext";
 
 type FormFields = {
   username: string;
@@ -14,6 +15,7 @@ type FormFields = {
   const navigate = useNavigate();
 
   const [data, setData] = useState<any>();
+  const { language, translations } = useTranslation();
 
   const {
     register,
@@ -54,71 +56,91 @@ type FormFields = {
     <>
       <div className="">
         <div className="setBg">
-          <h1
+        <h1
             className="setTextAlignmentCenter"
-            style={{ paddingBottom: "100px" }}
+            style={{
+              paddingTop: 50,
+              paddingBottom: 10,
+              fontFamily: "sans-serif",
+              fontWeight: "bold",
+              color: "#2e3e8b",
+            }}
           >
-            Login
+            {translations["login"]}
           </h1>
+          <div className="setTextAlignmentCenter">
+            <label htmlFor="" style={{ fontSize: 14, paddingBottom: 10 }}>
+              {translations["welcome_login_first"]}
+              <br />
+              {translations["welcome_login_sec"]}
+            </label>
+          </div>
           <form
             style={{ justifyItems: "center" }}
             onSubmit={handleSubmit(onSubmit)}
           >
-            <div className="setForms">
-              <label htmlFor="" className="" style={{ paddingBottom: "10px" }}>
-                <span className="setHeader">Username</span>
-              </label>
-              <br />
+            <div className="setForms container">
               <input
                 {...register("username", {
-                  required: "Username is required",
+                  required: "Email address or Username is require",
                 })}
-                className="inputBox"
                 type="text"
                 id="username"
-                placeholder="Enter username"
+                placeholder=""
+                className="form_input"
               />
+              <label className="label">{translations["enter_email_username_login"]}</label>
               {errors.username && (
-                <div style={{ color: "red" }}>{errors.username.message}</div>
+                <div className="error-message">{errors.username.message}</div>
               )}
             </div>
-            <div className="setForms">
-              <label htmlFor="" style={{ paddingBottom: "10px" }}>
-                <span className="setHeader">Password</span>
-              </label>
-              <br />
+
+            <div className="setForms container">
               <input
                 {...register("password", {
-                  required: "Password is required",
+                  required: "Password is require",
                   minLength: {
                     value: 8,
                     message: "Password must have at least 8 characters",
                   },
                 })}
-                className="inputBox"
                 type="password"
                 id="password"
-                placeholder="Enter password"
+                placeholder=""
+                className="form_input"
               />
+              <label className="label">{translations["enter_password_login"]}</label>
               {errors.password && (
-                <div style={{ color: "red" }}>{errors.password.message}</div>
+                <div className="error-message">{errors.password.message}</div>
               )}
             </div>
-            <div>
+
+            <div style={{ justifyItems: "center", marginTop: 40 }}>
               <input
                 type="submit"
-                value="Login"
-                className="btn mainBtnColor setBtn"
+                value={translations["login"]}
+                className="btn signupBtnColor setBtn"
               />
             </div>
           </form>
+          <div style={{ justifyItems: "center" }}>
+            <div
+              style={{ display: "flex", alignItems: "center", width: "80%" }}
+            >
+              <hr style={{ flexGrow: 1, border: "1px solid #2e3e8b" }} />
+              <span style={{ backgroundColor: "white", padding: "0 10px" }}>
+                {translations["or"]}
+              </span>
+              <hr style={{ flexGrow: 1, border: "1px solid #2e3e8b" }} />
+            </div>
+          </div>
           <div style={{ justifyItems: "center" }}>
             <div>
               <a href="http://localhost:5173/signup">
                 <input
                   type="submit"
-                  value="Sign up"
-                  className="btn subBtnColor setBtn"
+                  value={translations["sign_up"]}
+                  className="btn loginBtnColor setBtn"
                 />
               </a>
             </div>

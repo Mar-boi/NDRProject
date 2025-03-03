@@ -1,1 +1,7 @@
 /.metadata/
+
+
+# Dependency directories
+/internproject/node_modules
+
+/internproject/Python/__pycache__
