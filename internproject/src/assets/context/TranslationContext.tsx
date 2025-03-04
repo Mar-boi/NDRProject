@@ -3,7 +3,8 @@ import translationsEn from '../en.json';
 import translationsJa from '../ja.json';
 import { Language } from '../model/model';
 
-type TranslationContextType = {
+// Context type
+interface TranslationContextType {
   language: Language;
   translations: any;
   toggleLanguage: () => void;

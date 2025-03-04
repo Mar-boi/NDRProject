@@ -1,10 +1,10 @@
 import { SetStateAction, useEffect, useState } from "react";
 import axios from "axios";
 import Moment from "moment";
-import "./Table.css";
-import importData from "./assets/sampleData.json";
-import Japan from "./TableJP";
-import US from "./TableUS";
+import "../styles/Table.css";
+import importData from "../assets/sampleData.json";
+import Japan from "../components/TableJP";
+import US from "../components/TableUS";
 import {
   AreaChart,
   Area,
@@ -14,15 +14,10 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import { columns } from "./assets/model/model";
-import { useTranslation } from "./assets/context/TranslationContext";
-import { useSearch } from "./assets/context/SearchContext";
-import { CompanyJP, CompanyUS } from "./assets/model/model";
-
-interface CompanyData {
-  companyUS: CompanyUS[];
-  companyJP: CompanyJP[];
-}
+import { columns, CompanyData } from "../assets/model/model";
+import { useTranslation } from "../assets/context/TranslationContext";
+import { useSearch } from "../assets/context/SearchContext";
+import { formatNumber } from "../assets/model/Util";
 
 function Table() {
   const [company, setCompany] = useState<CompanyData>({
@@ -30,8 +25,9 @@ function Table() {
     companyJP: [],
   });
   const [filteredCompany, setFilteredCompany] = useState<any>([]);
+  const [selectedCompany, setSelectedCompany] = useState<any>([]);
   const [selectedSymbol, setSelectedSymbol] = useState<string>("");
-  const [chartData, setChartData] = useState<any[]>([]);
+  const [chartData, setChartData] = useState<any[]>([]); // too complex im cooming
   const [loading, setLoading] = useState<boolean>(false);
   const [timeRange, setTimeRange] = useState<string>("7d");
   const { searchTerm, setSearchTerm } = useSearch();
@@ -77,36 +73,36 @@ function Table() {
 
   // Updating chart
   useEffect(() => {
-    if (selectedSymbol) {
+    if (selectedCompany.symbol) {
       fetchChartData();
     }
-  }, [selectedSymbol, timeRange]);
+  }, [selectedCompany, timeRange]);
 
 
   // Method for fetching chart
   const fetchChartData = async () => {
     setLoading(true);
     try {
-      let marketSymbol = selectedSymbol;
+      let querySymbol = selectedCompany.symbol;
       console.log("Market" + market);
 
       if (isJP) {
         // For Japanese stocks, append the appropriate suffix based on the symbol's first character
         if (market.startsWith("東")) {
-          marketSymbol = `${selectedSymbol}.T`; // Tokyo Stock Exchange (TSE)
+          querySymbol = `${querySymbol}.T`; // Tokyo Stock Exchange (TSE)
         } else if (market.startsWith("名")) {
-          marketSymbol = `${selectedSymbol}.N`; // Nagoya Stock Exchange
+          querySymbol = `${querySymbol}.N`; // Nagoya Stock Exchange
         } else if (market.startsWith("札")) {
-          marketSymbol = `${selectedSymbol}.S`; // Sapporo Stock Exchange
+          querySymbol = `${querySymbol}.S`; // Sapporo Stock Exchange
         } else if (market.startsWith("福")) {
-          marketSymbol = `${selectedSymbol}.F`; // Fukuoka Stock Exchange
+          querySymbol = `${querySymbol}.F`; // Fukuoka Stock Exchange
         }
       }
 
       // console.log(marketSymbol)
 
       const response = await axios.get(
-        `http://localhost:8000/stockHistory/${marketSymbol}?period=${timeRange}`
+        `http://localhost:8000/stockHistory/${querySymbol}?period=${timeRange}`
       );
 
       setChartData(response.data);
@@ -153,34 +149,6 @@ function Table() {
 
   const currentColumn = columns.find((col) => col.key === sortConfig.key);
 
-  const formatNumber = (value: number) => {
-    if (value === null || value === undefined) return "-";
-
-    const isNegative = value < 0;
-    const positiveValue = Math.abs(value);
-    let formattedValue = "";
-
-    if (positiveValue >= 1_000_000_000_000) {
-      formattedValue = (positiveValue / 1_000_000_000_000).toFixed(1) + "T";
-    } else if (positiveValue >= 1_000_000_000) {
-      formattedValue = (positiveValue / 1_000_000_000).toFixed(1) + "B";
-    } else if (positiveValue >= 1_000_000) {
-      formattedValue = (positiveValue / 1_000_000).toFixed(1) + "M";
-    } else if (positiveValue >= 1_000) {
-      formattedValue = (positiveValue / 1)
-        .toFixed(0)
-        .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    } else {
-      formattedValue = positiveValue.toFixed();
-    }
-
-    const formatText = isNegative
-      ? "$-" + formattedValue
-      : "$" + formattedValue;
-
-    return isJP ? formatText.replace("$", "￥") : formatText;
-  };
-
   return (
     <>
       <div
@@ -195,7 +163,7 @@ function Table() {
       >
         <div id="1">
           <div id="chart">
-            {selectedSymbol && (
+            {selectedCompany.symbol && (
               <div style={{ marginTop: 25 }}>
                 <div className="mainBgColor" style={{ height: "480px" }}>
                   <div>
@@ -208,14 +176,11 @@ function Table() {
                         }}
                       >
                         {/* Chart Title */}
-                        {/* Find the name of a company whose symbol matches the selected one */}
                         {" "}
                         {
-                          filteredCompany.find(
-                            (c:CompanyJP|CompanyUS) => c.symbol === selectedSymbol
-                          )?.name
+                         selectedCompany.name
                         }{" "}
-                        ({selectedSymbol})
+                        ({selectedCompany.symbol})
                       </h3>
                     </div>
                     <div className="createTableLine"></div>
@@ -227,7 +192,7 @@ function Table() {
                           </p>
                         </div>
                       ) : (
-                        selectedSymbol && (
+                        selectedCompany && (
                           <div>
                             <p>
                               <span
@@ -236,7 +201,7 @@ function Table() {
                                   fontWeight: "bold",
                                 }}
                               >
-                                {formatNumber(previousClosePrice)}
+                                {formatNumber(previousClosePrice, selectedCompany.market ?"￥":undefined)}
                               </span>
                               {previousClosePrice && chartData.length > 0 && (
                                 <span
@@ -525,7 +490,7 @@ function Table() {
                       entriesPerPage={entriesPerPage}
                       sortConfig={sortConfig}
                       setSortConfig={setSortConfig}
-                      setSelectedSymbol={setSelectedSymbol}
+                      setSelectedCompany={setSelectedCompany}
                       setMarket={setMarket}
                       filteredCompany={filteredCompany}
                       setFilteredCompany={setFilteredCompany}
@@ -536,7 +501,7 @@ function Table() {
                       entriesPerPage={entriesPerPage}
                       sortConfig={sortConfig}
                       setSortConfig={setSortConfig}
-                      setSelectedSymbol={setSelectedSymbol}
+                      setSelectedCompany={setSelectedCompany}
                       filteredCompany={filteredCompany}
                       setFilteredCompany={setFilteredCompany}
                     />

@@ -1,15 +1,17 @@
-import "./Compare.css";
+import "../styles/Compare.css";
 import React, { useEffect, useState } from "react";
-import { useTranslation } from "./assets/context/TranslationContext";
+import { useTranslation } from "../assets/context/TranslationContext";
 
 const Compare = () => {
   const [symbolA, setSymbolA] = useState("");
   const [symbolB, setSymbolB] = useState("");
-  const [dataA, setDataA] = useState(null);
-  const [dataB, setDataB] = useState(null);
+  const [dataA, setDataA] = useState<any>(null);
+  const [dataB, setDataB] = useState<any>(null);
+  // const [aCurrency, setACurrency] = useState<string | undefined>(undefined);
+  // const [bCurrency, setBCurrency] = useState<string | undefined>(undefined);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const { language, translations } = useTranslation();
+  const { translations } = useTranslation();
 
   const formatNumber = (value: number) => {
     if (value === null || value === undefined) return "-";

@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import "./Register.css";
+import "../styles/Register.css";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useState } from "react";
 import axios from "axios";
-import { useAuth } from "./assets/context/AuthContext";
-import { useTranslation } from "./assets/context/TranslationContext";
+import { useAuth } from "../assets/context/AuthContext";
+import { useTranslation } from "../assets/context/TranslationContext";
 
 type FormFields = {
   username: string;

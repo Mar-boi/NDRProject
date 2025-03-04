@@ -1,30 +1,28 @@
-import React, { SetStateAction, useEffect, useState,Dispatch } from "react";
+import React, { SetStateAction, useEffect, useState, Dispatch } from "react";
 import Moment from "moment";
-import { useTranslation } from "./assets/context/TranslationContext";
-import { CompanyJP, industries, Language, tableHeaderJP } from "./assets/model/model";
-import { useSearch } from "./assets/context/SearchContext";
+import { useTranslation } from "../assets/context/TranslationContext";
+import { CompanyUS, industries, Language, tableHeaderUS } from "../assets/model/model";
+import { useSearch } from "../assets/context/SearchContext";
 
-interface TableJPProps {
-  datas: CompanyJP[]; 
+interface TableUSProps {
+  datas: CompanyUS[]; 
   entriesPerPage: number;
   sortConfig: any;
   setSortConfig: Dispatch<SetStateAction<any>>;
-  setMarket: Dispatch<SetStateAction<string>>;
-  setSelectedSymbol: Dispatch<SetStateAction<string>>;
-  filteredCompany: CompanyJP[];
-  setFilteredCompany: Dispatch<SetStateAction<CompanyJP[]>>;
+  setSelectedCompany: Dispatch<SetStateAction<any>>;
+  filteredCompany: CompanyUS[];
+  setFilteredCompany: Dispatch<SetStateAction<CompanyUS[]>>;
 }
 
-export default function TableJP({
+export default function TableUS({
   datas,
   entriesPerPage,
   sortConfig,
   setSortConfig,
-  setSelectedSymbol,
-  setMarket,
+  setSelectedCompany,
   filteredCompany,
   setFilteredCompany
-}: TableJPProps) {
+}: TableUSProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const { language, translations } = useTranslation();
   const { searchTerm } = useSearch();
@@ -33,7 +31,7 @@ export default function TableJP({
     setFilteredCompany(datas || []);
   }, [datas]);
 
-     
+   
   // Updating on search method
   // If there's no search term, set to default filteredCompany
   useEffect(() => {
@@ -45,11 +43,11 @@ export default function TableJP({
     setFilteredCompany(filtered);
   }, [searchTerm, datas]);
 
-  const formatDate = (value) => Moment(value).format("yyyy/MM/DD");
+  const formatDate = (value:moment.MomentInput) => Moment(value).format("yyyy/MM/DD");
 
-  const sortTable = (key, type) => {
+  const sortTable = (key: string, type: "number" | "text" | "date") => {
     const newAscending = sortConfig.key === key ? !sortConfig.ascending : true;
-    const sortedData = [...filteredCompany].sort((a, b) => {
+    const sortedData = [...filteredCompany].sort((a: Record<string, any>, b: Record<string, any>) => {
       let valA = key.includes(".")
         ? key.split(".").reduce((o, i) => o[i], a)
         : a[key];
@@ -66,15 +64,17 @@ export default function TableJP({
           : valB.localeCompare(valA);
       }
 
-      if (type === "date")
-        return newAscending
-          ? new Date(valA) - new Date(valB)
-          : new Date(valB) - new Date(valA);
+      if (type === "date") {
+        const dateA = new Date(valA).getTime();
+        const dateB = new Date(valB).getTime();
+        
+        return newAscending ? dateA - dateB : dateB - dateA;
+      }
+       
     });
     setFilteredCompany(sortedData);
     setSortConfig({ key, ascending: newAscending });
   };
-
   const totalPages = Math.ceil(filteredCompany.length / entriesPerPage);
   const startIndex = (currentPage - 1) * entriesPerPage;
   const paginatedData = filteredCompany.slice(
@@ -82,7 +82,7 @@ export default function TableJP({
     startIndex + entriesPerPage
   );
 
-  const goToPage = (page: SetStateAction<number>) => {
+  const goToPage = (page: number) => {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
     }
@@ -111,7 +111,7 @@ export default function TableJP({
             </colgroup>
             <thead className="headerColumn">
               <tr>
-                {tableHeaderJP.map(({ key, labelKey, type }) => (
+                {tableHeaderUS.map(({ key, labelKey, type }) => (
                   <th
                     key={key}
                     onClick={() => sortTable(key, type)}
@@ -172,10 +172,7 @@ export default function TableJP({
               {paginatedData.map((data) => (
                 <tr
                   key={data.symbol}
-                  onClick={() => {
-                    setSelectedSymbol(data.symbol); 
-                    setMarket(data.market);
-                  }}
+                  onClick={() => setSelectedCompany(data)}
                   className="bodyColumn"
                 >
                   <td className="celltextalignleft">
@@ -186,10 +183,10 @@ export default function TableJP({
                     {getIndustryTranslation(data.industry.industryID, language)}
                   </td>
                   <td>{formatDate(data.offerDate)}</td>
-                  <td>{data.market}</td>
-                  <td>￥{data.offerPrice}</td>
-                  <td>￥{data.firstOpen}</td>
-                  <td>￥{data.lastWeekClose}</td>
+                  <td>{data.shares}</td>
+                  <td>${data.offerPrice}</td>
+                  <td>${data.firstClose}</td>
+                  <td>${data.currentPrice}</td>
                   <td>{data.returnRate}%</td>
                 </tr>
               ))}

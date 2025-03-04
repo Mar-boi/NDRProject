@@ -1,13 +1,13 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./assets/context/AuthContext";
-import Navbar from "./Navbar";
-import Table from "./Table";
+import Navbar from "./components/Navbar";
+import Table from "./pages/Table";
 import { TranslationProvider } from "./assets/context/TranslationContext"; // Import the TranslationProvider
-import Compare from "./Compare";
-import Login from "./Login";
-import { Profile } from "./Profile";
-import Signup from "./Signup";
+import Compare from "./pages/Compare";
+import Login from "./pages/Login";
+import { Profile } from "./pages/Profile";
+import Signup from "./pages/Signup";
 import { SearchProvider } from "./assets/context/SearchContext";
 
 function App() {

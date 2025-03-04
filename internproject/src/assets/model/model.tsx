@@ -1,5 +1,11 @@
 export type Language = "en" | "ja";
 
+export interface CompanyData {
+  companyUS: CompanyUS[];
+  companyJP: CompanyJP[];
+}
+
+
 export type CompanyUS = {
   compID: number;
   name: string;
@@ -74,7 +80,14 @@ export const columns = [
   { key: "returnRate", labelKey: "return" },
 ];
 
-export const tableHeaderUS = [
+interface TableHeader {
+  key: string;
+  labelKey: string;
+  type: "text" | "date" | "number";
+}
+
+
+export const tableHeaderUS: TableHeader[] = [
   { key: "name", labelKey: "company", type: "text" },
   { key: "symbol", labelKey: "symbol", type: "text" },
   { key: "industry.industryName", labelKey: "industry", type: "text" },
@@ -86,7 +99,7 @@ export const tableHeaderUS = [
   { key: "returnRate", labelKey: "return", type: "number" },
 ];
 
-export const tableHeaderJP = [
+export const tableHeaderJP: TableHeader[]= [
   { key: "name", labelKey: "company", type: "text" },
   { key: "symbol", labelKey: "symbol", type: "text" },
   { key: "industry.industryName", labelKey: "industry", type: "text" },

@@ -1,29 +1,30 @@
-import React, { SetStateAction, useEffect, useState, Dispatch } from "react";
+import React, { SetStateAction, useEffect, useState,Dispatch } from "react";
 import Moment from "moment";
-import { useTranslation } from "./assets/context/TranslationContext";
-import { CompanyUS, industries, Language, tableHeaderUS } from "./assets/model/model";
-import { useSearch } from "./assets/context/SearchContext";
+import { useTranslation } from "../assets/context/TranslationContext";
+import { CompanyJP, industries, Language, tableHeaderJP } from "../assets/model/model";
+import { useSearch } from "../assets/context/SearchContext";
 
-interface TableUSProps {
-  datas: CompanyUS[]; 
+interface TableJPProps {
+  datas: CompanyJP[]; 
   entriesPerPage: number;
   sortConfig: any;
   setSortConfig: Dispatch<SetStateAction<any>>;
-  selectedSymbol: string;
-  setSelectedSymbol: Dispatch<SetStateAction<string>>;
-  filteredCompany: CompanyUS[];
-  setFilteredCompany: Dispatch<SetStateAction<CompanyUS[]>>;
+  setMarket: Dispatch<SetStateAction<string>>;
+  setSelectedCompany: Dispatch<SetStateAction<any>>;
+  filteredCompany: CompanyJP[];
+  setFilteredCompany: Dispatch<SetStateAction<CompanyJP[]>>;
 }
 
-export default function TableUS({
+export default function TableJP({
   datas,
   entriesPerPage,
   sortConfig,
   setSortConfig,
-  setSelectedSymbol,
+  setSelectedCompany,
+  setMarket,
   filteredCompany,
   setFilteredCompany
-}: TableUSProps) {
+}: TableJPProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const { language, translations } = useTranslation();
   const { searchTerm } = useSearch();
@@ -32,7 +33,7 @@ export default function TableUS({
     setFilteredCompany(datas || []);
   }, [datas]);
 
-   
+     
   // Updating on search method
   // If there's no search term, set to default filteredCompany
   useEffect(() => {
@@ -44,26 +45,34 @@ export default function TableUS({
     setFilteredCompany(filtered);
   }, [searchTerm, datas]);
 
-  const formatDate = (value) => Moment(value).format("yyyy/MM/DD");
+  const formatDate = (value:moment.MomentInput) => Moment(value).format("yyyy/MM/DD");
 
-  const sortTable = (key, type) => {
+  const sortTable = (key: string, type: "number" | "text" | "date") => {
     const newAscending = sortConfig.key === key ? !sortConfig.ascending : true;
-    const sortedData = [...filteredCompany].sort((a, b) => {
+    const sortedData = [...filteredCompany].sort((a: Record<string, any>, b: Record<string, any>) => {
       let valA = key.includes(".")
         ? key.split(".").reduce((o, i) => o[i], a)
         : a[key];
       let valB = key.includes(".")
         ? key.split(".").reduce((o, i) => o[i], b)
         : b[key];
+      console.log(`Sorting by ${key}:`, valA, valB);
+
       if (type === "number") return newAscending ? valA - valB : valB - valA;
-      if (type === "text")
+
+      if (type === "text") {
         return newAscending
           ? valA.localeCompare(valB)
           : valB.localeCompare(valA);
-      if (type === "date")
-        return newAscending
-          ? new Date(valA) - new Date(valB)
-          : new Date(valB) - new Date(valA);
+      }
+
+      if (type === "date") {
+        const dateA = new Date(valA).getTime();
+        const dateB = new Date(valB).getTime();
+        
+        return newAscending ? dateA - dateB : dateB - dateA;
+      }
+       
     });
     setFilteredCompany(sortedData);
     setSortConfig({ key, ascending: newAscending });
@@ -76,7 +85,7 @@ export default function TableUS({
     startIndex + entriesPerPage
   );
 
-  const goToPage = (page: SetStateAction<number>) => {
+  const goToPage = (page: number) => {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
     }
@@ -105,7 +114,7 @@ export default function TableUS({
             </colgroup>
             <thead className="headerColumn">
               <tr>
-                {tableHeaderUS.map(({ key, labelKey, type }) => (
+                {tableHeaderJP.map(({ key, labelKey, type }) => (
                   <th
                     key={key}
                     onClick={() => sortTable(key, type)}
@@ -166,7 +175,10 @@ export default function TableUS({
               {paginatedData.map((data) => (
                 <tr
                   key={data.symbol}
-                  onClick={() => setSelectedSymbol(data.symbol)}
+                  onClick={() => {
+                    setSelectedCompany(data); 
+                    setMarket(data.market);
+                  }}
                   className="bodyColumn"
                 >
                   <td className="celltextalignleft">
@@ -177,10 +189,10 @@ export default function TableUS({
                     {getIndustryTranslation(data.industry.industryID, language)}
                   </td>
                   <td>{formatDate(data.offerDate)}</td>
-                  <td>{data.shares}</td>
-                  <td>${data.offerPrice}</td>
-                  <td>${data.firstClose}</td>
-                  <td>${data.currentPrice}</td>
+                  <td>{data.market}</td>
+                  <td>￥{data.offerPrice}</td>
+                  <td>￥{data.firstOpen}</td>
+                  <td>￥{data.lastWeekClose}</td>
                   <td>{data.returnRate}%</td>
                 </tr>
               ))}

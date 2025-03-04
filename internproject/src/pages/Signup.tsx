@@ -1,10 +1,10 @@
 import { useState } from "react";
-import Navbar from "./Navbar";
-import "./Register.css";
+
+import "../styles/Register.css";
 import { SubmitHandler, useForm } from "react-hook-form";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useTranslation } from "./assets/context/TranslationContext";
+import { useTranslation } from "../assets/context/TranslationContext";
 
 type FormFields = {
   email: string;

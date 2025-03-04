@@ -1,11 +1,11 @@
-import "./Profile.css";
+import "../styles/Profile.css";
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/js/bootstrap.bundle.min.js"; // Import Bootstrap JS (this includes Popper.js)
-import { useAuth } from "./assets/context/AuthContext";
+import { useAuth } from "../assets/context/AuthContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { days, industries } from "./assets/model/model";
-import { useTranslation } from "./assets/context/TranslationContext";
+import { days, industries } from "../assets/model/model";
+import { useTranslation } from "../assets/context/TranslationContext";
 
 
 export const Profile = () => {

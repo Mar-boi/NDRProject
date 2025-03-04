@@ -1,7 +1,7 @@
-import "./Navbar.css";
-import { useAuth } from "./assets/context/AuthContext";
+import "../styles/Navbar.css";
+import { useAuth } from "../assets/context/AuthContext";
 import { Link } from "react-router-dom";
-import { useTranslation } from "./assets/context/TranslationContext"; // Import the context
+import { useTranslation } from "../assets/context/TranslationContext"; // Import the context
 
 function Navbar() {
   const { user, logout } = useAuth();
