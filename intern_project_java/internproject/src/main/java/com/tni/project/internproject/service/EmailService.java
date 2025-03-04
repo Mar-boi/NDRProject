@@ -26,8 +26,9 @@ import org.springframework.stereotype.Service;
 
 import com.tni.project.internproject.controller.EmailController;
 import com.tni.project.internproject.model.Company;
+import com.tni.project.internproject.model.CompanyUS;
 import com.tni.project.internproject.model.User;
-import com.tni.project.internproject.repo.CompanyRepo;
+import com.tni.project.internproject.repo.CompanyUSRepo;
 import com.tni.project.internproject.repo.EmailRepo;
 import com.tni.project.internproject.repo.IndustryRepo;
 import com.tni.project.internproject.repo.UserIndustryRepo;
@@ -47,7 +48,7 @@ public class EmailService {
 	@Autowired
 	UserRepo userRepo;
 	@Autowired
-	CompanyRepo compRepo;
+	CompanyUSRepo compRepo;
 	@Autowired
 	private JavaMailSender mailSender;
 	
@@ -147,7 +148,7 @@ public class EmailService {
 				
 				
 				// Body
-				List<Company> companies = compRepo.fetchTopIndustry(industry); 
+				List<CompanyUS> companies = compRepo.fetchTopIndustry(industry); 
 				
 				appendRow(doc, newTable, companies);
 				
@@ -170,7 +171,7 @@ public class EmailService {
 			Element div = doc.select("div").first();
 			div.text("Hello " + user.getUserName() + "!");
 			
-			List<Company> companies = compRepo.fetchLastWeek(); 
+			List<CompanyUS> companies = compRepo.fetchLastWeek(); 
 			
 			Element mainTable = doc.selectFirst("table");
 			
@@ -196,7 +197,7 @@ public class EmailService {
 			Element div = doc.select("div").first();
 			div.text("Hello " + name + "!");
 			
-			List<Company> companies = compRepo.fetchLastWeek(); 
+			List<CompanyUS> companies = compRepo.fetchLastWeek(); 
 			
 			Element mainTable = doc.selectFirst("table");
 			
@@ -224,8 +225,8 @@ public class EmailService {
 		}
 	}
 	
-	public void appendRow(Document doc, Element anchor, List<Company> companies) {
-		for (Company company : companies) {
+	public void appendRow(Document doc, Element anchor, List<CompanyUS> companies) {
+		for (CompanyUS company : companies) {
 			Element newRow = doc.createElement("tr");
 			newRow.addClass("tableBody");
 //			newRow.attr("background-color", "#ececec")

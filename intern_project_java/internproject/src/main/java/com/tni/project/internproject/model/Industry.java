@@ -1,18 +1,14 @@
 package com.tni.project.internproject.model;
 
-import java.util.HashSet;
 import java.util.Set;
 
-import jakarta.persistence.CascadeType;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 
 @Entity
@@ -31,7 +27,7 @@ public class Industry {
 		
 	}
 	
-	public Industry(int industryID, String industryName, Set<Company> company) {
+	public Industry(int industryID, String industryName) {
 		this.industryID = industryID;
 		this.industryName = industryName;
 
