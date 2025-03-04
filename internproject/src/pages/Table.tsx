@@ -53,15 +53,16 @@ function Table() {
 
   // method for fetching data from DB
   const fetchData = async () => {
-    // try {
-    //   const response = await axios.get("http://localhost:8080/fetchIPO");
-    //   setCompany(response.data);
-    //   setFilteredCompany(response.data);
-    // } catch {
-    //   console.log("Fail to fetch");
-    // }
-    setCompany(importData);
-    setFilteredCompany(importData.companyUS);
+    try {
+      const response = await axios.get("http://localhost:8080/fetchIPO");
+      setCompany(response.data);
+      setFilteredCompany(response.data.companyUS);
+    } catch {
+      alert("Fail to fetch")
+      console.log("Fail to fetch");
+    }
+    // setCompany(importData);
+    // setFilteredCompany(importData.companyUS);
   };
 
     // Update filtered company on changing country I don't think this is needed becauses each table sets the filteredCompany to its data automatically where there is no search term
@@ -149,6 +150,10 @@ function Table() {
 
   const currentColumn = columns.find((col) => col.key === sortConfig.key);
 
+  const closeChart = () => {
+    setSelectedCompany([]);
+  }
+
   return (
     <>
       <div
@@ -167,7 +172,7 @@ function Table() {
               <div style={{ marginTop: 25 }}>
                 <div className="mainBgColor" style={{ height: "480px" }}>
                   <div>
-                    <div>
+                    <div className="d-flex flex-row justify-content-between">
                       <h3
                         style={{
                           paddingLeft: 10,
@@ -182,6 +187,7 @@ function Table() {
                         }{" "}
                         ({selectedCompany.symbol})
                       </h3>
+                      <button type="button" className="btn-close p-4 text-center" onClick={() => closeChart()}></button>
                     </div>
                     <div className="createTableLine"></div>
                     <div style={{ paddingLeft: 10 }}>
