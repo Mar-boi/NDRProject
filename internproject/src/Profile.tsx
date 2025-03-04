@@ -5,7 +5,7 @@ import { useAuth } from "./assets/context/AuthContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { days, industries } from "./assets/model/model";
-import { useTranslation } from "./TranslationContext";
+import { useTranslation } from "./assets/context/TranslationContext";
 
 
 export const Profile = () => {

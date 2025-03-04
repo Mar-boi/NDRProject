@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 import axios from "axios";
 import Moment from "moment";
-import Navbar from "./Navbar";
 import "./Table.css";
-import translationsEn from "./assets/en.json";
-import translationsJa from "./assets/ja.json";
+import importData from "./assets/sampleData.json";
+import Japan from "./TableJP";
+import US from "./TableUS";
 import {
   AreaChart,
   Area,
@@ -13,79 +13,102 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-  BarChart,
-  Legend,
-  Bar,
 } from "recharts";
-import { industries, columns, tableHeader } from "./assets/model/model";
-import { useTranslation } from "./TranslationContext"; // Import the context
+import { columns } from "./assets/model/model";
+import { useTranslation } from "./assets/context/TranslationContext";
+import { useSearch } from "./assets/context/SearchContext";
+import { CompanyJP, CompanyUS } from "./assets/model/model";
+
+interface CompanyData {
+  companyUS: CompanyUS[];
+  companyJP: CompanyJP[];
+}
 
 function Table() {
-  const [company, setCompany] = useState([]);
-  const [filteredCompany, setFilteredCompany] = useState([]);
-  const [selectedSymbol, setSelectedSymbol] = useState<string | null>(null);
+  const [company, setCompany] = useState<CompanyData>({
+    companyUS: [],
+    companyJP: [],
+  });
+  const [filteredCompany, setFilteredCompany] = useState<any>([]);
+  const [selectedSymbol, setSelectedSymbol] = useState<string>("");
   const [chartData, setChartData] = useState<any[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const [timeRange, setTimeRange] = useState<string>("7d");
-  const [searchTerm, setSearchTerm] = useState("");
-  const [entriesPerPage, setEntriesPerPage] = useState(10);
+  const { searchTerm, setSearchTerm } = useSearch();
+  const [entriesPerPage, setEntriesPerPage] = useState<number>(10);
   const [sortConfig, setSortConfig] = useState({
     key: "offerDate",
     ascending: false,
   });
-  const [currentPage, setCurrentPage] = useState(1);
   const [previousClosePrice, setPreviousClosePrice] = useState<number | null>(
     null
   );
   const [lineColor, setLineColor] = useState("#2e3e8b");
   const [selectedRange, setSelectedRange] = useState("7d");
-  const { language } = useTranslation();
+  const [isJP, setIsJP] = useState(false);
+  const [market, setMarket] = useState<string>("");
+  const { translations } = useTranslation();
 
 
-
+  // Fetching data for the first time
   useEffect(() => {
     fetchData();
   }, []);
 
+  // method for fetching data from DB
+  const fetchData = async () => {
+    // try {
+    //   const response = await axios.get("http://localhost:8080/fetchIPO");
+    //   setCompany(response.data);
+    //   setFilteredCompany(response.data);
+    // } catch {
+    //   console.log("Fail to fetch");
+    // }
+    setCompany(importData);
+    setFilteredCompany(importData.companyUS);
+  };
+
+    // Update filtered company on changing country I don't think this is needed becauses each table sets the filteredCompany to its data automatically where there is no search term
+    // useEffect(() => {
+    //   if (company.companyUS.length > 0 || company.companyJP.length > 0) {
+    //     setFilteredCompany(isJP ? company.companyJP : company.companyUS);
+    //   }
+    // }, [isJP, company]);
+
+  // Updating chart
   useEffect(() => {
     if (selectedSymbol) {
-      fetchChartData(selectedSymbol, timeRange);
+      fetchChartData();
     }
   }, [selectedSymbol, timeRange]);
 
-  useEffect(() => {
-    const filtered = searchTerm
-      ? company.filter((item) =>
-          item.symbol.toLowerCase().includes(searchTerm.toLowerCase())
-        )
-      : company;
-    setFilteredCompany(filtered);
-  }, [searchTerm, company]);
 
-  useEffect(() => {
-    fetchStockData("7D");
-  }, []);
-
-  const fetchData = async () => {
-    try {
-      const response = await axios.get("http://localhost:8080/fetchIPO");
-      setCompany(response.data);
-      setFilteredCompany(response.data);
-    } catch {
-      console.log("Fail to fetch");
-    }
-  };
-
-  const formatDate = (value: string) => {
-    return Moment(value).format("yyyy/MM/DD");
-  };
-
-  const fetchChartData = async (symbol: string, period: string) => {
+  // Method for fetching chart
+  const fetchChartData = async () => {
     setLoading(true);
     try {
+      let marketSymbol = selectedSymbol;
+      console.log("Market" + market);
+
+      if (isJP) {
+        // For Japanese stocks, append the appropriate suffix based on the symbol's first character
+        if (market.startsWith("東")) {
+          marketSymbol = `${selectedSymbol}.T`; // Tokyo Stock Exchange (TSE)
+        } else if (market.startsWith("名")) {
+          marketSymbol = `${selectedSymbol}.N`; // Nagoya Stock Exchange
+        } else if (market.startsWith("札")) {
+          marketSymbol = `${selectedSymbol}.S`; // Sapporo Stock Exchange
+        } else if (market.startsWith("福")) {
+          marketSymbol = `${selectedSymbol}.F`; // Fukuoka Stock Exchange
+        }
+      }
+
+      // console.log(marketSymbol)
+
       const response = await axios.get(
-        `http://localhost:8000/stockHistory/${symbol}?period=${period}`
+        `http://localhost:8000/stockHistory/${marketSymbol}?period=${timeRange}`
       );
+
       setChartData(response.data);
 
       if (response.data && response.data.length >= 2) {
@@ -103,94 +126,60 @@ function Table() {
     }
   };
 
-  const fetchStockData = async (symbol: string, period: string) => {
-    setLoading(true);
-    try {
-      const response = await axios.get(
-        `http://localhost:8000/stockHistory/${symbol}?period=${period}`
-      );
-      setChartData(response.data);
-    } catch (error) {
-      console.error("Error fetching stock data", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  // const fetchStockData = async (symbol: string, period: string) => {
+  //   setLoading(true);
+  //   try {
+  //     const response = await axios.get(
+  //       `http://localhost:8000/stockHistory/${symbol}?period=${period}`
+  //     );
+  //     setChartData(response.data);
+  //   } catch (error) {
+  //     console.error("Error fetching stock data", error);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
-  const sortTable = (key, type) => {
-    const newAscending = sortConfig.key === key ? !sortConfig.ascending : true;
-
-    const sortedData = [...company].sort((a, b) => {
-      let valA = key.includes(".")
-        ? key.split(".").reduce((o, i) => o[i], a)
-        : a[key];
-      let valB = key.includes(".")
-        ? key.split(".").reduce((o, i) => o[i], b)
-        : b[key];
-      if (type === "number") return newAscending ? valA - valB : valB - valA;
-      if (type === "text")
-        return newAscending
-          ? valA.localeCompare(valB)
-          : valB.localeCompare(valA);
-      if (type === "date")
-        return newAscending
-          ? new Date(valA) - new Date(valB)
-          : new Date(valB) - new Date(valA);
-    });
-    setCompany(sortedData);
-    setSortConfig({ key, ascending: newAscending });
-
-    const sortedFilteredData = [...filteredCompany].sort((a, b) => {
-      let valA = key.includes(".")
-        ? key.split(".").reduce((o, i) => o[i], a)
-        : a[key];
-      let valB = key.includes(".")
-        ? key.split(".").reduce((o, i) => o[i], b)
-        : b[key];
-      if (type === "number") return newAscending ? valA - valB : valB - valA;
-      if (type === "text")
-        return newAscending
-          ? valA.localeCompare(valB)
-          : valB.localeCompare(valA);
-      if (type === "date")
-        return newAscending
-          ? new Date(valA) - new Date(valB)
-          : new Date(valB) - new Date(valA);
-    });
-
-    setFilteredCompany(sortedFilteredData);
-  };
-
-  const totalPages = Math.ceil(filteredCompany.length / entriesPerPage);
-  const startIndex = (currentPage - 1) * entriesPerPage;
-  const paginatedData = filteredCompany.slice(
-    startIndex,
-    startIndex + entriesPerPage
-  );
-
-  const goToPage = (page) => {
-    if (page >= 1 && page <= totalPages) {
-      setCurrentPage(page);
-    }
-  };
-
-  const handleSearchChange = (e) => {
+  const handleSearchChange = (e: {
+    target: { value: SetStateAction<string> };
+  }) => {
     setSearchTerm(e.target.value);
   };
 
-  const handleTimeRangeChange = (range) => {
+  const handleTimeRangeChange = (range: SetStateAction<string>) => {
     setTimeRange(range);
     setSelectedRange(range);
   };
 
   const currentColumn = columns.find((col) => col.key === sortConfig.key);
 
-  const getIndustryTranslation = (industryID: number, language: string) => {
-    const industry = industries[industryID];
-    return industry ? industry[language] : "Unknown Industry";
-  };
+  const formatNumber = (value: number) => {
+    if (value === null || value === undefined) return "-";
 
-  const { translations } = useTranslation(); // Use the translations from context
+    const isNegative = value < 0;
+    const positiveValue = Math.abs(value);
+    let formattedValue = "";
+
+    if (positiveValue >= 1_000_000_000_000) {
+      formattedValue = (positiveValue / 1_000_000_000_000).toFixed(1) + "T";
+    } else if (positiveValue >= 1_000_000_000) {
+      formattedValue = (positiveValue / 1_000_000_000).toFixed(1) + "B";
+    } else if (positiveValue >= 1_000_000) {
+      formattedValue = (positiveValue / 1_000_000).toFixed(1) + "M";
+    } else if (positiveValue >= 1_000) {
+      formattedValue = (positiveValue / 1)
+        .toFixed(0)
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    } else {
+      formattedValue = positiveValue.toFixed();
+    }
+
+    const formatText = isNegative
+      ? "$-" + formattedValue
+      : "$" + formattedValue;
+
+    return isJP ? formatText.replace("$", "￥") : formatText;
+  };
 
   return (
     <>
@@ -218,10 +207,12 @@ function Table() {
                           paddingTop: 15,
                         }}
                       >
+                        {/* Chart Title */}
+                        {/* Find the name of a company whose symbol matches the selected one */}
                         {" "}
                         {
                           filteredCompany.find(
-                            (c) => c.symbol === selectedSymbol
+                            (c:CompanyJP|CompanyUS) => c.symbol === selectedSymbol
                           )?.name
                         }{" "}
                         ({selectedSymbol})
@@ -245,7 +236,7 @@ function Table() {
                                   fontWeight: "bold",
                                 }}
                               >
-                                {previousClosePrice}
+                                {formatNumber(previousClosePrice)}
                               </span>
                               {previousClosePrice && chartData.length > 0 && (
                                 <span
@@ -491,7 +482,18 @@ function Table() {
                     {translations["entries_per_page"] || "Entries per page"}
                   </label>
                 </div>
-                <div className="" style={{ paddingLeft: 805 }}>
+                <div>
+                  <button
+                    className="btn switchTableBtn"
+                    style={{ marginLeft: 10 }}
+                    onClick={() => setIsJP(!isJP)}
+                  >
+                    {translations["switch_btn"]}
+                    {": "}
+                    {translations[isJP ? "jp" : "us"]}
+                  </button>
+                </div>
+                <div className="" style={{ paddingLeft: 600 }}>
                   <div className="">
                     <label
                       style={{
@@ -513,144 +515,32 @@ function Table() {
                 </div>
               </div>
               <div id="table" style={{ marginTop: 10, marginBottom: 10 }}>
-                <div className="setTable">
-                  <table className="table">
-                    <colgroup>
-                      <col data-dt-column="0" style={{ width: 350 }} />
-                      <col data-dt-column="1" style={{ width: 110 }} />
-                      <col data-dt-column="2" style={{ width: 100 }} />
-                      <col data-dt-column="3" style={{ width: 120 }} />
-                      <col data-dt-column="4" style={{ width: 100 }} />
-                      <col data-dt-column="5" style={{ width: 135 }} />
-                      <col data-dt-column="6" style={{ width: 150 }} />
-                      <col data-dt-column="7" style={{ width: 130 }} />
-                      <col data-dt-column="8" style={{ width: 100 }} />
-                    </colgroup>
-                    <thead className="headerColumn">
-                      <tr>
-                        {tableHeader.map(({ key, labelKey, type }) => (
-                          <th
-                            key={key}
-                            onClick={() => sortTable(key, type)}
-                            className={sortConfig.key === key ? "sorted" : ""}
-                            style={{
-                              textAlign: "center",
-                              verticalAlign: "middle",
-                              position: "relative",
-                            }}
-                          >
-                            <div
-                              style={{
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                width: "100%",
-                              }}
-                            >
-                              <span style={{ flex: 1, textAlign: "center" }}>
-                                {translations[labelKey] || labelKey}
-                              </span>
-                              <span
-                                className="arrows"
-                                style={{
-                                  display: "flex",
-                                  flexDirection: "column",
-                                  alignItems: "center",
-                                  marginLeft: 8, // Space between text and arrows
-                                }}
-                              >
-                                <span
-                                  className={`arrow ${
-                                    sortConfig.key === key &&
-                                    sortConfig.ascending
-                                      ? "active"
-                                      : ""
-                                  }`}
-                                  style={{ marginBottom: "-2px" }} // Adjust spacing between ▲ and ▼
-                                >
-                                  ▲
-                                </span>
-                                <span
-                                  className={`arrow ${
-                                    sortConfig.key === key &&
-                                    !sortConfig.ascending
-                                      ? "active"
-                                      : ""
-                                  }`}
-                                  style={{ marginTop: "-2px" }} // Adjust spacing between ▲ and ▼
-                                >
-                                  ▼
-                                </span>
-                              </span>
-                            </div>
-                          </th>
-                        ))}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {paginatedData.map((data) => (
-                        <tr
-                          key={data.symbol}
-                          onClick={() => setSelectedSymbol(data.symbol)}
-                          className="bodyColumn"
-                        >
-                          <td className="celltextalignleft">
-                            <a href={data.compLink}>{data.name}</a>
-                          </td>
-                          <td className="celltextalignleft">{data.symbol}</td>
-                          <td className="celltextalignleft">
-                            {getIndustryTranslation(
-                              data.industry.industryID,
-                              language
-                            )}
-                          </td>
-                          <td>{formatDate(data.offerDate)}</td>
-                          <td>{data.shares}</td>
-                          <td>${data.offerPrice}</td>
-                          <td>${data.firstClose}</td>
-                          <td>${data.currentPrice}</td>
-                          <td>{data.returnRate}%</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              <div id="selectpage" style={{ marginTop: 10, marginBottom: 10 }}>
-                <div className="setSelectPageBtn">
-                  <button
-                    onClick={() => goToPage(1)}
-                    disabled={currentPage === 1}
-                  >
-                    «
-                  </button>
-                  <button
-                    onClick={() => goToPage(currentPage - 1)}
-                    disabled={currentPage === 1}
-                  >
-                    ‹
-                  </button>
-                  {[...Array(totalPages)].map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => goToPage(index + 1)}
-                      className={currentPage === index + 1 ? "active" : ""}
-                    >
-                      {index + 1}
-                    </button>
-                  ))}
-                  <button
-                    onClick={() => goToPage(currentPage + 1)}
-                    disabled={currentPage === totalPages}
-                  >
-                    ›
-                  </button>
-                  <button
-                    onClick={() => goToPage(totalPages)}
-                    disabled={currentPage === totalPages}
-                  >
-                    »
-                  </button>
+                <div
+                  className="setTable"
+                  style={{ minHeight: 525, minWidth: 1260 }}
+                >
+                  {isJP ? (
+                    <Japan
+                      datas={company.companyJP}
+                      entriesPerPage={entriesPerPage}
+                      sortConfig={sortConfig}
+                      setSortConfig={setSortConfig}
+                      setSelectedSymbol={setSelectedSymbol}
+                      setMarket={setMarket}
+                      filteredCompany={filteredCompany}
+                      setFilteredCompany={setFilteredCompany}
+                    />
+                  ) : (
+                    <US
+                      datas={company.companyUS}
+                      entriesPerPage={entriesPerPage}
+                      sortConfig={sortConfig}
+                      setSortConfig={setSortConfig}
+                      setSelectedSymbol={setSelectedSymbol}
+                      filteredCompany={filteredCompany}
+                      setFilteredCompany={setFilteredCompany}
+                    />
+                  )}
                 </div>
               </div>
             </div>

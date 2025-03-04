@@ -26,14 +26,23 @@
   "industry": "業種",
   "offer_date": "公開日",
   "shares_millions": "株式数 (百万)",
+  "market": "市場",
   "offer_price": "公募価格",
   "first_day_close": "初日終値",
+  "first_day_open": "初音",
   "current_price": "現在価格",
+  "last_week_close": "先週終値",
   "return": "リターン",
+
+  "switch_btn": "市場の切り替え ",
+  "us": "アメリカ",
+  "jp": "日本",
+  
   "profile": "プロフィール",
   "new_password": "新しいパスワード",
   "logout": "ログアウト",
   "save_changes": "変更を保存",
+
   "days_time": "日付と時間",
   "select_days_time": "メール送信の日付と時間を選択",
   "am": "午前",

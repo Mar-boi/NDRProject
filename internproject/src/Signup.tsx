@@ -4,7 +4,7 @@ import "./Register.css";
 import { SubmitHandler, useForm } from "react-hook-form";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useTranslation } from "./TranslationContext";
+import { useTranslation } from "./assets/context/TranslationContext";
 
 type FormFields = {
   email: string;

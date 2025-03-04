@@ -1,16 +1,31 @@
 export type Language = "en" | "ja";
 
-export type Company = {
+export type CompanyUS = {
   compID: number;
   name: string;
   symbol: string;
   industry: Industry;
-  offerDate: Date;
+  offerDate: string;
   shares: number;
   offerPrice: number;
   firstClose: number;
   currentPrice: number;
   returnRate: number;
+  compLink: string;
+}
+
+export type CompanyJP = {
+  compID: number;
+  name: string;
+  symbol: string;
+  industry: Industry;
+  offerDate: string;
+  offerPrice: number;
+  market: string;
+  firstOpen: number;
+  returnRate: number;
+  lastWeekClose: number;
+  lastWeekReturnRate: number;
   compLink: string;
 }
 
@@ -29,18 +44,7 @@ export const days: { [key: number]: { en: string; ja: string } } = {
   6: {en: "Sat", ja : "土"}
 };
 
-// export const industries: { [key: number]: string } = {
-//   1: "Basic Materials",
-//   2: "Blank Check",
-//   3: "Consumer Goods",
-//   4: "Consumer Services",
-//   5: "Financials",
-//   6: "Health Care",
-//   7: "Industrials",
-//   8: "Oil & Gas",
-//   9: "Other",
-//   10: "Technology",
-// };
+
 
 export const industries: { [key: number]: { en: string; ja: string } } = {
   1: { en: "Basic Materials", ja: "素材" },
@@ -56,25 +60,40 @@ export const industries: { [key: number]: { en: string; ja: string } } = {
 };
 
 export const columns = [
-{ key: "name", labelKey: "company" },
-{ key: "symbol", labelKey: "symbol" },
-{ key: "industry.industryName", labelKey: "industry" },
-{ key: "offerDate", labelKey: "offer_date" },
-{ key: "shares", labelKey: "shares_millions" },
-{ key: "offerPrice", labelKey: "offer_price" },
-{ key: "firstClose", labelKey: "first_day_close" },
-{ key: "currentPrice", labelKey: "current_price" },
-{ key: "returnRate", labelKey: "return" },
+  { key: "name", labelKey: "company" },
+  { key: "symbol", labelKey: "symbol" },
+  { key: "industry.industryName", labelKey: "industry" },
+  { key: "offerDate", labelKey: "offer_date" },
+  { key: "shares", labelKey: "shares_millions" },
+  { key: "market", labelKey: "market" },
+  { key: "offerPrice", labelKey: "offer_price" },
+  { key: "firstClose", labelKey: "first_day_close" },
+  { key: "firstOpen", labelKey: "first_day_open" },
+  { key: "lastWeekClose", labelKey: "last_week_close" },
+  { key: "currentPrice", labelKey: "current_price" },
+  { key: "returnRate", labelKey: "return" },
 ];
 
-export const tableHeader = [
-{ key: "name", labelKey: "company", type: "text" },
-{ key: "symbol", labelKey: "symbol", type: "text" },
-{ key: "industry.industryName", labelKey: "industry", type: "text" },
-{ key: "offerDate", labelKey: "offer_date", type: "date" },
-{ key: "shares", labelKey: "shares_millions", type: "number" },
-{ key: "offerPrice", labelKey: "offer_price", type: "number" },
-{ key: "firstClose", labelKey: "first_day_close", type: "number" },
-{ key: "currentPrice", labelKey: "current_price", type: "number" },
-{ key: "returnRate", labelKey: "return", type: "number" },
+export const tableHeaderUS = [
+  { key: "name", labelKey: "company", type: "text" },
+  { key: "symbol", labelKey: "symbol", type: "text" },
+  { key: "industry.industryName", labelKey: "industry", type: "text" },
+  { key: "offerDate", labelKey: "offer_date", type: "date" },
+  { key: "shares", labelKey: "shares_millions", type: "number" },
+  { key: "offerPrice", labelKey: "offer_price", type: "number" },
+  { key: "firstClose", labelKey: "first_day_close", type: "number" },
+  { key: "currentPrice", labelKey: "current_price", type: "number" },
+  { key: "returnRate", labelKey: "return", type: "number" },
+];
+
+export const tableHeaderJP = [
+  { key: "name", labelKey: "company", type: "text" },
+  { key: "symbol", labelKey: "symbol", type: "text" },
+  { key: "industry.industryName", labelKey: "industry", type: "text" },
+  { key: "offerDate", labelKey: "offer_date", type: "date" },
+  { key: "market", labelKey: "market", type: "text" },
+  { key: "offerPrice", labelKey: "offer_price", type: "number" },
+  { key: "firstOpen", labelKey: "first_day_open", type: "number" },
+  { key: "lastWeekClose", labelKey: "last_week_close", type: "number" },
+  { key: "returnRate", labelKey: "return", type: "number" },
 ];

@@ -1,0 +1,3170 @@
+{
+    "companyUS": [
+        {
+            "compID": 2,
+            "name": "Luda Technology Group Ltd.",
+            "symbol": "LUD",
+            "offerDate": "2025-02-27",
+            "offerPrice": 4.0,
+            "returnRate": 0.0,
+            "compLink": "https://www.iposcoop.com/ipo/luda-technology-group/",
+            "industry": {
+                "industryID": 7,
+                "industryName": "Industrials"
+            },
+            "shares": 2.5,
+            "firstClose": 4.0,
+            "currentPrice": 4.0
+        },
+        {
+            "compID": 3,
+            "name": "LZ Technology Holdings Ltd.",
+            "symbol": "LZMH",
+            "offerDate": "2025-02-27",
+            "offerPrice": 4.0,
+            "returnRate": 25.0,
+            "compLink": "https://www.iposcoop.com/ipo/lz-technology-holdings/",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "shares": 1.8,
+            "firstClose": 5.0,
+            "currentPrice": 5.0
+        },
+        {
+            "compID": 4,
+            "name": "Webus International Ltd.",
+            "symbol": "WETO",
+            "offerDate": "2025-02-27",
+            "offerPrice": 4.0,
+            "returnRate": -10.0,
+            "compLink": "https://www.iposcoop.com/ipo/webus-international-ltd/",
+            "industry": {
+                "industryID": 4,
+                "industryName": "Consumer Services"
+            },
+            "shares": 2.0,
+            "firstClose": 3.6,
+            "currentPrice": 3.6
+        },
+        {
+            "compID": 5,
+            "name": "STAK Inc.",
+            "symbol": "STAK",
+            "offerDate": "2025-02-26",
+            "offerPrice": 4.0,
+            "returnRate": -6.75,
+            "compLink": "https://www.iposcoop.com/ipo/stak-inc/",
+            "industry": {
+                "industryID": 8,
+                "industryName": "Oil & Gas"
+            },
+            "shares": 1.3,
+            "firstClose": 3.73,
+            "currentPrice": 3.73
+        },
+        {
+            "compID": 6,
+            "name": "Basel Medical Group",
+            "symbol": "BMGL",
+            "offerDate": "2025-02-25",
+            "offerPrice": 4.0,
+            "returnRate": 3.5,
+            "compLink": "https://www.iposcoop.com/ipo/basel-medical/",
+            "industry": {
+                "industryID": 6,
+                "industryName": "Health Care"
+            },
+            "shares": 2.2,
+            "firstClose": 4.44,
+            "currentPrice": 4.14
+        },
+        {
+            "compID": 7,
+            "name": "Wellgistics Health",
+            "symbol": "WGRX",
+            "offerDate": "2025-02-21",
+            "offerPrice": 4.5,
+            "returnRate": -38.67,
+            "compLink": "https://www.iposcoop.com/ipo/wellgistics-health/",
+            "industry": {
+                "industryID": 6,
+                "industryName": "Health Care"
+            },
+            "shares": 0.9,
+            "firstClose": 3.81,
+            "currentPrice": 2.76
+        },
+        {
+            "compID": 8,
+            "name": "Anbio Biotechnology Limited",
+            "symbol": "NNNN",
+            "offerDate": "2025-02-19",
+            "offerPrice": 5.0,
+            "returnRate": 27.2,
+            "compLink": "https://www.iposcoop.com/ipo/anbio-biotechnology/",
+            "industry": {
+                "industryID": 6,
+                "industryName": "Health Care"
+            },
+            "shares": 1.6,
+            "firstClose": 5.77,
+            "currentPrice": 6.36
+        },
+        {
+            "compID": 9,
+            "name": "Northpointe Bancshares Inc.",
+            "symbol": "NPB",
+            "offerDate": "2025-02-14",
+            "offerPrice": 14.5,
+            "returnRate": -1.04,
+            "compLink": "https://www.iposcoop.com/ipo/northpointe-bancshares/",
+            "industry": {
+                "industryID": 5,
+                "industryName": "Financials"
+            },
+            "shares": 10.4,
+            "firstClose": 14.5,
+            "currentPrice": 14.35
+        },
+        {
+            "compID": 10,
+            "name": "Aardvark Therapeutics",
+            "symbol": "AARD",
+            "offerDate": "2025-02-13",
+            "offerPrice": 16.0,
+            "returnRate": -14.69,
+            "compLink": "https://www.iposcoop.com/ipo/aardvark-therapeutics/",
+            "industry": {
+                "industryID": 6,
+                "industryName": "Health Care"
+            },
+            "shares": 5.9,
+            "firstClose": 14.31,
+            "currentPrice": 13.65
+        },
+        {
+            "compID": 11,
+            "name": "Karman Holdings",
+            "symbol": "KRMN",
+            "offerDate": "2025-02-13",
+            "offerPrice": 22.0,
+            "returnRate": 37.0,
+            "compLink": "https://www.iposcoop.com/ipo/karman-holdings-tcfill-spaceco-holdings/",
+            "industry": {
+                "industryID": 7,
+                "industryName": "Industrials"
+            },
+            "shares": 23.0,
+            "firstClose": 30.05,
+            "currentPrice": 30.14
+        },
+        {
+            "compID": 12,
+            "name": "SailPoint Parent, LP",
+            "symbol": "SAIL",
+            "offerDate": "2025-02-13",
+            "offerPrice": 23.0,
+            "returnRate": 4.61,
+            "compLink": "https://www.iposcoop.com/ipo/sailpoint/",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "shares": 60.0,
+            "firstClose": 22.0,
+            "currentPrice": 24.06
+        },
+        {
+            "compID": 13,
+            "name": "TEN Holdings",
+            "symbol": "XHLD",
+            "offerDate": "2025-02-13",
+            "offerPrice": 6.0,
+            "returnRate": -78.33,
+            "compLink": "https://www.iposcoop.com/ipo/ten-holdings/",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "shares": 1.7,
+            "firstClose": 6.8,
+            "currentPrice": 1.3
+        },
+        {
+            "compID": 14,
+            "name": "Aureus Greenway Holdings",
+            "symbol": "AGH",
+            "offerDate": "2025-02-12",
+            "offerPrice": 4.0,
+            "returnRate": 23.75,
+            "compLink": "https://www.iposcoop.com/ipo/aureus-greenway/",
+            "industry": {
+                "industryID": 4,
+                "industryName": "Consumer Services"
+            },
+            "shares": 3.8,
+            "firstClose": 3.88,
+            "currentPrice": 4.95
+        },
+        {
+            "compID": 15,
+            "name": "Odysight.AI (Uplisting)",
+            "symbol": "ODYS",
+            "offerDate": "2025-02-11",
+            "offerPrice": 6.5,
+            "returnRate": 0.0,
+            "compLink": "https://www.iposcoop.com/ipo/odyssey-ai/",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "shares": 3.3,
+            "firstClose": 6.5,
+            "currentPrice": 6.5
+        },
+        {
+            "compID": 16,
+            "name": "Titan America",
+            "symbol": "TTAM",
+            "offerDate": "2025-02-07",
+            "offerPrice": 16.0,
+            "returnRate": -1.25,
+            "compLink": "https://www.iposcoop.com/ipo/titan-america/",
+            "industry": {
+                "industryID": 7,
+                "industryName": "Industrials"
+            },
+            "shares": 24.0,
+            "firstClose": 16.7,
+            "currentPrice": 15.8
+        },
+        {
+            "compID": 17,
+            "name": "EPWK Holdings Ltd.",
+            "symbol": "EPWK",
+            "offerDate": "2025-02-06",
+            "offerPrice": 4.1,
+            "returnRate": 10.24,
+            "compLink": "https://www.iposcoop.com/ipo/epwk-corp/",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "shares": 2.8,
+            "firstClose": 4.11,
+            "currentPrice": 4.52
+        },
+        {
+            "compID": 18,
+            "name": "FBS Global Ltd. (New Filing December 2024)",
+            "symbol": "FBGL",
+            "offerDate": "2025-02-06",
+            "offerPrice": 4.5,
+            "returnRate": -78.44,
+            "compLink": "https://www.iposcoop.com/ipo/fbs-global-ltd/",
+            "industry": {
+                "industryID": 7,
+                "industryName": "Industrials"
+            },
+            "shares": 2.3,
+            "firstClose": 3.45,
+            "currentPrice": 0.97
+        },
+        {
+            "compID": 19,
+            "name": "Callan JMB Inc.",
+            "symbol": "CJMB",
+            "offerDate": "2025-02-05",
+            "offerPrice": 4.0,
+            "returnRate": 13.75,
+            "compLink": "https://www.iposcoop.com/ipo/callan-jmb-inc/",
+            "industry": {
+                "industryID": 9,
+                "industryName": "Other"
+            },
+            "shares": 1.3,
+            "firstClose": 4.1,
+            "currentPrice": 4.55
+        },
+        {
+            "compID": 20,
+            "name": "Huachen AI Parking Management Technology Holding Co., Ltd.",
+            "symbol": "HCAI",
+            "offerDate": "2025-02-05",
+            "offerPrice": 4.0,
+            "returnRate": 6.25,
+            "compLink": "https://www.iposcoop.com/ipo/huachen-ai-parking-management-technology-holding-co-ltd/",
+            "industry": {
+                "industryID": 9,
+                "industryName": "Other"
+            },
+            "shares": 1.5,
+            "firstClose": 3.84,
+            "currentPrice": 4.25
+        },
+        {
+            "compID": 21,
+            "name": "Plutus Financial Group",
+            "symbol": "PLUT",
+            "offerDate": "2025-02-05",
+            "offerPrice": 4.0,
+            "returnRate": 2.0,
+            "compLink": "https://www.iposcoop.com/ipo/plutus-financial/",
+            "industry": {
+                "industryID": 5,
+                "industryName": "Financials"
+            },
+            "shares": 2.1,
+            "firstClose": 4.0,
+            "currentPrice": 4.08
+        },
+        {
+            "compID": 22,
+            "name": "Infinity Natural Resources",
+            "symbol": "INR",
+            "offerDate": "2025-01-31",
+            "offerPrice": 20.0,
+            "returnRate": -6.25,
+            "compLink": "https://www.iposcoop.com/ipo/infinity-natural-resources/",
+            "industry": {
+                "industryID": 8,
+                "industryName": "Oil & Gas"
+            },
+            "shares": 13.3,
+            "firstClose": 21.37,
+            "currentPrice": 18.75
+        },
+        {
+            "compID": 23,
+            "name": "Maze Therapeutics",
+            "symbol": "MAZE",
+            "offerDate": "2025-01-31",
+            "offerPrice": 16.0,
+            "returnRate": -26.88,
+            "compLink": "https://www.iposcoop.com/ipo/maze-therapeutics/",
+            "industry": {
+                "industryID": 6,
+                "industryName": "Health Care"
+            },
+            "shares": 8.8,
+            "firstClose": 15.95,
+            "currentPrice": 11.7
+        },
+        {
+            "compID": 24,
+            "name": "Metsera Inc.",
+            "symbol": "MTSR",
+            "offerDate": "2025-01-31",
+            "offerPrice": 18.0,
+            "returnRate": 51.17,
+            "compLink": "https://www.iposcoop.com/ipo/metsera-inc/",
+            "industry": {
+                "industryID": 6,
+                "industryName": "Health Care"
+            },
+            "shares": 15.3,
+            "firstClose": 26.5,
+            "currentPrice": 27.21
+        },
+        {
+            "compID": 25,
+            "name": "Beta Bionics, Inc.",
+            "symbol": "BBNX",
+            "offerDate": "2025-01-30",
+            "offerPrice": 17.0,
+            "returnRate": 17.59,
+            "compLink": "https://www.iposcoop.com/ipo/beta-bionics-inc/",
+            "industry": {
+                "industryID": 6,
+                "industryName": "Health Care"
+            },
+            "shares": 12.0,
+            "firstClose": 23.63,
+            "currentPrice": 19.99
+        },
+        {
+            "compID": 26,
+            "name": "Smithfield Foods Inc.",
+            "symbol": "SFD",
+            "offerDate": "2025-01-28",
+            "offerPrice": 20.0,
+            "returnRate": 3.0,
+            "compLink": "https://www.iposcoop.com/ipo/smithfield/",
+            "industry": {
+                "industryID": 3,
+                "industryName": "Consumer Goods"
+            },
+            "shares": 26.1,
+            "firstClose": 19.75,
+            "currentPrice": 20.6
+        },
+        {
+            "compID": 27,
+            "name": "Ascentage Pharma Group International (Uplisting)",
+            "symbol": "AAPG",
+            "offerDate": "2025-01-24",
+            "offerPrice": 17.25,
+            "returnRate": 19.83,
+            "compLink": "https://www.iposcoop.com/ipo/ascentage-pharma/",
+            "industry": {
+                "industryID": 6,
+                "industryName": "Health Care"
+            },
+            "shares": 7.3,
+            "firstClose": 17.38,
+            "currentPrice": 20.67
+        },
+        {
+            "compID": 28,
+            "name": "Venture Global, Inc.",
+            "symbol": "VG",
+            "offerDate": "2025-01-24",
+            "offerPrice": 25.0,
+            "returnRate": -43.2,
+            "compLink": "https://www.iposcoop.com/ipo/venture-global/",
+            "industry": {
+                "industryID": 8,
+                "industryName": "Oil & Gas"
+            },
+            "shares": 70.0,
+            "firstClose": 24.0,
+            "currentPrice": 14.2
+        },
+        {
+            "compID": 29,
+            "name": "Skyline Builders Group Holding Ltd.",
+            "symbol": "SKBL",
+            "offerDate": "2025-01-23",
+            "offerPrice": 4.0,
+            "returnRate": 129.5,
+            "compLink": "https://www.iposcoop.com/ipo/skyline-builders/",
+            "industry": {
+                "industryID": 9,
+                "industryName": "Other"
+            },
+            "shares": 1.5,
+            "firstClose": 4.66,
+            "currentPrice": 9.18
+        },
+        {
+            "compID": 30,
+            "name": "CTRL Group Ltd.",
+            "symbol": "MCTR",
+            "offerDate": "2025-01-22",
+            "offerPrice": 4.0,
+            "returnRate": 63.5,
+            "compLink": "https://www.iposcoop.com/ipo/ctrl-group-ltd/",
+            "industry": {
+                "industryID": 9,
+                "industryName": "Other"
+            },
+            "shares": 2.0,
+            "firstClose": 4.33,
+            "currentPrice": 6.54
+        },
+        {
+            "compID": 31,
+            "name": "Diginex Ltd.",
+            "symbol": "DGNX",
+            "offerDate": "2025-01-22",
+            "offerPrice": 4.1,
+            "returnRate": 1314.39,
+            "compLink": "https://www.iposcoop.com/ipo/diginex-ltd/",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "shares": 2.3,
+            "firstClose": 7.5,
+            "currentPrice": 57.99
+        },
+        {
+            "compID": 32,
+            "name": "Toppoint Holdings Inc.",
+            "symbol": "TOPP",
+            "offerDate": "2025-01-22",
+            "offerPrice": 4.0,
+            "returnRate": -44.75,
+            "compLink": "https://www.iposcoop.com/ipo/toppoint-holdings-inc/",
+            "industry": {
+                "industryID": 9,
+                "industryName": "Other"
+            },
+            "shares": 2.5,
+            "firstClose": 3.75,
+            "currentPrice": 2.21
+        },
+        {
+            "compID": 33,
+            "name": "Flowco Holdings Inc.",
+            "symbol": "FLOC",
+            "offerDate": "2025-01-16",
+            "offerPrice": 24.0,
+            "returnRate": 10.17,
+            "compLink": "https://www.iposcoop.com/ipo/flowco-holdings-inc/",
+            "industry": {
+                "industryID": 8,
+                "industryName": "Oil & Gas"
+            },
+            "shares": 17.8,
+            "firstClose": 29.7,
+            "currentPrice": 26.44
+        },
+        {
+            "compID": 34,
+            "name": "PicoCELA",
+            "symbol": "PCLA",
+            "offerDate": "2025-01-16",
+            "offerPrice": 4.0,
+            "returnRate": 109.5,
+            "compLink": "https://www.iposcoop.com/ipo/picocela/",
+            "industry": {
+                "industryID": 7,
+                "industryName": "Industrials"
+            },
+            "shares": 1.8,
+            "firstClose": 2.84,
+            "currentPrice": 8.38
+        },
+        {
+            "compID": 35,
+            "name": "Hong Kong Pharma Digital Technology Holdings Limited",
+            "symbol": "HKPD",
+            "offerDate": "2025-01-15",
+            "offerPrice": 4.0,
+            "returnRate": -56.75,
+            "compLink": "https://www.iposcoop.com/ipo/hong-kong-pharma-digital-technology/",
+            "industry": {
+                "industryID": 6,
+                "industryName": "Health Care"
+            },
+            "shares": 1.5,
+            "firstClose": 2.82,
+            "currentPrice": 1.73
+        },
+        {
+            "compID": 36,
+            "name": "Uni-Fuels Holdings Limited",
+            "symbol": "UFG",
+            "offerDate": "2025-01-14",
+            "offerPrice": 4.0,
+            "returnRate": 8.75,
+            "compLink": "https://www.iposcoop.com/ipo/uni-fuels-holdings-limited/",
+            "industry": {
+                "industryID": 8,
+                "industryName": "Oil & Gas"
+            },
+            "shares": 2.1,
+            "firstClose": 4.0,
+            "currentPrice": 4.35
+        },
+        {
+            "compID": 37,
+            "name": "Mint Inc. Ltd.",
+            "symbol": "MIMI",
+            "offerDate": "2025-01-10",
+            "offerPrice": 4.0,
+            "returnRate": 32.5,
+            "compLink": "https://www.iposcoop.com/ipo/mint/",
+            "industry": {
+                "industryID": 9,
+                "industryName": "Other"
+            },
+            "shares": 1.8,
+            "firstClose": 4.11,
+            "currentPrice": 5.3
+        },
+        {
+            "compID": 38,
+            "name": "3 E Network Technology Group Limited",
+            "symbol": "MASK",
+            "offerDate": "2025-01-08",
+            "offerPrice": 4.0,
+            "returnRate": -31.25,
+            "compLink": "https://www.iposcoop.com/ipo/3-e-network-technology-group-limited/",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "shares": 1.3,
+            "firstClose": 3.25,
+            "currentPrice": 2.75
+        },
+        {
+            "compID": 39,
+            "name": "Cantor Equity Partners I, Inc. (Stock-Only SPAC)",
+            "symbol": "CEPO",
+            "offerDate": "2025-01-07",
+            "offerPrice": 10.0,
+            "returnRate": 1.0,
+            "compLink": "https://www.iposcoop.com/ipo/cantor-equity-partners-i-inc/",
+            "industry": {
+                "industryID": 2,
+                "industryName": "Blank Check"
+            },
+            "shares": 20.0,
+            "firstClose": 10.05,
+            "currentPrice": 10.1
+        },
+        {
+            "compID": 40,
+            "name": "Zhengye Biotechnology Holding Limited",
+            "symbol": "ZYBT",
+            "offerDate": "2025-01-07",
+            "offerPrice": 4.0,
+            "returnRate": 5.5,
+            "compLink": "https://www.iposcoop.com/ipo/zhengye-biotechnology-holding/",
+            "industry": {
+                "industryID": 6,
+                "industryName": "Health Care"
+            },
+            "shares": 1.5,
+            "firstClose": 4.86,
+            "currentPrice": 4.22
+        },
+        {
+            "compID": 41,
+            "name": "INLIF Ltd.",
+            "symbol": "INLF",
+            "offerDate": "2025-01-02",
+            "offerPrice": 4.0,
+            "returnRate": -51.0,
+            "compLink": "https://www.iposcoop.com/ipo/inlif-ltd/",
+            "industry": {
+                "industryID": 7,
+                "industryName": "Industrials"
+            },
+            "shares": 2.0,
+            "firstClose": 4.45,
+            "currentPrice": 1.96
+        },
+        {
+            "compID": 42,
+            "name": "OneConstruction Group Limited",
+            "symbol": "ONEG",
+            "offerDate": "2024-12-31",
+            "offerPrice": 4.0,
+            "returnRate": -25.0,
+            "compLink": "https://www.iposcoop.com/ipo/one-construction-group-limited/",
+            "industry": {
+                "industryID": 9,
+                "industryName": "Other"
+            },
+            "shares": 1.8,
+            "firstClose": 3.0,
+            "currentPrice": 3.0
+        },
+        {
+            "compID": 43,
+            "name": "Park Ha Biological Technology Co. Ltd.",
+            "symbol": "PHH",
+            "offerDate": "2024-12-27",
+            "offerPrice": 4.0,
+            "returnRate": 1.75,
+            "compLink": "https://www.iposcoop.com/ipo/park-ha-biological-technology/",
+            "industry": {
+                "industryID": 3,
+                "industryName": "Consumer Goods"
+            },
+            "shares": 1.2,
+            "firstClose": 4.07,
+            "currentPrice": 4.07
+        },
+        {
+            "compID": 44,
+            "name": "Health in Tech",
+            "symbol": "HIT",
+            "offerDate": "2024-12-23",
+            "offerPrice": 4.0,
+            "returnRate": 0.0,
+            "compLink": "https://www.iposcoop.com/ipo/health-in-tech/",
+            "industry": {
+                "industryID": 5,
+                "industryName": "Financials"
+            },
+            "shares": 2.3,
+            "firstClose": 0.0,
+            "currentPrice": 0.0
+        },
+        {
+            "compID": 45,
+            "name": "Youxin Technology Ltd.",
+            "symbol": "YAAS",
+            "offerDate": "2024-12-20",
+            "offerPrice": 4.5,
+            "returnRate": -12.22,
+            "compLink": "https://www.iposcoop.com/ipo/youxhin-holding/",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "shares": 2.3,
+            "firstClose": 3.95,
+            "currentPrice": 3.95
+        },
+        {
+            "compID": 46,
+            "name": "Leishen Energy Holding Co., Ltd.",
+            "symbol": "LSE",
+            "offerDate": "2024-12-19",
+            "offerPrice": 4.0,
+            "returnRate": 8.75,
+            "compLink": "https://www.iposcoop.com/ipo/lesihen-energy-holding/",
+            "industry": {
+                "industryID": 8,
+                "industryName": "Oil & Gas"
+            },
+            "shares": 1.4,
+            "firstClose": 4.35,
+            "currentPrice": 4.35
+        },
+        {
+            "compID": 47,
+            "name": "New Century Logistics (BVI) Ltd.",
+            "symbol": "NCEW",
+            "offerDate": "2024-12-18",
+            "offerPrice": 4.0,
+            "returnRate": -36.5,
+            "compLink": "https://www.iposcoop.com/ipo/new-century-logistics-bvi-ltd/",
+            "industry": {
+                "industryID": 9,
+                "industryName": "Other"
+            },
+            "shares": 1.5,
+            "firstClose": 2.54,
+            "currentPrice": 2.54
+        },
+        {
+            "compID": 48,
+            "name": "YSX Tech Co., Ltd.",
+            "symbol": "YSXT",
+            "offerDate": "2024-12-18",
+            "offerPrice": 4.0,
+            "returnRate": 7.75,
+            "compLink": "https://www.iposcoop.com/ipo/ysx-tech/",
+            "industry": {
+                "industryID": 5,
+                "industryName": "Financials"
+            },
+            "shares": 1.3,
+            "firstClose": 4.31,
+            "currentPrice": 4.31
+        },
+        {
+            "compID": 49,
+            "name": "Anteris Technologies Global (NASDAQ Uplisting/Dual Listing)",
+            "symbol": "AVR",
+            "offerDate": "2024-12-13",
+            "offerPrice": 6.0,
+            "returnRate": 0.0,
+            "compLink": "https://www.iposcoop.com/ipo/anteris-technologies/",
+            "industry": {
+                "industryID": 6,
+                "industryName": "Health Care"
+            },
+            "shares": 14.8,
+            "firstClose": 0.0,
+            "currentPrice": 0.0
+        },
+        {
+            "compID": 50,
+            "name": "NetClass Technology (2024 New Filing)",
+            "symbol": "NTCL",
+            "offerDate": "2024-12-13",
+            "offerPrice": 5.0,
+            "returnRate": 0.0,
+            "compLink": "https://www.iposcoop.com/ipo/netclass-technology-2024-new-filing/",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "shares": 1.8,
+            "firstClose": 5.0,
+            "currentPrice": 5.0
+        },
+        {
+            "compID": 51,
+            "name": "ServiceTitan",
+            "symbol": "TTAN",
+            "offerDate": "2024-12-12",
+            "offerPrice": 71.0,
+            "returnRate": 42.25,
+            "compLink": "https://www.iposcoop.com/ipo/servicetitan/",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "shares": 8.8,
+            "firstClose": 101.0,
+            "currentPrice": 101.0
+        },
+        {
+            "compID": 52,
+            "name": "Jinxin Technology",
+            "symbol": "NAMI",
+            "offerDate": "2024-12-06",
+            "offerPrice": 4.0,
+            "returnRate": 11.0,
+            "compLink": "https://www.iposcoop.com/ipo/jinxin-technology/",
+            "industry": {
+                "industryID": 4,
+                "industryName": "Consumer Services"
+            },
+            "shares": 1.3,
+            "firstClose": 4.44,
+            "currentPrice": 4.44
+        },
+        {
+            "compID": 53,
+            "name": "Linkers Industries",
+            "symbol": "LNKS",
+            "offerDate": "2024-12-05",
+            "offerPrice": 4.0,
+            "returnRate": 0.0,
+            "compLink": "https://www.iposcoop.com/ipo/linkers-industries/",
+            "industry": {
+                "industryID": 7,
+                "industryName": "Industrials"
+            },
+            "shares": 1.9,
+            "firstClose": 0.0,
+            "currentPrice": 0.0
+        },
+        {
+            "compID": 54,
+            "name": "zSpace, Inc.",
+            "symbol": "ZSPC",
+            "offerDate": "2024-12-05",
+            "offerPrice": 5.0,
+            "returnRate": 0.0,
+            "compLink": "https://www.iposcoop.com/ipo/zspace-inc/",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "shares": 1.9,
+            "firstClose": 0.0,
+            "currentPrice": 0.0
+        },
+        {
+            "compID": 55,
+            "name": "Jupiter Neurosciences, Inc.",
+            "symbol": "JUNS",
+            "offerDate": "2024-12-03",
+            "offerPrice": 4.0,
+            "returnRate": 37.25,
+            "compLink": "https://www.iposcoop.com/ipo/jupiter-neurosciences-inc/",
+            "industry": {
+                "industryID": 6,
+                "industryName": "Health Care"
+            },
+            "shares": 2.8,
+            "firstClose": 5.49,
+            "currentPrice": 5.49
+        },
+        {
+            "compID": 56,
+            "name": "Brazil Potash Corp.",
+            "symbol": "GRO",
+            "offerDate": "2024-11-27",
+            "offerPrice": 15.0,
+            "returnRate": -9.93,
+            "compLink": "https://www.iposcoop.com/ipo/brazil-potash/",
+            "industry": {
+                "industryID": 1,
+                "industryName": "Basic Materials"
+            },
+            "shares": 2.0,
+            "firstClose": 13.51,
+            "currentPrice": 13.51
+        },
+        {
+            "compID": 57,
+            "name": "Pony AI Inc.",
+            "symbol": "PONY",
+            "offerDate": "2024-11-27",
+            "offerPrice": 13.0,
+            "returnRate": -7.69,
+            "compLink": "https://www.iposcoop.com/ipo/pony-ai/",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "shares": 20.0,
+            "firstClose": 12.0,
+            "currentPrice": 12.0
+        },
+        {
+            "compID": 58,
+            "name": "Venu Holding Corp. (Notes Live, Inc.)",
+            "symbol": "VENU",
+            "offerDate": "2024-11-27",
+            "offerPrice": 10.0,
+            "returnRate": 1.2,
+            "compLink": "https://www.iposcoop.com/ipo/notes-live/",
+            "industry": {
+                "industryID": 4,
+                "industryName": "Consumer Services"
+            },
+            "shares": 1.2,
+            "firstClose": 10.12,
+            "currentPrice": 10.12
+        },
+        {
+            "compID": 59,
+            "name": "Creative Global Technology Holdings Limited",
+            "symbol": "CGTL",
+            "offerDate": "2024-11-26",
+            "offerPrice": 4.0,
+            "returnRate": -2.25,
+            "compLink": "https://www.iposcoop.com/ipo/creative-technology-holding/",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "shares": 1.3,
+            "firstClose": 3.91,
+            "currentPrice": 3.91
+        },
+        {
+            "compID": 60,
+            "name": "Wing Yip Food Holdings Group Limited (Uplisting)",
+            "symbol": "WYHG",
+            "offerDate": "2024-11-26",
+            "offerPrice": 4.0,
+            "returnRate": 0.6,
+            "compLink": "https://www.iposcoop.com/ipo/wing-yip-food-holdings-group-limited/",
+            "industry": {
+                "industryID": 7,
+                "industryName": "Industrials"
+            },
+            "shares": 2.1,
+            "firstClose": 4.24,
+            "currentPrice": 4.24
+        },
+        {
+            "compID": 61,
+            "name": "Heritage Distilling Holding Company, Inc",
+            "symbol": "CASK",
+            "offerDate": "2024-11-22",
+            "offerPrice": 4.0,
+            "returnRate": -15.0,
+            "compLink": "https://www.iposcoop.com/ipo/heritage-distilling-holding-company-inc/",
+            "industry": {
+                "industryID": 7,
+                "industryName": "Industrials"
+            },
+            "shares": 1.7,
+            "firstClose": 3.4,
+            "currentPrice": 3.4
+        },
+        {
+            "compID": 62,
+            "name": "Ming Shing Group Holdings",
+            "symbol": "MSW",
+            "offerDate": "2024-11-22",
+            "offerPrice": 5.5,
+            "returnRate": 1.64,
+            "compLink": "https://www.iposcoop.com/ipo/ming-shing-group-holdings/",
+            "industry": {
+                "industryID": 9,
+                "industryName": "Other"
+            },
+            "shares": 1.5,
+            "firstClose": 5.59,
+            "currentPrice": 5.59
+        },
+        {
+            "compID": 63,
+            "name": "Invizyne Technologies",
+            "symbol": "IZTC",
+            "offerDate": "2024-11-13",
+            "offerPrice": 8.0,
+            "returnRate": 8.13,
+            "compLink": "https://www.iposcoop.com/ipo/invizyne-technologies/",
+            "industry": {
+                "industryID": 6,
+                "industryName": "Health Care"
+            },
+            "shares": 1.9,
+            "firstClose": 8.65,
+            "currentPrice": 8.65
+        },
+        {
+            "compID": 64,
+            "name": "Alpha Cognition (Uplisting)",
+            "symbol": "ACOG",
+            "offerDate": "2024-11-12",
+            "offerPrice": 5.75,
+            "returnRate": -0.87,
+            "compLink": "https://www.iposcoop.com/ipo/alpha-cognition-uplisting/",
+            "industry": {
+                "industryID": 6,
+                "industryName": "Health Care"
+            },
+            "shares": 8.7,
+            "firstClose": 5.7,
+            "currentPrice": 5.7
+        },
+        {
+            "compID": 65,
+            "name": "Aduro Clean Technologies (Uplisting)",
+            "symbol": "ADUR",
+            "offerDate": "2024-11-07",
+            "offerPrice": 4.25,
+            "returnRate": 0.78,
+            "compLink": "https://www.iposcoop.com/ipo/aduro-clean-technologies-uplisting/",
+            "industry": {
+                "industryID": 7,
+                "industryName": "Industrials"
+            },
+            "shares": 0.9,
+            "firstClose": 4.25,
+            "currentPrice": 4.58
+        },
+        {
+            "compID": 66,
+            "name": "Gelteq Ltd.",
+            "symbol": "GELS",
+            "offerDate": "2024-10-29",
+            "offerPrice": 4.0,
+            "returnRate": -26.5,
+            "compLink": "https://www.iposcoop.com/ipo/gelteq-pty-ltd/",
+            "industry": {
+                "industryID": 6,
+                "industryName": "Health Care"
+            },
+            "shares": 1.3,
+            "firstClose": 2.94,
+            "currentPrice": 2.94
+        },
+        {
+            "compID": 67,
+            "name": "Thumzup Media Corp. (Uplisting)",
+            "symbol": "TZUP",
+            "offerDate": "2024-10-29",
+            "offerPrice": 5.0,
+            "returnRate": 5.0,
+            "compLink": "https://www.iposcoop.com/ipo/thumzup-media-corp/",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "shares": 1.4,
+            "firstClose": 5.25,
+            "currentPrice": 5.25
+        },
+        {
+            "compID": 68,
+            "name": "Septerna, Inc.",
+            "symbol": "SEPN",
+            "offerDate": "2024-10-25",
+            "offerPrice": 18.0,
+            "returnRate": 18.89,
+            "compLink": "https://www.iposcoop.com/ipo/septerna/",
+            "industry": {
+                "industryID": 6,
+                "industryName": "Health Care"
+            },
+            "shares": 16.0,
+            "firstClose": 21.4,
+            "currentPrice": 21.4
+        },
+        {
+            "compID": 69,
+            "name": "WeRide Inc.",
+            "symbol": "WRD",
+            "offerDate": "2024-10-25",
+            "offerPrice": 15.5,
+            "returnRate": 6.77,
+            "compLink": "https://www.iposcoop.com/ipo/weride-inc/",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "shares": 7.7,
+            "firstClose": 16.55,
+            "currentPrice": 16.55
+        },
+        {
+            "compID": 70,
+            "name": "Bold Eagle Acquisition (ex-Spinning Eagle)",
+            "symbol": "BEAGU",
+            "offerDate": "2024-10-24",
+            "offerPrice": 10.0,
+            "returnRate": 0.0,
+            "compLink": "https://www.iposcoop.com/ipo/bold-eagle-acquisition-ex-spinning-eagle/",
+            "industry": {
+                "industryID": 2,
+                "industryName": "Blank Check"
+            },
+            "shares": 25.0,
+            "firstClose": 10.0,
+            "currentPrice": 10.0
+        },
+        {
+            "compID": 71,
+            "name": "Ingram Micro Holding Corp.",
+            "symbol": "INGM",
+            "offerDate": "2024-10-24",
+            "offerPrice": 22.0,
+            "returnRate": 11.82,
+            "compLink": "https://www.iposcoop.com/ipo/ingram-micro/",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "shares": 18.6,
+            "firstClose": 24.6,
+            "currentPrice": 24.6
+        },
+        {
+            "compID": 72,
+            "name": "Founder Group Limited",
+            "symbol": "FGL",
+            "offerDate": "2024-10-23",
+            "offerPrice": 4.0,
+            "returnRate": -21.0,
+            "compLink": "https://www.iposcoop.com/ipo/founder-group-limited/",
+            "industry": {
+                "industryID": 9,
+                "industryName": "Other"
+            },
+            "shares": 1.2,
+            "firstClose": 3.16,
+            "currentPrice": 3.16
+        },
+        {
+            "compID": 73,
+            "name": "High Roller Technologies, Inc.",
+            "symbol": "ROLR",
+            "offerDate": "2024-10-23",
+            "offerPrice": 8.0,
+            "returnRate": -2.63,
+            "compLink": "https://www.iposcoop.com/ipo/high-roller-technologies/",
+            "industry": {
+                "industryID": 4,
+                "industryName": "Consumer Services"
+            },
+            "shares": 1.3,
+            "firstClose": 7.79,
+            "currentPrice": 7.79
+        },
+        {
+            "compID": 74,
+            "name": "Li Bang International Corporation Inc.",
+            "symbol": "LBGJ",
+            "offerDate": "2024-10-23",
+            "offerPrice": 4.0,
+            "returnRate": 2.5,
+            "compLink": "https://www.iposcoop.com/ipo/li-bang-international-corporation-inc/",
+            "industry": {
+                "industryID": 7,
+                "industryName": "Industrials"
+            },
+            "shares": 1.5,
+            "firstClose": 4.1,
+            "currentPrice": 4.1
+        },
+        {
+            "compID": 75,
+            "name": "SAG Holdings Ltd",
+            "symbol": "SAG",
+            "offerDate": "2024-10-23",
+            "offerPrice": 8.0,
+            "returnRate": -20.5,
+            "compLink": "https://www.iposcoop.com/ipo/sag-holdings-ltd/",
+            "industry": {
+                "industryID": 7,
+                "industryName": "Industrials"
+            },
+            "shares": 0.9,
+            "firstClose": 6.36,
+            "currentPrice": 6.36
+        },
+        {
+            "compID": 76,
+            "name": "Synergy CHC Corp. (Uplisting)",
+            "symbol": "SNYR",
+            "offerDate": "2024-10-23",
+            "offerPrice": 9.0,
+            "returnRate": 0.0,
+            "compLink": "https://www.iposcoop.com/ipo/29913/",
+            "industry": {
+                "industryID": 3,
+                "industryName": "Consumer Goods"
+            },
+            "shares": 1.2,
+            "firstClose": 9.0,
+            "currentPrice": 9.0
+        },
+        {
+            "compID": 77,
+            "name": "HUHUTECH International Group",
+            "symbol": "HUHU",
+            "offerDate": "2024-10-22",
+            "offerPrice": 4.0,
+            "returnRate": 0.0,
+            "compLink": "https://www.iposcoop.com/ipo/huhutech-international-group/",
+            "industry": {
+                "industryID": 7,
+                "industryName": "Industrials"
+            },
+            "shares": 1.1,
+            "firstClose": 0.0,
+            "currentPrice": 0.0
+        },
+        {
+            "compID": 78,
+            "name": "Oriental Rise Holdings Ltd.",
+            "symbol": "ORIS",
+            "offerDate": "2024-10-17",
+            "offerPrice": 4.0,
+            "returnRate": 50.0,
+            "compLink": "https://www.iposcoop.com/ipo/oriental-rise-holdings-ltd/",
+            "industry": {
+                "industryID": 3,
+                "industryName": "Consumer Goods"
+            },
+            "shares": 1.8,
+            "firstClose": 6.0,
+            "currentPrice": 6.0
+        },
+        {
+            "compID": 79,
+            "name": "Springview Holdings Ltd.",
+            "symbol": "SPHL",
+            "offerDate": "2024-10-17",
+            "offerPrice": 4.0,
+            "returnRate": 6.25,
+            "compLink": "https://www.iposcoop.com/ipo/springview-holdings/",
+            "industry": {
+                "industryID": 9,
+                "industryName": "Other"
+            },
+            "shares": 1.5,
+            "firstClose": 4.25,
+            "currentPrice": 4.25
+        },
+        {
+            "compID": 80,
+            "name": "PTL Limited",
+            "symbol": "PTLE",
+            "offerDate": "2024-10-16",
+            "offerPrice": 4.0,
+            "returnRate": 1.75,
+            "compLink": "https://www.iposcoop.com/ipo/ptl-ltd/",
+            "industry": {
+                "industryID": 8,
+                "industryName": "Oil & Gas"
+            },
+            "shares": 1.3,
+            "firstClose": 4.07,
+            "currentPrice": 4.07
+        },
+        {
+            "compID": 81,
+            "name": "Samfine Creation Holdings Group Limited",
+            "symbol": "SFHG",
+            "offerDate": "2024-10-15",
+            "offerPrice": 4.0,
+            "returnRate": 32.5,
+            "compLink": "https://www.iposcoop.com/ipo/samfine-creation-holding/",
+            "industry": {
+                "industryID": 3,
+                "industryName": "Consumer Goods"
+            },
+            "shares": 2.0,
+            "firstClose": 5.3,
+            "currentPrice": 5.3
+        },
+        {
+            "compID": 82,
+            "name": "Camp4 Therapeutics Corp.",
+            "symbol": "CAMP",
+            "offerDate": "2024-10-11",
+            "offerPrice": 11.0,
+            "returnRate": -2.55,
+            "compLink": "https://www.iposcoop.com/ipo/camp4-therapeutics-corp/",
+            "industry": {
+                "industryID": 6,
+                "industryName": "Health Care"
+            },
+            "shares": 6.8,
+            "firstClose": 10.72,
+            "currentPrice": 10.72
+        },
+        {
+            "compID": 83,
+            "name": "CeriBell, Inc.",
+            "symbol": "CBLL",
+            "offerDate": "2024-10-11",
+            "offerPrice": 17.0,
+            "returnRate": 47.06,
+            "compLink": "https://www.iposcoop.com/ipo/ceribell/",
+            "industry": {
+                "industryID": 6,
+                "industryName": "Health Care"
+            },
+            "shares": 10.6,
+            "firstClose": 25.0,
+            "currentPrice": 25.0
+        },
+        {
+            "compID": 84,
+            "name": "Star Fashion Culture Holdings Ltd.",
+            "symbol": "STFS",
+            "offerDate": "2024-10-11",
+            "offerPrice": 4.0,
+            "returnRate": -18.5,
+            "compLink": "https://www.iposcoop.com/ipo/star-fashion-acquisition/",
+            "industry": {
+                "industryID": 4,
+                "industryName": "Consumer Services"
+            },
+            "shares": 2.2,
+            "firstClose": 3.26,
+            "currentPrice": 3.26
+        },
+        {
+            "compID": 85,
+            "name": "UpStream Bio Inc.",
+            "symbol": "UPB",
+            "offerDate": "2024-10-11",
+            "offerPrice": 17.0,
+            "returnRate": 29.41,
+            "compLink": "https://www.iposcoop.com/ipo/upstream-bio-inc/",
+            "industry": {
+                "industryID": 6,
+                "industryName": "Health Care"
+            },
+            "shares": 15.0,
+            "firstClose": 22.0,
+            "currentPrice": 22.0
+        },
+        {
+            "compID": 86,
+            "name": "Click Holdings Limited (Click Services Limited)",
+            "symbol": "CLIK",
+            "offerDate": "2024-10-09",
+            "offerPrice": 4.0,
+            "returnRate": -34.0,
+            "compLink": "https://www.iposcoop.com/ipo/click-services-limited/",
+            "industry": {
+                "industryID": 9,
+                "industryName": "Other"
+            },
+            "shares": 1.4,
+            "firstClose": 2.64,
+            "currentPrice": 2.64
+        },
+        {
+            "compID": 87,
+            "name": "KinderCare Learning Companies, Inc. (Revived IPO)",
+            "symbol": "KLC",
+            "offerDate": "2024-10-09",
+            "offerPrice": 24.0,
+            "returnRate": 8.88,
+            "compLink": "https://www.iposcoop.com/ipo/kindercare-learning-center-kc-holdco-llc/",
+            "industry": {
+                "industryID": 4,
+                "industryName": "Consumer Services"
+            },
+            "shares": 24.0,
+            "firstClose": 26.13,
+            "currentPrice": 26.13
+        },
+        {
+            "compID": 88,
+            "name": "SKK Holdings Limited",
+            "symbol": "SKK",
+            "offerDate": "2024-10-08",
+            "offerPrice": 4.0,
+            "returnRate": -1.75,
+            "compLink": "https://www.iposcoop.com/ipo/skk-holdings-ltd/",
+            "industry": {
+                "industryID": 9,
+                "industryName": "Other"
+            },
+            "shares": 2.5,
+            "firstClose": 6.05,
+            "currentPrice": 3.93
+        },
+        {
+            "compID": 89,
+            "name": "BingEx Limited",
+            "symbol": "FLX",
+            "offerDate": "2024-10-04",
+            "offerPrice": 16.5,
+            "returnRate": 9.15,
+            "compLink": "https://www.iposcoop.com/ipo/bingex-limited/",
+            "industry": {
+                "industryID": 9,
+                "industryName": "Other"
+            },
+            "shares": 4.0,
+            "firstClose": 18.01,
+            "currentPrice": 18.01
+        },
+        {
+            "compID": 90,
+            "name": "Chain Bridge Bancorp",
+            "symbol": "CBNA",
+            "offerDate": "2024-10-04",
+            "offerPrice": 22.0,
+            "returnRate": -3.64,
+            "compLink": "https://www.iposcoop.com/ipo/chain-bridge-bancorp/",
+            "industry": {
+                "industryID": 5,
+                "industryName": "Financials"
+            },
+            "shares": 1.9,
+            "firstClose": 21.2,
+            "currentPrice": 21.2
+        },
+        {
+            "compID": 91,
+            "name": "FrontView REIT, Inc.",
+            "symbol": "FVR",
+            "offerDate": "2024-10-02",
+            "offerPrice": 19.0,
+            "returnRate": -1.47,
+            "compLink": "https://www.iposcoop.com/ipo/frontview-reit-inc/",
+            "industry": {
+                "industryID": 5,
+                "industryName": "Financials"
+            },
+            "shares": 13.2,
+            "firstClose": 18.72,
+            "currentPrice": 18.72
+        },
+        {
+            "compID": 92,
+            "name": "StandardAero, Inc.",
+            "symbol": "SARO",
+            "offerDate": "2024-10-02",
+            "offerPrice": 24.0,
+            "returnRate": 36.46,
+            "compLink": "https://www.iposcoop.com/ipo/standard-aero-inc/",
+            "industry": {
+                "industryID": 9,
+                "industryName": "Other"
+            },
+            "shares": 60.0,
+            "firstClose": 32.75,
+            "currentPrice": 32.75
+        },
+        {
+            "compID": 93,
+            "name": "Wellchange Holdings",
+            "symbol": "WCT",
+            "offerDate": "2024-10-02",
+            "offerPrice": 4.0,
+            "returnRate": 0.0,
+            "compLink": "https://www.iposcoop.com/ipo/wellchange-holdings/",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "shares": 2.0,
+            "firstClose": 0.0,
+            "currentPrice": 0.0
+        },
+        {
+            "compID": 94,
+            "name": "HomesToLife Ltd.",
+            "symbol": "HTLM",
+            "offerDate": "2024-10-01",
+            "offerPrice": 4.0,
+            "returnRate": 0.5,
+            "compLink": "https://www.iposcoop.com/ipo/homestolife/",
+            "industry": {
+                "industryID": 3,
+                "industryName": "Consumer Goods"
+            },
+            "shares": 1.3,
+            "firstClose": 4.02,
+            "currentPrice": 4.02
+        },
+        {
+            "compID": 95,
+            "name": "ZJK Industrial Co., Ltd.",
+            "symbol": "ZJK",
+            "offerDate": "2024-09-30",
+            "offerPrice": 5.0,
+            "returnRate": 0.0,
+            "compLink": "https://www.iposcoop.com/ipo/zjk-industrial-co-ltd/",
+            "industry": {
+                "industryID": 7,
+                "industryName": "Industrials"
+            },
+            "shares": 1.3,
+            "firstClose": 5.0,
+            "currentPrice": 5.0
+        },
+        {
+            "compID": 96,
+            "name": "BioAge Labs Inc.",
+            "symbol": "BIOA",
+            "offerDate": "2024-09-26",
+            "offerPrice": 18.0,
+            "returnRate": 1.72,
+            "compLink": "https://www.iposcoop.com/ipo/bioage-labs/",
+            "industry": {
+                "industryID": 6,
+                "industryName": "Health Care"
+            },
+            "shares": 11.0,
+            "firstClose": 18.31,
+            "currentPrice": 18.31
+        },
+        {
+            "compID": 97,
+            "name": "BKV Corp.",
+            "symbol": "BKV",
+            "offerDate": "2024-09-26",
+            "offerPrice": 18.0,
+            "returnRate": 0.56,
+            "compLink": "https://www.iposcoop.com/ipo/bkv-corp/",
+            "industry": {
+                "industryID": 8,
+                "industryName": "Oil & Gas"
+            },
+            "shares": 15.0,
+            "firstClose": 18.1,
+            "currentPrice": 18.1
+        },
+        {
+            "compID": 98,
+            "name": "Guardian Pharmacy Services, Inc.",
+            "symbol": "GRDN",
+            "offerDate": "2024-09-26",
+            "offerPrice": 14.0,
+            "returnRate": 0.0,
+            "compLink": "https://www.iposcoop.com/ipo/guardian-pharmacy-services-inc/",
+            "industry": {
+                "industryID": 6,
+                "industryName": "Health Care"
+            },
+            "shares": 8.0,
+            "firstClose": 0.0,
+            "currentPrice": 0.0
+        },
+        {
+            "compID": 99,
+            "name": "Innovation Beverage Group Limited",
+            "symbol": "IBG",
+            "offerDate": "2024-09-26",
+            "offerPrice": 4.0,
+            "returnRate": -81.0,
+            "compLink": "https://www.iposcoop.com/ipo/innovation-beverage-group-limited/",
+            "industry": {
+                "industryID": 7,
+                "industryName": "Industrials"
+            },
+            "shares": 1.4,
+            "firstClose": 2.92,
+            "currentPrice": 0.76
+        },
+        {
+            "compID": 100,
+            "name": "Legacy Education Inc.",
+            "symbol": "LGCY",
+            "offerDate": "2024-09-26",
+            "offerPrice": 4.0,
+            "returnRate": 0.5,
+            "compLink": "https://www.iposcoop.com/ipo/legacy-education-inc/",
+            "industry": {
+                "industryID": 4,
+                "industryName": "Consumer Services"
+            },
+            "shares": 2.5,
+            "firstClose": 4.02,
+            "currentPrice": 4.02
+        },
+        {
+            "compID": 101,
+            "name": "Premium Catering (Holdings) Limited",
+            "symbol": "PC",
+            "offerDate": "2024-09-25",
+            "offerPrice": 4.75,
+            "returnRate": -21.68,
+            "compLink": "https://www.iposcoop.com/ipo/premium-catering-holdings/",
+            "industry": {
+                "industryID": 4,
+                "industryName": "Consumer Services"
+            },
+            "shares": 2.0,
+            "firstClose": 3.72,
+            "currentPrice": 3.72
+        }
+    ],
+    "companyJP": [
+        {
+            "compID": 1,
+            "name": "TENTIAL",
+            "symbol": "325A",
+            "offerDate": "2025-02-28",
+            "offerPrice": 2000.0,
+            "returnRate": 0.0,
+            "compLink": "https://finance.matsui.co.jp/ipo/325A/index",
+            "industry": {
+                "industryID": 9,
+                "industryName": "Other"
+            },
+            "market": "東証G",
+            "firstOpen": 0.0,
+            "lastWeekClose": 0.0,
+            "lastWeekReturnRate": 0.0
+        },
+        {
+            "compID": 2,
+            "name": "ブッキングリゾート",
+            "symbol": "324A",
+            "offerDate": "2025-02-21",
+            "offerPrice": 1240.0,
+            "returnRate": 1.25,
+            "compLink": "https://finance.matsui.co.jp/ipo/324A/index",
+            "industry": {
+                "industryID": 4,
+                "industryName": "Consumer Services"
+            },
+            "market": "東証G",
+            "firstOpen": 1550.0,
+            "lastWeekClose": 1950.0,
+            "lastWeekReturnRate": 1950.0
+        },
+        {
+            "compID": 3,
+            "name": "フライヤー",
+            "symbol": "323A",
+            "offerDate": "2025-02-20",
+            "offerPrice": 680.0,
+            "returnRate": 1.73,
+            "compLink": "https://finance.matsui.co.jp/ipo/323A/index",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "market": "東証G",
+            "firstOpen": 1178.0,
+            "lastWeekClose": 856.0,
+            "lastWeekReturnRate": 856.0
+        },
+        {
+            "compID": 4,
+            "name": "技術承継機構",
+            "symbol": "319A",
+            "offerDate": "2025-02-05",
+            "offerPrice": 2000.0,
+            "returnRate": 1.35,
+            "compLink": "https://finance.matsui.co.jp/ipo/319A/index",
+            "industry": {
+                "industryID": 1,
+                "industryName": "Basic Materials"
+            },
+            "market": "東証G",
+            "firstOpen": 2700.0,
+            "lastWeekClose": 4650.0,
+            "lastWeekReturnRate": 4650.0
+        },
+        {
+            "compID": 5,
+            "name": "バルコス",
+            "symbol": "7790",
+            "offerDate": "2025-02-03",
+            "offerPrice": 1400.0,
+            "returnRate": 1.0,
+            "compLink": "https://finance.matsui.co.jp/ipo/7790/index",
+            "industry": {
+                "industryID": 9,
+                "industryName": "Other"
+            },
+            "market": "名証",
+            "firstOpen": 1401.0,
+            "lastWeekClose": 1123.0,
+            "lastWeekReturnRate": 1123.0
+        },
+        {
+            "compID": 6,
+            "name": "ビースタイルホールディングス",
+            "symbol": "302A",
+            "offerDate": "2024-12-27",
+            "offerPrice": 2070.0,
+            "returnRate": 1.61,
+            "compLink": "https://finance.matsui.co.jp/ipo/302A/index",
+            "industry": {
+                "industryID": 4,
+                "industryName": "Consumer Services"
+            },
+            "market": "東証G",
+            "firstOpen": 3325.0,
+            "lastWeekClose": 1378.0,
+            "lastWeekReturnRate": 1378.0
+        },
+        {
+            "compID": 7,
+            "name": "ＧＶＡ ＴＥＣＨ",
+            "symbol": "298A",
+            "offerDate": "2024-12-26",
+            "offerPrice": 690.0,
+            "returnRate": 1.01,
+            "compLink": "https://finance.matsui.co.jp/ipo/298A/index",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "market": "東証G",
+            "firstOpen": 700.0,
+            "lastWeekClose": 678.0,
+            "lastWeekReturnRate": 678.0
+        },
+        {
+            "compID": 8,
+            "name": "ｖｉｓｕｍｏ",
+            "symbol": "303A",
+            "offerDate": "2024-12-26",
+            "offerPrice": 770.0,
+            "returnRate": 1.35,
+            "compLink": "https://finance.matsui.co.jp/ipo/303A/index",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "market": "東証G",
+            "firstOpen": 1036.0,
+            "lastWeekClose": 1521.0,
+            "lastWeekReturnRate": 1521.0
+        },
+        {
+            "compID": 9,
+            "name": "フォルシア",
+            "symbol": "304A",
+            "offerDate": "2024-12-26",
+            "offerPrice": 1750.0,
+            "returnRate": 2.08,
+            "compLink": "https://finance.matsui.co.jp/ipo/304A/index",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "market": "東証G",
+            "firstOpen": 3640.0,
+            "lastWeekClose": 2118.0,
+            "lastWeekReturnRate": 2118.0
+        },
+        {
+            "compID": 10,
+            "name": "アルピコホールディングス",
+            "symbol": "297A",
+            "offerDate": "2024-12-25",
+            "offerPrice": 191.0,
+            "returnRate": 1.05,
+            "compLink": "https://finance.matsui.co.jp/ipo/297A/index",
+            "industry": {
+                "industryID": 9,
+                "industryName": "Other"
+            },
+            "market": "東証S",
+            "firstOpen": 201.0,
+            "lastWeekClose": 256.0,
+            "lastWeekReturnRate": 256.0
+        },
+        {
+            "compID": 11,
+            "name": "MIC",
+            "symbol": "300A",
+            "offerDate": "2024-12-25",
+            "offerPrice": 960.0,
+            "returnRate": 1.0,
+            "compLink": "https://finance.matsui.co.jp/ipo/300A/index",
+            "industry": {
+                "industryID": 4,
+                "industryName": "Consumer Services"
+            },
+            "market": "東証S",
+            "firstOpen": 960.0,
+            "lastWeekClose": 1415.0,
+            "lastWeekReturnRate": 1415.0
+        },
+        {
+            "compID": 12,
+            "name": "令和アカウンティング・ホールディングス",
+            "symbol": "296A",
+            "offerDate": "2024-12-23",
+            "offerPrice": 360.0,
+            "returnRate": 1.45,
+            "compLink": "https://finance.matsui.co.jp/ipo/296A/index",
+            "industry": {
+                "industryID": 4,
+                "industryName": "Consumer Services"
+            },
+            "market": "東証G",
+            "firstOpen": 521.0,
+            "lastWeekClose": 697.0,
+            "lastWeekReturnRate": 697.0
+        },
+        {
+            "compID": 13,
+            "name": "日本オーエー研究所",
+            "symbol": "5241",
+            "offerDate": "2024-12-23",
+            "offerPrice": 550.0,
+            "returnRate": 1.09,
+            "compLink": "https://finance.matsui.co.jp/ipo/5241/index",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "market": "名証",
+            "firstOpen": 600.0,
+            "lastWeekClose": 793.0,
+            "lastWeekReturnRate": 793.0
+        },
+        {
+            "compID": 14,
+            "name": "Synspective",
+            "symbol": "290A",
+            "offerDate": "2024-12-19",
+            "offerPrice": 480.0,
+            "returnRate": 1.53,
+            "compLink": "https://finance.matsui.co.jp/ipo/290A/index",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "market": "東証G",
+            "firstOpen": 736.0,
+            "lastWeekClose": 784.0,
+            "lastWeekReturnRate": 784.0
+        },
+        {
+            "compID": 15,
+            "name": "dely",
+            "symbol": "299A",
+            "offerDate": "2024-12-19",
+            "offerPrice": 1200.0,
+            "returnRate": 0.83,
+            "compLink": "https://finance.matsui.co.jp/ipo/299A/index",
+            "industry": {
+                "industryID": 4,
+                "industryName": "Consumer Services"
+            },
+            "market": "東証G",
+            "firstOpen": 1001.0,
+            "lastWeekClose": 1049.0,
+            "lastWeekReturnRate": 1049.0
+        },
+        {
+            "compID": 16,
+            "name": "キオクシアホールディングス",
+            "symbol": "285A",
+            "offerDate": "2024-12-18",
+            "offerPrice": 1455.0,
+            "returnRate": 0.99,
+            "compLink": "https://finance.matsui.co.jp/ipo/285A/index",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "market": "東証P",
+            "firstOpen": 1440.0,
+            "lastWeekClose": 2333.0,
+            "lastWeekReturnRate": 2333.0
+        },
+        {
+            "compID": 17,
+            "name": "黒田グループ",
+            "symbol": "287A",
+            "offerDate": "2024-12-17",
+            "offerPrice": 700.0,
+            "returnRate": 1.26,
+            "compLink": "https://finance.matsui.co.jp/ipo/287A/index",
+            "industry": {
+                "industryID": 4,
+                "industryName": "Consumer Services"
+            },
+            "market": "東証S",
+            "firstOpen": 885.0,
+            "lastWeekClose": 1135.0,
+            "lastWeekReturnRate": 1135.0
+        },
+        {
+            "compID": 18,
+            "name": "ファイントゥデイホールディングス",
+            "symbol": "289A",
+            "offerDate": "2024-12-17",
+            "offerPrice": 0.0,
+            "returnRate": 0.0,
+            "compLink": "https://finance.matsui.co.jp/ipo/289A/index",
+            "industry": {
+                "industryID": 9,
+                "industryName": "Other"
+            },
+            "market": "東証P",
+            "firstOpen": 0.0,
+            "lastWeekClose": 0.0,
+            "lastWeekReturnRate": 0.0
+        },
+        {
+            "compID": 19,
+            "name": "リスキル",
+            "symbol": "291A",
+            "offerDate": "2024-12-17",
+            "offerPrice": 3730.0,
+            "returnRate": 1.3,
+            "compLink": "https://finance.matsui.co.jp/ipo/291A/index",
+            "industry": {
+                "industryID": 4,
+                "industryName": "Consumer Services"
+            },
+            "market": "東証G",
+            "firstOpen": 4840.0,
+            "lastWeekClose": 4150.0,
+            "lastWeekReturnRate": 4150.0
+        },
+        {
+            "compID": 20,
+            "name": "ラクサス・テクノロジーズ",
+            "symbol": "288A",
+            "offerDate": "2024-12-13",
+            "offerPrice": 281.0,
+            "returnRate": 1.52,
+            "compLink": "https://finance.matsui.co.jp/ipo/288A/index",
+            "industry": {
+                "industryID": 4,
+                "industryName": "Consumer Services"
+            },
+            "market": "東証G",
+            "firstOpen": 426.0,
+            "lastWeekClose": 248.0,
+            "lastWeekReturnRate": 248.0
+        },
+        {
+            "compID": 21,
+            "name": "ユカリア",
+            "symbol": "286A",
+            "offerDate": "2024-12-12",
+            "offerPrice": 1060.0,
+            "returnRate": 0.92,
+            "compLink": "https://finance.matsui.co.jp/ipo/286A/index",
+            "industry": {
+                "industryID": 4,
+                "industryName": "Consumer Services"
+            },
+            "market": "東証G",
+            "firstOpen": 975.0,
+            "lastWeekClose": 1138.0,
+            "lastWeekReturnRate": 1138.0
+        },
+        {
+            "compID": 22,
+            "name": "インフォメティス",
+            "symbol": "281A",
+            "offerDate": "2024-12-09",
+            "offerPrice": 1080.0,
+            "returnRate": 0.92,
+            "compLink": "https://finance.matsui.co.jp/ipo/281A/index",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "market": "東証G",
+            "firstOpen": 993.0,
+            "lastWeekClose": 953.0,
+            "lastWeekReturnRate": 953.0
+        },
+        {
+            "compID": 23,
+            "name": "ＴＭＨ",
+            "symbol": "280A",
+            "offerDate": "2024-12-04",
+            "offerPrice": 1500.0,
+            "returnRate": 1.42,
+            "compLink": "https://finance.matsui.co.jp/ipo/280A/index",
+            "industry": {
+                "industryID": 4,
+                "industryName": "Consumer Services"
+            },
+            "market": "東証G",
+            "firstOpen": 2128.0,
+            "lastWeekClose": 1337.0,
+            "lastWeekReturnRate": 1337.0
+        },
+        {
+            "compID": 24,
+            "name": "グロービング",
+            "symbol": "277A",
+            "offerDate": "2024-11-29",
+            "offerPrice": 4530.0,
+            "returnRate": 1.24,
+            "compLink": "https://finance.matsui.co.jp/ipo/277A/index",
+            "industry": {
+                "industryID": 4,
+                "industryName": "Consumer Services"
+            },
+            "market": "東証G",
+            "firstOpen": 5600.0,
+            "lastWeekClose": 1694.0,
+            "lastWeekReturnRate": 1694.0
+        },
+        {
+            "compID": 25,
+            "name": "Terra Drone",
+            "symbol": "278A",
+            "offerDate": "2024-11-29",
+            "offerPrice": 2350.0,
+            "returnRate": 0.92,
+            "compLink": "https://finance.matsui.co.jp/ipo/278A/index",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "market": "東証G",
+            "firstOpen": 2162.0,
+            "lastWeekClose": 9410.0,
+            "lastWeekReturnRate": 9410.0
+        },
+        {
+            "compID": 26,
+            "name": "ククレブ・アドバイザーズ",
+            "symbol": "276A",
+            "offerDate": "2024-11-28",
+            "offerPrice": 950.0,
+            "returnRate": 1.32,
+            "compLink": "https://finance.matsui.co.jp/ipo/276A/index",
+            "industry": {
+                "industryID": 5,
+                "industryName": "Financials"
+            },
+            "market": "東証G",
+            "firstOpen": 1250.0,
+            "lastWeekClose": 3125.0,
+            "lastWeekReturnRate": 3125.0
+        },
+        {
+            "compID": 27,
+            "name": "ガーデン",
+            "symbol": "274A",
+            "offerDate": "2024-11-22",
+            "offerPrice": 3200.0,
+            "returnRate": 0.96,
+            "compLink": "https://finance.matsui.co.jp/ipo/274A/index",
+            "industry": {
+                "industryID": 9,
+                "industryName": "Other"
+            },
+            "market": "東証S",
+            "firstOpen": 3060.0,
+            "lastWeekClose": 2740.0,
+            "lastWeekReturnRate": 2740.0
+        },
+        {
+            "compID": 28,
+            "name": "Sapeet",
+            "symbol": "269A",
+            "offerDate": "2024-10-29",
+            "offerPrice": 1500.0,
+            "returnRate": 1.52,
+            "compLink": "https://finance.matsui.co.jp/ipo/269A/index",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "market": "東証G",
+            "firstOpen": 2285.0,
+            "lastWeekClose": 3350.0,
+            "lastWeekReturnRate": 3350.0
+        },
+        {
+            "compID": 29,
+            "name": "Ｈｍｃｏｍｍ",
+            "symbol": "265A",
+            "offerDate": "2024-10-28",
+            "offerPrice": 850.0,
+            "returnRate": 1.33,
+            "compLink": "https://finance.matsui.co.jp/ipo/265A/index",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "market": "東証G",
+            "firstOpen": 1128.0,
+            "lastWeekClose": 841.0,
+            "lastWeekReturnRate": 841.0
+        },
+        {
+            "compID": 30,
+            "name": "リガク・ホールディングス",
+            "symbol": "268A",
+            "offerDate": "2024-10-25",
+            "offerPrice": 1260.0,
+            "returnRate": 0.96,
+            "compLink": "https://finance.matsui.co.jp/ipo/268A/index",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "market": "東証P",
+            "firstOpen": 1205.0,
+            "lastWeekClose": 1103.0,
+            "lastWeekReturnRate": 1103.0
+        },
+        {
+            "compID": 31,
+            "name": "東京地下鉄",
+            "symbol": "9023",
+            "offerDate": "2024-10-23",
+            "offerPrice": 1200.0,
+            "returnRate": 1.36,
+            "compLink": "https://finance.matsui.co.jp/ipo/9023/index",
+            "industry": {
+                "industryID": 7,
+                "industryName": "Industrials"
+            },
+            "market": "東証P",
+            "firstOpen": 1630.0,
+            "lastWeekClose": 1778.5,
+            "lastWeekReturnRate": 1778.5
+        },
+        {
+            "compID": 32,
+            "name": "Ｓｃｈｏｏ",
+            "symbol": "264A",
+            "offerDate": "2024-10-22",
+            "offerPrice": 690.0,
+            "returnRate": 1.1,
+            "compLink": "https://finance.matsui.co.jp/ipo/264A/index",
+            "industry": {
+                "industryID": 4,
+                "industryName": "Consumer Services"
+            },
+            "market": "東証G",
+            "firstOpen": 761.0,
+            "lastWeekClose": 1605.0,
+            "lastWeekReturnRate": 1605.0
+        },
+        {
+            "compID": 33,
+            "name": "伸和ホールディングス",
+            "symbol": "7118",
+            "offerDate": "2024-10-21",
+            "offerPrice": 1650.0,
+            "returnRate": 0.93,
+            "compLink": "https://finance.matsui.co.jp/ipo/7118/index",
+            "industry": {
+                "industryID": 9,
+                "industryName": "Other"
+            },
+            "market": "札証",
+            "firstOpen": 1530.0,
+            "lastWeekClose": 3170.0,
+            "lastWeekReturnRate": 3170.0
+        },
+        {
+            "compID": 34,
+            "name": "インターメスティック",
+            "symbol": "262A",
+            "offerDate": "2024-10-18",
+            "offerPrice": 1630.0,
+            "returnRate": 1.25,
+            "compLink": "https://finance.matsui.co.jp/ipo/262A/index",
+            "industry": {
+                "industryID": 9,
+                "industryName": "Other"
+            },
+            "market": "東証P",
+            "firstOpen": 2038.0,
+            "lastWeekClose": 1805.0,
+            "lastWeekReturnRate": 1805.0
+        },
+        {
+            "compID": 35,
+            "name": "日水コン",
+            "symbol": "261A",
+            "offerDate": "2024-10-16",
+            "offerPrice": 1430.0,
+            "returnRate": 0.94,
+            "compLink": "https://finance.matsui.co.jp/ipo/261A/index",
+            "industry": {
+                "industryID": 4,
+                "industryName": "Consumer Services"
+            },
+            "market": "東証S",
+            "firstOpen": 1341.0,
+            "lastWeekClose": 2200.0,
+            "lastWeekReturnRate": 2200.0
+        },
+        {
+            "compID": 36,
+            "name": "オルツ",
+            "symbol": "260A",
+            "offerDate": "2024-10-11",
+            "offerPrice": 540.0,
+            "returnRate": 1.06,
+            "compLink": "https://finance.matsui.co.jp/ipo/260A/index",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "market": "東証G",
+            "firstOpen": 570.0,
+            "lastWeekClose": 642.0,
+            "lastWeekReturnRate": 642.0
+        },
+        {
+            "compID": 37,
+            "name": "ケイ・ウノ",
+            "symbol": "259A",
+            "offerDate": "2024-10-08",
+            "offerPrice": 2320.0,
+            "returnRate": 0.92,
+            "compLink": "https://finance.matsui.co.jp/ipo/259A/index",
+            "industry": {
+                "industryID": 9,
+                "industryName": "Other"
+            },
+            "market": "名証",
+            "firstOpen": 2134.0,
+            "lastWeekClose": 1343.0,
+            "lastWeekReturnRate": 1343.0
+        },
+        {
+            "compID": 38,
+            "name": "シマダヤ",
+            "symbol": "250A",
+            "offerDate": "2024-10-01",
+            "offerPrice": 1880.0,
+            "returnRate": 0.94,
+            "compLink": "https://finance.matsui.co.jp/ipo/250A/index",
+            "industry": {
+                "industryID": 3,
+                "industryName": "Consumer Goods"
+            },
+            "market": "東証S",
+            "firstOpen": 1760.0,
+            "lastWeekClose": 1534.0,
+            "lastWeekReturnRate": 1534.0
+        },
+        {
+            "compID": 39,
+            "name": "Ai ロボティクス",
+            "symbol": "247A",
+            "offerDate": "2024-09-27",
+            "offerPrice": 1760.0,
+            "returnRate": 1.43,
+            "compLink": "https://finance.matsui.co.jp/ipo/247A/index",
+            "industry": {
+                "industryID": 9,
+                "industryName": "Other"
+            },
+            "market": "東証G",
+            "firstOpen": 2514.0,
+            "lastWeekClose": 3340.0,
+            "lastWeekReturnRate": 3340.0
+        },
+        {
+            "compID": 40,
+            "name": "グロースエクスパートナーズ",
+            "symbol": "244A",
+            "offerDate": "2024-09-26",
+            "offerPrice": 1530.0,
+            "returnRate": 1.2,
+            "compLink": "https://finance.matsui.co.jp/ipo/244A/index",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "market": "東証G",
+            "firstOpen": 1841.0,
+            "lastWeekClose": 1654.0,
+            "lastWeekReturnRate": 1654.0
+        },
+        {
+            "compID": 41,
+            "name": "ＩＮＧＳ",
+            "symbol": "245A",
+            "offerDate": "2024-09-26",
+            "offerPrice": 1940.0,
+            "returnRate": 1.39,
+            "compLink": "https://finance.matsui.co.jp/ipo/245A/index",
+            "industry": {
+                "industryID": 9,
+                "industryName": "Other"
+            },
+            "market": "東証G",
+            "firstOpen": 2700.0,
+            "lastWeekClose": 2217.0,
+            "lastWeekReturnRate": 2217.0
+        },
+        {
+            "compID": 42,
+            "name": "アスア",
+            "symbol": "246A",
+            "offerDate": "2024-09-26",
+            "offerPrice": 680.0,
+            "returnRate": 1.48,
+            "compLink": "https://finance.matsui.co.jp/ipo/246A/index",
+            "industry": {
+                "industryID": 4,
+                "industryName": "Consumer Services"
+            },
+            "market": "東証G",
+            "firstOpen": 1004.0,
+            "lastWeekClose": 670.0,
+            "lastWeekReturnRate": 670.0
+        },
+        {
+            "compID": 43,
+            "name": "キッズスター",
+            "symbol": "248A",
+            "offerDate": "2024-09-26",
+            "offerPrice": 2560.0,
+            "returnRate": 0.86,
+            "compLink": "https://finance.matsui.co.jp/ipo/248A/index",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "market": "東証G",
+            "firstOpen": 2210.0,
+            "lastWeekClose": 1494.0,
+            "lastWeekReturnRate": 1494.0
+        },
+        {
+            "compID": 44,
+            "name": "ROXX",
+            "symbol": "241A",
+            "offerDate": "2024-09-25",
+            "offerPrice": 2110.0,
+            "returnRate": 0.92,
+            "compLink": "https://finance.matsui.co.jp/ipo/241A/index",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "market": "東証G",
+            "firstOpen": 1941.0,
+            "lastWeekClose": 1366.0,
+            "lastWeekReturnRate": 1366.0
+        },
+        {
+            "compID": 45,
+            "name": "リプライオリティ",
+            "symbol": "242A",
+            "offerDate": "2024-09-25",
+            "offerPrice": 1520.0,
+            "returnRate": 0.92,
+            "compLink": "https://finance.matsui.co.jp/ipo/242A/index",
+            "industry": {
+                "industryID": 4,
+                "industryName": "Consumer Services"
+            },
+            "market": "福証",
+            "firstOpen": 1398.0,
+            "lastWeekClose": 1150.0,
+            "lastWeekReturnRate": 1150.0
+        },
+        {
+            "compID": 46,
+            "name": "Ｃｒｏｓｓ　Ｅホールディングス",
+            "symbol": "231A",
+            "offerDate": "2024-08-29",
+            "offerPrice": 1180.0,
+            "returnRate": 0.92,
+            "compLink": "https://finance.matsui.co.jp/ipo/231A/index",
+            "industry": {
+                "industryID": 7,
+                "industryName": "Industrials"
+            },
+            "market": "福証",
+            "firstOpen": 1085.0,
+            "lastWeekClose": 838.0,
+            "lastWeekReturnRate": 838.0
+        },
+        {
+            "compID": 47,
+            "name": "オプロ",
+            "symbol": "228A",
+            "offerDate": "2024-08-21",
+            "offerPrice": 1300.0,
+            "returnRate": 1.29,
+            "compLink": "https://finance.matsui.co.jp/ipo/228A/index",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "market": "東証G",
+            "firstOpen": 1673.0,
+            "lastWeekClose": 1205.0,
+            "lastWeekReturnRate": 1205.0
+        },
+        {
+            "compID": 48,
+            "name": "Faber Company",
+            "symbol": "220A",
+            "offerDate": "2024-07-31",
+            "offerPrice": 1000.0,
+            "returnRate": 1.19,
+            "compLink": "https://finance.matsui.co.jp/ipo/220A/index",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "market": "東証S",
+            "firstOpen": 1190.0,
+            "lastWeekClose": 1051.0,
+            "lastWeekReturnRate": 1051.0
+        },
+        {
+            "compID": 49,
+            "name": "Ｈｅａｒｔｓｅｅｄ",
+            "symbol": "219A",
+            "offerDate": "2024-07-30",
+            "offerPrice": 1160.0,
+            "returnRate": 1.33,
+            "compLink": "https://finance.matsui.co.jp/ipo/219A/index",
+            "industry": {
+                "industryID": 6,
+                "industryName": "Health Care"
+            },
+            "market": "東証G",
+            "firstOpen": 1548.0,
+            "lastWeekClose": 1799.0,
+            "lastWeekReturnRate": 1799.0
+        },
+        {
+            "compID": 50,
+            "name": "Liberaware",
+            "symbol": "218A",
+            "offerDate": "2024-07-29",
+            "offerPrice": 310.0,
+            "returnRate": 1.46,
+            "compLink": "https://finance.matsui.co.jp/ipo/218A/index",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "market": "東証G",
+            "firstOpen": 454.0,
+            "lastWeekClose": 779.0,
+            "lastWeekReturnRate": 779.0
+        },
+        {
+            "compID": 51,
+            "name": "タイミー",
+            "symbol": "215A",
+            "offerDate": "2024-07-26",
+            "offerPrice": 1450.0,
+            "returnRate": 1.28,
+            "compLink": "https://finance.matsui.co.jp/ipo/215A/index",
+            "industry": {
+                "industryID": 4,
+                "industryName": "Consumer Services"
+            },
+            "market": "東証G",
+            "firstOpen": 1850.0,
+            "lastWeekClose": 1648.0,
+            "lastWeekReturnRate": 1648.0
+        },
+        {
+            "compID": 52,
+            "name": "フィットイージー",
+            "symbol": "212A",
+            "offerDate": "2024-07-23",
+            "offerPrice": 990.0,
+            "returnRate": 1.23,
+            "compLink": "https://finance.matsui.co.jp/ipo/212A/index",
+            "industry": {
+                "industryID": 4,
+                "industryName": "Consumer Services"
+            },
+            "market": "東証S",
+            "firstOpen": 1213.0,
+            "lastWeekClose": 1598.0,
+            "lastWeekReturnRate": 1598.0
+        },
+        {
+            "compID": 53,
+            "name": "カドス・コーポレーション",
+            "symbol": "211A",
+            "offerDate": "2024-07-18",
+            "offerPrice": 2900.0,
+            "returnRate": 1.11,
+            "compLink": "https://finance.matsui.co.jp/ipo/211A/index",
+            "industry": {
+                "industryID": 7,
+                "industryName": "Industrials"
+            },
+            "market": "東証S",
+            "firstOpen": 3210.0,
+            "lastWeekClose": 2649.0,
+            "lastWeekReturnRate": 2649.0
+        },
+        {
+            "compID": 54,
+            "name": "PRISM BioLab",
+            "symbol": "206A",
+            "offerDate": "2024-07-02",
+            "offerPrice": 450.0,
+            "returnRate": 1.09,
+            "compLink": "https://finance.matsui.co.jp/ipo/206A/index",
+            "industry": {
+                "industryID": 6,
+                "industryName": "Health Care"
+            },
+            "market": "東証G",
+            "firstOpen": 489.0,
+            "lastWeekClose": 307.0,
+            "lastWeekReturnRate": 307.0
+        },
+        {
+            "compID": 55,
+            "name": "ロゴスホールディングス",
+            "symbol": "205A",
+            "offerDate": "2024-06-28",
+            "offerPrice": 2290.0,
+            "returnRate": 1.0,
+            "compLink": "https://finance.matsui.co.jp/ipo/205A/index",
+            "industry": {
+                "industryID": 7,
+                "industryName": "Industrials"
+            },
+            "market": "東証G",
+            "firstOpen": 2290.0,
+            "lastWeekClose": 1182.0,
+            "lastWeekReturnRate": 1182.0
+        },
+        {
+            "compID": 56,
+            "name": "豆蔵デジタルホールディングス",
+            "symbol": "202A",
+            "offerDate": "2024-06-27",
+            "offerPrice": 1330.0,
+            "returnRate": 1.01,
+            "compLink": "https://finance.matsui.co.jp/ipo/202A/index",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "market": "東証G",
+            "firstOpen": 1348.0,
+            "lastWeekClose": 1460.0,
+            "lastWeekReturnRate": 1460.0
+        },
+        {
+            "compID": 57,
+            "name": "ＭＦＳ",
+            "symbol": "196A",
+            "offerDate": "2024-06-21",
+            "offerPrice": 400.0,
+            "returnRate": 0.92,
+            "compLink": "https://finance.matsui.co.jp/ipo/196A/index",
+            "industry": {
+                "industryID": 9,
+                "industryName": "Other"
+            },
+            "market": "東証G",
+            "firstOpen": 368.0,
+            "lastWeekClose": 413.0,
+            "lastWeekReturnRate": 413.0
+        },
+        {
+            "compID": 58,
+            "name": "WOLVES HAND",
+            "symbol": "194A",
+            "offerDate": "2024-06-20",
+            "offerPrice": 770.0,
+            "returnRate": 1.14,
+            "compLink": "https://finance.matsui.co.jp/ipo/194A/index",
+            "industry": {
+                "industryID": 4,
+                "industryName": "Consumer Services"
+            },
+            "market": "東証G",
+            "firstOpen": 875.0,
+            "lastWeekClose": 721.0,
+            "lastWeekReturnRate": 721.0
+        },
+        {
+            "compID": 59,
+            "name": "タウンズ",
+            "symbol": "197A",
+            "offerDate": "2024-06-20",
+            "offerPrice": 460.0,
+            "returnRate": 0.93,
+            "compLink": "https://finance.matsui.co.jp/ipo/197A/index",
+            "industry": {
+                "industryID": 6,
+                "industryName": "Health Care"
+            },
+            "market": "東証S",
+            "firstOpen": 430.0,
+            "lastWeekClose": 516.0,
+            "lastWeekReturnRate": 516.0
+        },
+        {
+            "compID": 60,
+            "name": "ＰｏｓｔＰｒｉｍｅ",
+            "symbol": "198A",
+            "offerDate": "2024-06-20",
+            "offerPrice": 450.0,
+            "returnRate": 1.0,
+            "compLink": "https://finance.matsui.co.jp/ipo/198A/index",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "market": "東証G",
+            "firstOpen": 450.0,
+            "lastWeekClose": 625.0,
+            "lastWeekReturnRate": 625.0
+        },
+        {
+            "compID": 61,
+            "name": "ライスカレー",
+            "symbol": "195A",
+            "offerDate": "2024-06-19",
+            "offerPrice": 1420.0,
+            "returnRate": 1.1,
+            "compLink": "https://finance.matsui.co.jp/ipo/195A/index",
+            "industry": {
+                "industryID": 4,
+                "industryName": "Consumer Services"
+            },
+            "market": "東証G",
+            "firstOpen": 1560.0,
+            "lastWeekClose": 682.0,
+            "lastWeekReturnRate": 682.0
+        },
+        {
+            "compID": 62,
+            "name": "インテグループ",
+            "symbol": "192A",
+            "offerDate": "2024-06-18",
+            "offerPrice": 3960.0,
+            "returnRate": 1.5,
+            "compLink": "https://finance.matsui.co.jp/ipo/192A/index",
+            "industry": {
+                "industryID": 4,
+                "industryName": "Consumer Services"
+            },
+            "market": "東証G",
+            "firstOpen": 5940.0,
+            "lastWeekClose": 3885.0,
+            "lastWeekReturnRate": 3885.0
+        },
+        {
+            "compID": 63,
+            "name": "Ｃｈｏｒｄｉａ　Ｔｈｅｒａｐｅｕｔｉｃｓ",
+            "symbol": "190A",
+            "offerDate": "2024-06-14",
+            "offerPrice": 153.0,
+            "returnRate": 1.67,
+            "compLink": "https://finance.matsui.co.jp/ipo/190A/index",
+            "industry": {
+                "industryID": 6,
+                "industryName": "Health Care"
+            },
+            "market": "東証G",
+            "firstOpen": 255.0,
+            "lastWeekClose": 264.0,
+            "lastWeekReturnRate": 264.0
+        },
+        {
+            "compID": 64,
+            "name": "Ｄ＆Ｍカンパニー",
+            "symbol": "189A",
+            "offerDate": "2024-06-11",
+            "offerPrice": 1000.0,
+            "returnRate": 1.31,
+            "compLink": "https://finance.matsui.co.jp/ipo/189A/index",
+            "industry": {
+                "industryID": 4,
+                "industryName": "Consumer Services"
+            },
+            "market": "東証G",
+            "firstOpen": 1308.0,
+            "lastWeekClose": 793.0,
+            "lastWeekReturnRate": 793.0
+        },
+        {
+            "compID": 65,
+            "name": "アストロスケールホールディングス",
+            "symbol": "186A",
+            "offerDate": "2024-06-05",
+            "offerPrice": 850.0,
+            "returnRate": 1.51,
+            "compLink": "https://finance.matsui.co.jp/ipo/186A/index",
+            "industry": {
+                "industryID": 4,
+                "industryName": "Consumer Services"
+            },
+            "market": "東証G",
+            "firstOpen": 1281.0,
+            "lastWeekClose": 719.0,
+            "lastWeekReturnRate": 719.0
+        },
+        {
+            "compID": 66,
+            "name": "学びエイド",
+            "symbol": "184A",
+            "offerDate": "2024-05-28",
+            "offerPrice": 970.0,
+            "returnRate": 1.32,
+            "compLink": "https://finance.matsui.co.jp/ipo/184A/index",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "market": "東証G",
+            "firstOpen": 1282.0,
+            "lastWeekClose": 503.0,
+            "lastWeekReturnRate": 503.0
+        },
+        {
+            "compID": 67,
+            "name": "コージンバイオ",
+            "symbol": "177A",
+            "offerDate": "2024-04-25",
+            "offerPrice": 1900.0,
+            "returnRate": 1.07,
+            "compLink": "https://finance.matsui.co.jp/ipo/177A/index",
+            "industry": {
+                "industryID": 9,
+                "industryName": "Other"
+            },
+            "market": "東証G",
+            "firstOpen": 2030.0,
+            "lastWeekClose": 1751.0,
+            "lastWeekReturnRate": 1751.0
+        },
+        {
+            "compID": 68,
+            "name": "レジル",
+            "symbol": "176A",
+            "offerDate": "2024-04-24",
+            "offerPrice": 1200.0,
+            "returnRate": 1.0,
+            "compLink": "https://finance.matsui.co.jp/ipo/176A/index",
+            "industry": {
+                "industryID": 8,
+                "industryName": "Oil & Gas"
+            },
+            "market": "東証G",
+            "firstOpen": 1205.0,
+            "lastWeekClose": 2384.0,
+            "lastWeekReturnRate": 2384.0
+        },
+        {
+            "compID": 69,
+            "name": "Will Smart",
+            "symbol": "175A",
+            "offerDate": "2024-04-16",
+            "offerPrice": 1656.0,
+            "returnRate": 0.95,
+            "compLink": "https://finance.matsui.co.jp/ipo/175A/index",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "market": "東証G",
+            "firstOpen": 1580.0,
+            "lastWeekClose": 883.0,
+            "lastWeekReturnRate": 883.0
+        },
+        {
+            "compID": 70,
+            "name": "ハンモック",
+            "symbol": "173A",
+            "offerDate": "2024-04-11",
+            "offerPrice": 2060.0,
+            "returnRate": 1.05,
+            "compLink": "https://finance.matsui.co.jp/ipo/173A/index",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "market": "東証G",
+            "firstOpen": 2160.0,
+            "lastWeekClose": 1449.0,
+            "lastWeekReturnRate": 1449.0
+        },
+        {
+            "compID": 71,
+            "name": "イタミアート",
+            "symbol": "168A",
+            "offerDate": "2024-04-08",
+            "offerPrice": 1600.0,
+            "returnRate": 1.25,
+            "compLink": "https://finance.matsui.co.jp/ipo/168A/index",
+            "industry": {
+                "industryID": 9,
+                "industryName": "Other"
+            },
+            "market": "東証G",
+            "firstOpen": 2000.0,
+            "lastWeekClose": 1129.0,
+            "lastWeekReturnRate": 1129.0
+        },
+        {
+            "compID": 72,
+            "name": "アズパートナーズ",
+            "symbol": "160A",
+            "offerDate": "2024-04-04",
+            "offerPrice": 1920.0,
+            "returnRate": 1.52,
+            "compLink": "https://finance.matsui.co.jp/ipo/160A/index",
+            "industry": {
+                "industryID": 4,
+                "industryName": "Consumer Services"
+            },
+            "market": "東証S",
+            "firstOpen": 2923.0,
+            "lastWeekClose": 1877.0,
+            "lastWeekReturnRate": 1877.0
+        },
+        {
+            "compID": 73,
+            "name": "マテリアルグループ",
+            "symbol": "156A",
+            "offerDate": "2024-03-29",
+            "offerPrice": 1180.0,
+            "returnRate": 0.92,
+            "compLink": "https://finance.matsui.co.jp/ipo/156A/index",
+            "industry": {
+                "industryID": 4,
+                "industryName": "Consumer Services"
+            },
+            "market": "東証G",
+            "firstOpen": 1085.0,
+            "lastWeekClose": 667.0,
+            "lastWeekReturnRate": 667.0
+        },
+        {
+            "compID": 74,
+            "name": "グリーンモンスター",
+            "symbol": "157A",
+            "offerDate": "2024-03-29",
+            "offerPrice": 980.0,
+            "returnRate": 1.73,
+            "compLink": "https://finance.matsui.co.jp/ipo/157A/index",
+            "industry": {
+                "industryID": 4,
+                "industryName": "Consumer Services"
+            },
+            "market": "東証G",
+            "firstOpen": 1700.0,
+            "lastWeekClose": 531.0,
+            "lastWeekReturnRate": 531.0
+        },
+        {
+            "compID": 75,
+            "name": "カウリス",
+            "symbol": "153A",
+            "offerDate": "2024-03-28",
+            "offerPrice": 1530.0,
+            "returnRate": 1.88,
+            "compLink": "https://finance.matsui.co.jp/ipo/153A/index",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "market": "東証G",
+            "firstOpen": 2875.0,
+            "lastWeekClose": 1382.0,
+            "lastWeekReturnRate": 1382.0
+        },
+        {
+            "compID": 76,
+            "name": "情報戦略テクノロジー",
+            "symbol": "155A",
+            "offerDate": "2024-03-28",
+            "offerPrice": 460.0,
+            "returnRate": 2.22,
+            "compLink": "https://finance.matsui.co.jp/ipo/155A/index",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "market": "東証G",
+            "firstOpen": 1021.0,
+            "lastWeekClose": 447.0,
+            "lastWeekReturnRate": 447.0
+        },
+        {
+            "compID": 77,
+            "name": "コロンビア・ワークス",
+            "symbol": "146A",
+            "offerDate": "2024-03-27",
+            "offerPrice": 3300.0,
+            "returnRate": 1.13,
+            "compLink": "https://finance.matsui.co.jp/ipo/146A/index",
+            "industry": {
+                "industryID": 5,
+                "industryName": "Financials"
+            },
+            "market": "東証S",
+            "firstOpen": 3745.0,
+            "lastWeekClose": 4115.0,
+            "lastWeekReturnRate": 4115.0
+        },
+        {
+            "compID": 78,
+            "name": "シンカ",
+            "symbol": "149A",
+            "offerDate": "2024-03-27",
+            "offerPrice": 1320.0,
+            "returnRate": 1.27,
+            "compLink": "https://finance.matsui.co.jp/ipo/149A/index",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "market": "東証G",
+            "firstOpen": 1671.0,
+            "lastWeekClose": 786.0,
+            "lastWeekReturnRate": 786.0
+        },
+        {
+            "compID": 79,
+            "name": "ダイブ",
+            "symbol": "151A",
+            "offerDate": "2024-03-27",
+            "offerPrice": 1820.0,
+            "returnRate": 1.77,
+            "compLink": "https://finance.matsui.co.jp/ipo/151A/index",
+            "industry": {
+                "industryID": 4,
+                "industryName": "Consumer Services"
+            },
+            "market": "東証G",
+            "firstOpen": 3225.0,
+            "lastWeekClose": 874.0,
+            "lastWeekReturnRate": 874.0
+        },
+        {
+            "compID": 80,
+            "name": "L is B",
+            "symbol": "145A",
+            "offerDate": "2024-03-26",
+            "offerPrice": 1188.0,
+            "returnRate": 1.31,
+            "compLink": "https://finance.matsui.co.jp/ipo/145A/index",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "market": "東証G",
+            "firstOpen": 1553.0,
+            "lastWeekClose": 654.0,
+            "lastWeekReturnRate": 654.0
+        },
+        {
+            "compID": 81,
+            "name": "ソラコム",
+            "symbol": "147A",
+            "offerDate": "2024-03-26",
+            "offerPrice": 870.0,
+            "returnRate": 1.8,
+            "compLink": "https://finance.matsui.co.jp/ipo/147A/index",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "market": "東証G",
+            "firstOpen": 1563.0,
+            "lastWeekClose": 1130.0,
+            "lastWeekReturnRate": 1130.0
+        },
+        {
+            "compID": 82,
+            "name": "ハッチ・ワーク",
+            "symbol": "148A",
+            "offerDate": "2024-03-26",
+            "offerPrice": 2160.0,
+            "returnRate": 1.3,
+            "compLink": "https://finance.matsui.co.jp/ipo/148A/index",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "market": "東証G",
+            "firstOpen": 2815.0,
+            "lastWeekClose": 1596.0,
+            "lastWeekReturnRate": 1596.0
+        },
+        {
+            "compID": 83,
+            "name": "ＪＳＨ",
+            "symbol": "150A",
+            "offerDate": "2024-03-26",
+            "offerPrice": 456.0,
+            "returnRate": 1.96,
+            "compLink": "https://finance.matsui.co.jp/ipo/150A/index",
+            "industry": {
+                "industryID": 4,
+                "industryName": "Consumer Services"
+            },
+            "market": "東証G",
+            "firstOpen": 893.0,
+            "lastWeekClose": 599.0,
+            "lastWeekReturnRate": 599.0
+        },
+        {
+            "compID": 84,
+            "name": "イシン",
+            "symbol": "143A",
+            "offerDate": "2024-03-25",
+            "offerPrice": 1080.0,
+            "returnRate": 2.07,
+            "compLink": "https://finance.matsui.co.jp/ipo/143A/index",
+            "industry": {
+                "industryID": 4,
+                "industryName": "Consumer Services"
+            },
+            "market": "東証G",
+            "firstOpen": 2234.0,
+            "lastWeekClose": 905.0,
+            "lastWeekReturnRate": 905.0
+        },
+        {
+            "compID": 85,
+            "name": "ジンジブ",
+            "symbol": "142A",
+            "offerDate": "2024-03-22",
+            "offerPrice": 1750.0,
+            "returnRate": 2.27,
+            "compLink": "https://finance.matsui.co.jp/ipo/142A/index",
+            "industry": {
+                "industryID": 4,
+                "industryName": "Consumer Services"
+            },
+            "market": "東証G",
+            "firstOpen": 3980.0,
+            "lastWeekClose": 614.0,
+            "lastWeekReturnRate": 614.0
+        },
+        {
+            "compID": 86,
+            "name": "トライアルホールディングス",
+            "symbol": "141A",
+            "offerDate": "2024-03-21",
+            "offerPrice": 1700.0,
+            "returnRate": 1.3,
+            "compLink": "https://finance.matsui.co.jp/ipo/141A/index",
+            "industry": {
+                "industryID": 9,
+                "industryName": "Other"
+            },
+            "market": "東証G",
+            "firstOpen": 2215.0,
+            "lastWeekClose": 1986.0,
+            "lastWeekReturnRate": 1986.0
+        },
+        {
+            "compID": 87,
+            "name": "ＳＴＧ",
+            "symbol": "5858",
+            "offerDate": "2024-03-21",
+            "offerPrice": 1920.0,
+            "returnRate": 1.67,
+            "compLink": "https://finance.matsui.co.jp/ipo/5858/index",
+            "industry": {
+                "industryID": 9,
+                "industryName": "Other"
+            },
+            "market": "東証G",
+            "firstOpen": 3215.0,
+            "lastWeekClose": 3540.0,
+            "lastWeekReturnRate": 3540.0
+        },
+        {
+            "compID": 88,
+            "name": "Cocolive",
+            "symbol": "137A",
+            "offerDate": "2024-02-28",
+            "offerPrice": 1780.0,
+            "returnRate": 2.24,
+            "compLink": "https://finance.matsui.co.jp/ipo/137A/index",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "market": "東証G",
+            "firstOpen": 3990.0,
+            "lastWeekClose": 1233.0,
+            "lastWeekReturnRate": 1233.0
+        },
+        {
+            "compID": 89,
+            "name": "光フードサービス",
+            "symbol": "138A",
+            "offerDate": "2024-02-28",
+            "offerPrice": 2660.0,
+            "returnRate": 2.2,
+            "compLink": "https://finance.matsui.co.jp/ipo/138A/index",
+            "industry": {
+                "industryID": 9,
+                "industryName": "Other"
+            },
+            "market": "東証G",
+            "firstOpen": 5850.0,
+            "lastWeekClose": 2261.0,
+            "lastWeekReturnRate": 2261.0
+        },
+        {
+            "compID": 90,
+            "name": "ＶＲＡＩＮ　Ｓｏｌｕｔｉｏｎ",
+            "symbol": "135A",
+            "offerDate": "2024-02-22",
+            "offerPrice": 2990.0,
+            "returnRate": 1.74,
+            "compLink": "https://finance.matsui.co.jp/ipo/135A/index",
+            "industry": {
+                "industryID": 10,
+                "industryName": "Technology"
+            },
+            "market": "東証G",
+            "firstOpen": 5190.0,
+            "lastWeekClose": 2323.0,
+            "lastWeekReturnRate": 2323.0
+        },
+        {
+            "compID": 91,
+            "name": "Veritas In Silico",
+            "symbol": "130A",
+            "offerDate": "2024-02-08",
+            "offerPrice": 1000.0,
+            "returnRate": 2.0,
+            "compLink": "https://finance.matsui.co.jp/ipo/130A/index",
+            "industry": {
+                "industryID": 6,
+                "industryName": "Health Care"
+            },
+            "market": "東証G",
+            "firstOpen": 2001.0,
+            "lastWeekClose": 839.0,
+            "lastWeekReturnRate": 839.0
+        },
+        {
+            "compID": 92,
+            "name": "SOLIZE",
+            "symbol": "5871",
+            "offerDate": "2024-02-07",
+            "offerPrice": 1470.0,
+            "returnRate": 1.37,
+            "compLink": "https://finance.matsui.co.jp/ipo/5871/index",
+            "industry": {
+                "industryID": 4,
+                "industryName": "Consumer Services"
+            },
+            "market": "東証S",
+            "firstOpen": 2020.0,
+            "lastWeekClose": 1547.0,
+            "lastWeekReturnRate": 1547.0
+        }
+    ]
+}

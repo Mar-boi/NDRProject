@@ -4,7 +4,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useState } from "react";
 import axios from "axios";
 import { useAuth } from "./assets/context/AuthContext";
-import { useTranslation } from "./TranslationContext";
+import { useTranslation } from "./assets/context/TranslationContext";
 
 type FormFields = {
   username: string;

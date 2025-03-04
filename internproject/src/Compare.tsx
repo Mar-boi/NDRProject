@@ -1,6 +1,6 @@
 import "./Compare.css";
 import React, { useEffect, useState } from "react";
-import { useTranslation } from "./TranslationContext";
+import { useTranslation } from "./assets/context/TranslationContext";
 
 const Compare = () => {
   const [symbolA, setSymbolA] = useState("");

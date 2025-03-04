@@ -27,10 +27,17 @@
   "industry": "Industry",
   "offer_date": "Offer date",
   "shares_millions": "Shares (Millions)",
+  "market": "Market",
   "offer_price": "Offer Price",
   "first_day_close": "1st Day Close",
+  "first_day_open": "First Open",
   "current_price": "Current Price",
+  "last_week_close": "Last Week Close",
   "return": "Return",
+
+  "switch_btn": "Switch IPO Table to ",
+  "us": "USA",
+  "jp": "Japan",
   
   "profile": "Profile",
   "new_password": "New Password",
