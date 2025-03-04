@@ -3,6 +3,7 @@ import Moment from "moment";
 import { useTranslation } from "../assets/context/TranslationContext";
 import { CompanyUS, industries, Language, tableHeaderUS } from "../assets/model/model";
 import { useSearch } from "../assets/context/SearchContext";
+import { formatNumber } from "../assets/model/Util";
 
 interface TableUSProps {
   datas: CompanyUS[]; 
@@ -190,9 +191,9 @@ export default function TableUS({
                   </td>
                   <td>{formatDate(data.offerDate)}</td>
                   <td>{data.shares}</td>
-                  <td>${data.offerPrice}</td>
-                  <td>${data.firstClose}</td>
-                  <td>${data.currentPrice}</td>
+                  <td>{formatNumber(data.offerPrice)}</td>
+                  <td>{formatNumber(data.firstClose)}</td>
+                  <td>{formatNumber(data.currentPrice)}</td>
                   <td>{data.returnRate}%</td>
                 </tr>
               ))}

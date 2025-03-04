@@ -3,6 +3,7 @@ import Moment from "moment";
 import { useTranslation } from "../assets/context/TranslationContext";
 import { CompanyJP, industries, Language, tableHeaderJP } from "../assets/model/model";
 import { useSearch } from "../assets/context/SearchContext";
+import { formatNumber } from "../assets/model/Util";
 
 interface TableJPProps {
   datas: CompanyJP[]; 
@@ -199,9 +200,9 @@ export default function TableJP({
                   </td>
                   <td>{formatDate(data.offerDate)}</td>
                   <td>{data.market}</td>
-                  <td>￥{data.offerPrice}</td>
-                  <td>￥{data.firstOpen}</td>
-                  <td>￥{data.lastWeekClose}</td>
+                  <td>{formatNumber(data.offerPrice, "￥")}</td>
+                  <td>{formatNumber(data.firstOpen, "￥")}</td>
+                  <td>{formatNumber(data.lastWeekClose, "￥")}</td>
                   <td>{data.returnRate}%</td>
                 </tr>
               ))}
