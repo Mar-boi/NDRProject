@@ -26,7 +26,6 @@ function Table() {
   });
   const [filteredCompany, setFilteredCompany] = useState<any>([]);
   const [selectedCompany, setSelectedCompany] = useState<any>([]);
-  const [selectedSymbol, setSelectedSymbol] = useState<string>("");
   const [chartData, setChartData] = useState<any[]>([]); // too complex im cooming
   const [loading, setLoading] = useState<boolean>(false);
   const [timeRange, setTimeRange] = useState<string>("7d");
@@ -34,6 +33,7 @@ function Table() {
   const [entriesPerPage, setEntriesPerPage] = useState<number>(10);
   const [sortConfig, setSortConfig] = useState({
     key: "offerDate",
+    type: "date",
     ascending: false,
   });
   const [previousClosePrice, setPreviousClosePrice] = useState<number | null>(

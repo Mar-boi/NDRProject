@@ -7,8 +7,6 @@ const Compare = () => {
   const [symbolB, setSymbolB] = useState("");
   const [dataA, setDataA] = useState<any>(null);
   const [dataB, setDataB] = useState<any>(null);
-  // const [aCurrency, setACurrency] = useState<string | undefined>(undefined);
-  // const [bCurrency, setBCurrency] = useState<string | undefined>(undefined);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const { translations } = useTranslation();
