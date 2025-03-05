@@ -1,4 +1,4 @@
-import React, { SetStateAction, useEffect, useState,Dispatch } from "react";
+import React, { SetStateAction, useEffect, useState,Dispatch, useMemo } from "react";
 import Moment from "moment";
 import { useTranslation } from "../assets/context/TranslationContext";
 import { CompanyJP, industries, Language, tableHeaderJP } from "../assets/model/model";
@@ -38,55 +38,61 @@ export default function TableJP({
 
   const formatDate = (value:moment.MomentInput) => Moment(value).format("yyyy/MM/DD");
 
-  // Updated when sorting, search term is changed
-  // filtered then sort
   useEffect(() => {
-      // Filter the data based on the search term
-      const filtered = searchTerm
+      if (!datas.some((item) => item.hasOwnProperty(sortConfig.key))) {
+        setSortConfig({
+          key: "offerDate", // Reset to default column
+          type: "date",
+          ascending: false,
+        });
+      }
+    }, [datas]);
+  
+    const filteredData = useMemo(() => {
+      return searchTerm
         ? datas.filter((item) =>
             item.symbol.toLowerCase().includes(searchTerm.toLowerCase())
           )
         : datas;
+    }, [searchTerm, datas]);
     
-      // Apply sorting after filtering (ensure sorting persists)
-      const sortedData = [...filtered].sort((a: Record<string, any>, b: Record<string, any>) => {
-        const { key, ascending, type } = sortConfig;
+    useEffect(() => {
+  
+      // Apply sorting to filtered data
+      let { key, ascending, type } = sortConfig;
+      console.log("header");
+      const header = tableHeaderJP.find(item => item.key === key);
+       
+        if(header === undefined) { 
+          key = "offerDate";
+          ascending = false;
+          type = "date";
+        }
+  
+      const sortedData = [...filteredData].sort((a: Record<string, any>, b: Record<string, any>) => {
+        
         let valA = key.includes(".")
-          ? key.split(".").reduce((o: { [x: string]: any; }, i: string | number) => o[i], a) // it was just (o,i) but I made it infer types
+          ? key.split(".").reduce((o: { [x: string]: any; }, i: string | number) => o[i], a)
           : a[key];
         let valB = key.includes(".")
           ? key.split(".").reduce((o: { [x: string]: any; }, i: string | number) => o[i], b)
           : b[key];
     
         if (type === "number") return ascending ? valA - valB : valB - valA;
+        if (type === "text") return ascending ? valA.localeCompare(valB) : valB.localeCompare(valA);
+        if (type === "date") return ascending ? new Date(valA).getTime() - new Date(valB).getTime() : new Date(valB).getTime() - new Date(valA).getTime();
     
-        if (type === "text") {
-          return ascending
-            ? valA.localeCompare(valB)
-            : valB.localeCompare(valA);
-        }
-    
-        if (type === "date") {
-          const dateA = new Date(valA).getTime();
-          const dateB = new Date(valB).getTime();
-          
-          return ascending ? dateA - dateB : dateB - dateA;
-        }
-    
-        return 0; // Default case if no sorting condition is met
+        return 0;
       });
     
-      // Set the filtered and sorted data
       setFilteredCompany(sortedData);
-    }, [searchTerm, datas, sortConfig]);
-  
-    // use exclusively for useEffect above
+    }, [filteredData, sortConfig]); // Depend only on filtered data & sorting config
+    
     const sortTable = (key: string, type: "number" | "text" | "date") => {
       const newAscending = sortConfig.key === key ? !sortConfig.ascending : true;
-    
-      // Update the sortConfig
       setSortConfig({ key, type, ascending: newAscending });
     };
+
 
   const totalPages = Math.ceil(filteredCompany.length / entriesPerPage);
   const startIndex = (currentPage - 1) * entriesPerPage;

@@ -61,16 +61,12 @@ function Table() {
       alert("Fail to fetch")
       console.log("Fail to fetch");
     }
+
+    // Using sample data
     // setCompany(importData);
     // setFilteredCompany(importData.companyUS);
   };
 
-    // Update filtered company on changing country I don't think this is needed becauses each table sets the filteredCompany to its data automatically where there is no search term
-    // useEffect(() => {
-    //   if (company.companyUS.length > 0 || company.companyJP.length > 0) {
-    //     setFilteredCompany(isJP ? company.companyJP : company.companyUS);
-    //   }
-    // }, [isJP, company]);
 
   // Updating chart
   useEffect(() => {
@@ -100,8 +96,6 @@ function Table() {
         }
       }
 
-      // console.log(marketSymbol)
-
       const response = await axios.get(
         `http://localhost:8000/stockHistory/${querySymbol}?period=${timeRange}`
       );
@@ -122,20 +116,6 @@ function Table() {
       setLoading(false);
     }
   };
-
-  // const fetchStockData = async (symbol: string, period: string) => {
-  //   setLoading(true);
-  //   try {
-  //     const response = await axios.get(
-  //       `http://localhost:8000/stockHistory/${symbol}?period=${period}`
-  //     );
-  //     setChartData(response.data);
-  //   } catch (error) {
-  //     console.error("Error fetching stock data", error);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
 
   const handleSearchChange = (e: {
     target: { value: SetStateAction<string> };

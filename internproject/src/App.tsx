@@ -9,6 +9,7 @@ import Login from "./pages/Login";
 import { Profile } from "./pages/Profile";
 import Signup from "./pages/Signup";
 import { SearchProvider } from "./assets/context/SearchContext";
+import ProtectedRoute from "./assets/model/ProtectedRoute";
 
 function App() {
   return (
@@ -23,7 +24,10 @@ function App() {
                 <Route path="/compare" element={<Compare />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
-                <Route path="/profile" element={<Profile />} />
+                <Route
+                  path="/profile"
+                  element={<ProtectedRoute element={<Profile />} />}
+                />
               </Routes>
             </BrowserRouter>
           </SearchProvider>
