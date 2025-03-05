@@ -353,7 +353,7 @@ function Table() {
                             />
                             <Tooltip
                               formatter={(value, name) =>
-                                name === "close" ? `$${value}` : value
+                                name === "close" ? formatNumber(+value, selectedCompany.market ?"￥":undefined) : value
                               }
                               labelFormatter={(value) =>
                                 `Date: ${Moment(value).format("YYYY/MM/DD")}`
