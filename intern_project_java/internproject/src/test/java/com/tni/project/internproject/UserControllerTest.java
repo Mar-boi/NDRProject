@@ -71,7 +71,7 @@ public class UserControllerTest {
 		mockMvc.perform(
 				MockMvcRequestBuilders.post("/login").contentType(MediaType.APPLICATION_JSON).content(jsonString))
 				.andExpect(MockMvcResultMatchers.status().isBadRequest())
-				.andExpect(MockMvcResultMatchers.content().string("Cannot find user"));
+				.andExpect(MockMvcResultMatchers.content().string("userNotFound"));
 	}
 
 	@Test
@@ -84,7 +84,7 @@ public class UserControllerTest {
 		mockMvc.perform(
 				MockMvcRequestBuilders.post("/login").contentType(MediaType.APPLICATION_JSON).content(jsonString))
 				.andExpect(MockMvcResultMatchers.status().isBadRequest())
-				.andExpect(MockMvcResultMatchers.content().string("Cannot find user"));
+				.andExpect(MockMvcResultMatchers.content().string("userNotFound"));
 	}
 
 	@Test
@@ -103,7 +103,7 @@ public class UserControllerTest {
 
 		mockMvc.perform(MockMvcRequestBuilders.post("/signup").contentType(MediaType.APPLICATION_JSON).content(json))
 				.andExpect(MockMvcResultMatchers.status().isBadRequest())
-				.andExpect(MockMvcResultMatchers.content().string("Email is already taken"));
+				.andExpect(MockMvcResultMatchers.content().string("emailTaken"));
 	}
 
 	@Test
@@ -112,7 +112,7 @@ public class UserControllerTest {
 
 		mockMvc.perform(MockMvcRequestBuilders.post("/signup").contentType(MediaType.APPLICATION_JSON).content(json))
 				.andExpect(MockMvcResultMatchers.status().isBadRequest())
-				.andExpect(MockMvcResultMatchers.content().string("Username is already taken"));
+				.andExpect(MockMvcResultMatchers.content().string("usernameTaken"));
 	}
 
 	@Test
@@ -121,7 +121,7 @@ public class UserControllerTest {
 
 		mockMvc.perform(MockMvcRequestBuilders.post("/signup").contentType(MediaType.APPLICATION_JSON).content(json))
 				.andExpect(MockMvcResultMatchers.status().isBadRequest())
-				.andExpect(MockMvcResultMatchers.content().string("Passwords don't match"));
+				.andExpect(MockMvcResultMatchers.content().string("passwordMismatch"));
 	}
 
 	@Test
@@ -219,7 +219,7 @@ public class UserControllerTest {
 		mockMvc.perform(
 				MockMvcRequestBuilders.put("/updateProfile").contentType(MediaType.APPLICATION_JSON).content(json))
 				.andExpect(MockMvcResultMatchers.status().isBadRequest())
-				.andExpect(MockMvcResultMatchers.content().string("Email is already taken"));
+				.andExpect(MockMvcResultMatchers.content().string("emailTaken"));
 
 		// 2. Wrong format
 		String json2 = generateProfileJSON(2, "boubakiki.com", "bobcat", "", "");
@@ -227,7 +227,7 @@ public class UserControllerTest {
 		mockMvc.perform(
 				MockMvcRequestBuilders.put("/updateProfile").contentType(MediaType.APPLICATION_JSON).content(json2))
 				.andExpect(MockMvcResultMatchers.status().isBadRequest())
-				.andExpect(MockMvcResultMatchers.content().string("Invalid email format"));
+				.andExpect(MockMvcResultMatchers.content().string("invalidEmailFormat"));
 	}
 
 	@Test
@@ -239,7 +239,7 @@ public class UserControllerTest {
 		mockMvc.perform(
 				MockMvcRequestBuilders.put("/updateProfile").contentType(MediaType.APPLICATION_JSON).content(json))
 				.andExpect(MockMvcResultMatchers.status().isBadRequest())
-				.andExpect(MockMvcResultMatchers.content().string("Username is already taken"));
+				.andExpect(MockMvcResultMatchers.content().string("usernameTaken"));
 
 		// 2. Null username
 		String json2 = generateProfileJSON(2, "boubakiki@tni.ac.th", "", "", "");
@@ -247,7 +247,7 @@ public class UserControllerTest {
 		mockMvc.perform(
 				MockMvcRequestBuilders.put("/updateProfile").contentType(MediaType.APPLICATION_JSON).content(json2))
 				.andExpect(MockMvcResultMatchers.status().isBadRequest())
-				.andExpect(MockMvcResultMatchers.content().string("Username cannot be null"));
+				.andExpect(MockMvcResultMatchers.content().string("usernameCannotBeNull"));
 	}
 
 	@Test
@@ -271,7 +271,7 @@ public class UserControllerTest {
 		mockMvc.perform(
 				MockMvcRequestBuilders.put("/updateProfile").contentType(MediaType.APPLICATION_JSON).content(json))
 				.andExpect(MockMvcResultMatchers.status().isBadRequest())
-				.andExpect(MockMvcResultMatchers.content().string("Current password does not match"));
+				.andExpect(MockMvcResultMatchers.content().string("currentPasswordMismatch"));
 
 		// 2. Wrong new password length
 		String json2 = generateProfileJSON(2, "boubakiki@tni.ac.th", "Bouba", "12345678", "newPass");
@@ -279,7 +279,7 @@ public class UserControllerTest {
 		mockMvc.perform(
 				MockMvcRequestBuilders.put("/updateProfile").contentType(MediaType.APPLICATION_JSON).content(json2))
 				.andExpect(MockMvcResultMatchers.status().isBadRequest())
-				.andExpect(MockMvcResultMatchers.content().string("New password must contain at least 8 characters"));
+				.andExpect(MockMvcResultMatchers.content().string("newPasswordLength"));
 	}
 
 

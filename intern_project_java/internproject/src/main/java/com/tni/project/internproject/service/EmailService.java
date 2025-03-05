@@ -1,41 +1,35 @@
 package com.tni.project.internproject.service;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.lang.annotation.ElementType;
-import java.nio.charset.StandardCharsets;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
+import java.util.Locale;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
-import com.tni.project.internproject.controller.EmailController;
-import com.tni.project.internproject.model.Company;
 import com.tni.project.internproject.model.CompanyUS;
 import com.tni.project.internproject.model.User;
 import com.tni.project.internproject.repo.CompanyUSRepo;
-import com.tni.project.internproject.repo.EmailRepo;
 import com.tni.project.internproject.repo.IndustryRepo;
 import com.tni.project.internproject.repo.UserIndustryRepo;
 import com.tni.project.internproject.repo.UserRepo;
 
 import jakarta.mail.internet.MimeMessage;
-import jakarta.persistence.Table;
 
 @Service
 @Scope("prototype")
@@ -53,6 +47,10 @@ public class EmailService {
 	private JavaMailSender mailSender;
 	
 	DateFormat dateFrm = new SimpleDateFormat("yyyy/M/d");
+	DateTimeFormatter formatter =
+		    DateTimeFormatter.ofPattern("yyyy-MM-dd")
+		                     .withLocale( Locale.JAPAN )
+		                     .withZone( ZoneId.systemDefault() );
 
 	public void sendEmail(int userID) {
 		// Query a user
@@ -83,7 +81,7 @@ public class EmailService {
 			MimeMessageHelper helper = new MimeMessageHelper(message, false);
 			helper.setFrom("bank200074@gmail.com");
 			helper.setTo(user.getUserEmail());
-			helper.setSubject("IPO Companies Update: " + Instant.now());
+			helper.setSubject("IPO Companies Update: " + getDate());
 
 //			try (var inputStream = Objects.requireNonNull(
 //					EmailService.class.getResourceAsStream("/templates/output_" + user.getUserID() + ".html"))) {
@@ -101,6 +99,12 @@ public class EmailService {
 			System.out.println(e.getMessage());
 		}
 
+	}
+	
+	private String getDate() {
+		Instant instant = Instant.now();
+		String dateString = formatter.format( instant );
+		return dateString;
 	}
 
 	private String appendIndustry(List<Integer> industryList, int userID, String emailContent) {

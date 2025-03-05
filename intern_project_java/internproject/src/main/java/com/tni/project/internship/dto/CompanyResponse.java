@@ -25,7 +25,5 @@ public class CompanyResponse {
 	public void setCompanyJP(List<CompanyJP> companyJP) {
 		this.companyJP = companyJP;
 	}
-	
-	
 
 }

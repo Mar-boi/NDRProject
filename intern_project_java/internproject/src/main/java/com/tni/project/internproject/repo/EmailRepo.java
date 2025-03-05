@@ -39,9 +39,6 @@ public class EmailRepo {
 			User user = preference.getUser();
 
 			// Make ScheduledFuture using the info
-			// ScheduledFuture<?> future = scheduler.schedule(new EmailRunnable(user), new
-			// CronTrigger(preference.getEmailSchedule()));
-
 			ScheduledFuture<?> future = scheduler.schedule(new EmailRunnable(user.getUserID(), emailController),
 					new CronTrigger(preference.getEmailSchedule()));
 
@@ -52,10 +49,6 @@ public class EmailRepo {
 
 	}
 
-	// For testing purpose only
-	public HashMap<Integer, ScheduledFuture<?>> getEmailList() {
-		return emailList;
-	}
 
 	public void remove(int userID) {
 		if (emailList.containsKey(userID)) {
@@ -77,5 +70,10 @@ public class EmailRepo {
 		emailList.put(userID, future);
 		System.out.println("User add!");
 
+	}
+	
+	// For testing purpose only
+	public HashMap<Integer, ScheduledFuture<?>> getEmailList() {
+		return emailList;
 	}
 }

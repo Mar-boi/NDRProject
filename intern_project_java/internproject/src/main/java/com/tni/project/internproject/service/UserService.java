@@ -45,7 +45,7 @@ public class UserService {
 	public ResponseEntity<?> login(String nameEmail, String password) {
 		User user = userRepo.findLoginUser(nameEmail, password);
 		if (user == null) {
-			return buildErrorResponse("Cannot find user", HttpStatus.BAD_REQUEST);
+			return buildErrorResponse("userNotFound", HttpStatus.BAD_REQUEST);
 		} else {
 			return ResponseEntity.ok(user);
 		}
@@ -235,6 +235,8 @@ public class UserService {
 	            if (isNewPasswordInvalid(newPass)) {
 	                return buildErrorResponse("newPasswordLength", HttpStatus.BAD_REQUEST);
 	            }
+	        } else {
+	        	newPass = user.getUserPass();
 	        }
 
 	        // Update user profile
