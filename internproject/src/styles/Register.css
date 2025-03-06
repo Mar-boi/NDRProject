@@ -3,7 +3,7 @@
     margin-top: 75px;
     margin-left: 31.5%;
       max-width: 540px;
-    min-height: 673px;
+    min-height: 675px;
     height: 100%;
     padding: 10px;
     border-radius: 35px;
@@ -111,6 +111,7 @@
     top: 2em;
     cursor: text;
     transition: top 350ms ease-in, font-size 350ms ease-in;
+    margin-top: 5px;
   }
   
   .form_input:hover {

@@ -44,13 +44,27 @@ type FormFields = {
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
         if (error.response.status === 400) {
-            setError("password", { type: "server", message: "Username or password is wrong"}); // ✅ Show error on form
+            setError("password", { type: "server", message: translations["wrong_username_password"]}); // ✅ Show error on form
         } else {
-          alert("Something went wrong! Please try again."); // Handle other errors
+          alert(translations["something_went_wrong"]);  // Handle other errors
         }
       }
   };
 }
+
+const getValidationRules = () => ({
+  username: {
+    required:translations["email_username_required"],
+  },
+  password: {
+    required: translations["password_required"],
+    minLength: {
+      value: 8,
+      message: translations["password_requirements"],
+    },
+  },
+});
+
   return (
    
     <>
@@ -81,9 +95,8 @@ type FormFields = {
           >
             <div className="setForms container">
               <input
-                {...register("username", {
-                  required: "Email address or Username is require",
-                })}
+              {...register("username", getValidationRules().username)}
+   
                 type="text"
                 id="username"
                 placeholder=""
@@ -97,13 +110,7 @@ type FormFields = {
 
             <div className="setForms container">
               <input
-                {...register("password", {
-                  required: "Password is require",
-                  minLength: {
-                    value: 8,
-                    message: "Password must have at least 8 characters",
-                  },
-                })}
+               {...register("password", getValidationRules().password)}
                 type="password"
                 id="password"
                 placeholder=""

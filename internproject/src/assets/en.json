@@ -21,6 +21,9 @@
   "receive_ipo_email": "Receive latest IPO companies via email",
   "password_requirements": "Password must have at least 8 characters",
   "email_format_error": "Email must include @",
+  "email_username_required": "Email address or Username is required",
+  "something_went_wrong": "Something went wrong! Please try again.",
+  "wrong_username_password": "Username or password is wrong",
   
   "company": "Company",
   "symbol": "Symbol",
@@ -64,7 +67,6 @@
   "followed_industry": "Followed Industry",
   "followed_industries_info": "Your followed industries will be shown here. You can unfollow them anytime by clicking",
   "lookup_industries": "Look up industries",
-  
   "comparing": "Comparing",
   "with": "with",
   "enter_code": "Enter ticker or code",

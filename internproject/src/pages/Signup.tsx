@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import "../styles/Register.css";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -25,8 +25,12 @@ function Signup() {
     setError,
     setValue,
     watch,
+    trigger,
     formState: { errors, isSubmitting },
-  } = useForm<FormFields>();
+  } = useForm<FormFields>({
+    mode: "onSubmit", // Set validation mode to trigger on blur (not on load)
+    shouldFocusError: false, // Prevent focus errors immediately on load
+  });
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
     const userData = {
@@ -48,19 +52,50 @@ function Signup() {
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
         if (error.response.status === 400) {
-          if(error.response.data === "Email is already taken") {
-            setError("email", { type: "server", message: error.response.data}); // ✅ Show error on form
-          } else if(error.response.data === "Username is already taken") {
-            setError("username", { type: "server", message: error.response.data });
-          } else if(error.response.data === "Passwords don't match") {
-            setError("cfpassword", { type: "server", message: error.response.data });
-          } 
+          if(error.response.data === "emailTaken") {
+            setError("email", { type: "server", message: translations[error.response.data]});
+         
+          } else if(error.response.data === "usernameTaken") {
+            setError("username", { type: "server", message: translations[error.response.data]});
+         
+          } else if(error.response.data === "passwordMismatch") {
+            setError("cfpassword", { type: "server", message: translations[error.response.data] });
+
+          } {
+          }
         } else {
-          alert("Something went wrong! Please try again."); // Handle other errors
+          alert(translations["something_went_wrong"]); // Handle other errors
         }
       }
     }
   }
+
+  const getValidationRules = () => ({
+    email: {
+      required: translations["email_required"],
+      validate: (value: string) => {
+        if (!value.includes("@")) {
+          return translations["email_format_error"];
+        }
+        return true;
+      },
+    },
+    username: {
+      required: translations["username_required"],
+    },
+    password: {
+      required: translations["password_required"],
+      minLength: {
+        value: 8,
+        message: translations["password_requirements"],
+      },
+    },
+    cfpassword: {
+      required: translations["please_confirm_password"],
+    },
+  });
+
+
   return (
     
     <>
@@ -91,16 +126,7 @@ function Signup() {
           >
             <div className="setForms container">
               <input
-                 {...register("email", {
-                  required: "Email is required",
-                  // pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
-                  validate: (value) => {
-                    if (!value.includes("@")) {
-                      return "Email is must include @";
-                    }
-                    return true;
-                  },
-                })}
+                 {...register("email", getValidationRules().email)}
 
                 type="text"
                 id="email"
@@ -114,9 +140,7 @@ function Signup() {
             </div>
             <div className="setForms container">
               <input
-                {...register("username", {
-                  required: "Username is required",
-                })}
+                {...register("username", getValidationRules().username)}
                 className="form_input"
                 type="text"
                 id="username"
@@ -129,13 +153,7 @@ function Signup() {
             </div>
             <div className="setForms container">
               <input
-                {...register("password", {
-                  required: "Password is require",
-                  minLength: {
-                    value: 8,
-                    message: "Password must have at least 8 characters",
-                  },
-                })}
+               {...register("password", getValidationRules().password)}
                 type="password"
                 id="password"
                 placeholder=""
@@ -148,9 +166,7 @@ function Signup() {
             </div>
             <div className="setForms container">
               <input
-                {...register("cfpassword", {
-                  required: "Please, confirm password",
-                })}
+                {...register("cfpassword", getValidationRules().cfpassword)}
                 type="password"
                 id="cfpassword"
                 placeholder=""

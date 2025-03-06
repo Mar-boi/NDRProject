@@ -21,6 +21,10 @@
   "receive_ipo_email": "最新のIPO企業情報をメールで受け取る",
   "password_requirements": "パスワードは8文字以上である必要があります",
   "email_format_error": "メールアドレスには@を含める必要があります",
+  "email_username_required": "メールアドレスまたはユーザー名は必須です",
+  "somethingWentWrong": "エラーが発生しました。また試してください",
+  "wrong_username_password": "ユーザー名またはパスワードが正しくないです",
+
   "company": "企業名",
   "symbol": "銘柄コード",
   "industry": "業種",
@@ -107,7 +111,6 @@
   "welcome_sign_up_first":"アカウントはお持ちですか？",
   "welcome_sign_up_sec":"最新のIPO企業をEメールで受け取るには、登録してください。",
   "or": "または",
-
 
   "emailTaken": "メールアドレスは既に使用されています",
   "usernameTaken": "ユーザー名は既に使用されています",
