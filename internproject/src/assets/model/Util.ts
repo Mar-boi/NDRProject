@@ -1,3 +1,7 @@
+import moment from "moment";
+import { useTranslation } from "../context/TranslationContext";
+import { Language } from "./model";
+
 export const formatNumber = (value: number, currency?: string) => {
   if (value === null || value === undefined) return "-";
 
@@ -20,9 +24,15 @@ export const formatNumber = (value: number, currency?: string) => {
   }
 
   let formatText = isNegative ? "$-" + formattedValue : "$" + formattedValue;
-  if(currency) {
+  if (currency) {
     formatText = formatText.replace("$", currency);
   }
- 
+
   return formatText;
 };
+
+
+ export const formatDate = (value: string, language: Language): string => {
+    const fomateDateLanguage = language === "ja" ? "YYYY/MM/DD" : "DD/MM/YYYY";
+    return moment(value).format(fomateDateLanguage);
+  };

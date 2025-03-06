@@ -1,5 +1,5 @@
 import React, { SetStateAction, useEffect, useState, Dispatch, useMemo } from "react";
-import Moment from "moment";
+import Moment, { lang } from "moment";
 import { useTranslation } from "../assets/context/TranslationContext";
 import {
   CompanyUS,
@@ -8,7 +8,7 @@ import {
   tableHeaderUS,
 } from "../assets/model/model";
 import { useSearch } from "../assets/context/SearchContext";
-import { formatNumber } from "../assets/model/Util";
+import { formatDate, formatNumber } from "../assets/model/Util";
 
 interface TableUSProps {
   datas: CompanyUS[];
@@ -37,8 +37,7 @@ export default function TableUS({
     setFilteredCompany(datas || []);
   }, [datas]);
 
-  const formatDate = (value: moment.MomentInput) =>
-    Moment(value).format("yyyy/MM/DD");
+
 
 
   ///////////////// CONSTRUCTION ZONE ////////////////////
@@ -208,7 +207,7 @@ export default function TableUS({
                   <td className="celltextalignleft">
                     {getIndustryTranslation(data.industry.industryID, language)}
                   </td>
-                  <td>{formatDate(data.offerDate)}</td>
+                  <td>{formatDate(data.offerDate, language)}</td>
                   <td>{data.shares}</td>
                   <td>{formatNumber(data.offerPrice)}</td>
                   <td>{formatNumber(data.firstClose)}</td>

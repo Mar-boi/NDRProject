@@ -17,7 +17,7 @@ import {
 import { columns, CompanyData } from "../assets/model/model";
 import { useTranslation } from "../assets/context/TranslationContext";
 import { useSearch } from "../assets/context/SearchContext";
-import { formatNumber } from "../assets/model/Util";
+import { formatDate, formatNumber } from "../assets/model/Util";
 
 function Table() {
   const [company, setCompany] = useState<CompanyData>({
@@ -43,7 +43,8 @@ function Table() {
   const [selectedRange, setSelectedRange] = useState("7d");
   const [isJP, setIsJP] = useState(false);
   const [market, setMarket] = useState<string>("");
-  const { translations } = useTranslation();
+  const { translations, language } = useTranslation();
+  
 
 
   // Fetching data for the first time
@@ -356,7 +357,7 @@ function Table() {
                                 name === "close" ? formatNumber(+value, selectedCompany.market ?"￥":undefined) : value
                               }
                               labelFormatter={(value) =>
-                                `Date: ${Moment(value).format("YYYY/MM/DD")}`
+                                `Date: ${formatDate(value, language)}`
                               }
                               contentStyle={{
                                 backgroundColor: "transparent",

@@ -3,7 +3,7 @@ import Moment from "moment";
 import { useTranslation } from "../assets/context/TranslationContext";
 import { CompanyJP, industries, Language, tableHeaderJP } from "../assets/model/model";
 import { useSearch } from "../assets/context/SearchContext";
-import { formatNumber } from "../assets/model/Util";
+import { formatDate, formatNumber } from "../assets/model/Util";
 
 interface TableJPProps {
   datas: CompanyJP[]; 
@@ -34,9 +34,7 @@ export default function TableJP({
     setFilteredCompany(datas || []);
   }, [datas]);
 
-     
-
-  const formatDate = (value:moment.MomentInput) => Moment(value).format("yyyy/MM/DD");
+    
 
   useEffect(() => {
       if (!datas.some((item) => item.hasOwnProperty(sortConfig.key))) {
@@ -204,7 +202,7 @@ export default function TableJP({
                   <td className="celltextalignleft">
                     {getIndustryTranslation(data.industry.industryID, language)}
                   </td>
-                  <td>{formatDate(data.offerDate)}</td>
+                  <td>{formatDate(data.offerDate, language)}</td>
                   <td>{data.market}</td>
                   <td>{formatNumber(data.offerPrice, "￥")}</td>
                   <td>{formatNumber(data.firstOpen, "￥")}</td>
