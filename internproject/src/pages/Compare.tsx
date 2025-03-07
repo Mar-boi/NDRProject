@@ -13,7 +13,11 @@ const Compare = () => {
 
   const [alertVisible, setAlertVisible] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
-  const [alertType, setAlertType] = useState<"success" | "danger" | "warning">("success");
+  const [alertType, setAlertType] = useState<"success" | "danger" | "warning">(
+    "success"
+  );
+
+  const formatString = (value: string) => (value === null ? "N/A" : value);
 
   const formatNumber = (value: number) => {
     if (value === null || value === undefined) return "-";
@@ -53,7 +57,7 @@ const Compare = () => {
 
   const fetchStockData = async () => {
     if (!symbolA || !symbolB) {
-      showAlert("Please enter both ticker!", "warning")
+      showAlert("Please enter both ticker!", "warning");
       return;
     }
 
@@ -85,13 +89,16 @@ const Compare = () => {
       setDataB(sentDataB);
     } catch (error) {
       console.error("Error fetching stock data:", error);
-      setError("Error fetching stock data. Please try again.");
+      setError(translations["error_fetch_stock_data"]);
     } finally {
       setLoading(false);
     }
   };
 
-  const showAlert = (message: string, type: "success" | "danger" | "warning") => {
+  const showAlert = (
+    message: string,
+    type: "success" | "danger" | "warning"
+  ) => {
     setAlertMessage(message);
     setAlertType(type);
     setAlertVisible(false); // Reset visibility to allow re-trigger
@@ -255,8 +262,12 @@ const Compare = () => {
                     </tr>
                     <tr>
                       <td>{translations["ceo"]}</td>
-                      <td className="setCompareCell ">{dataA.ceo_name}</td>
-                      <td className="setCompareCell">{dataB.ceo_name}</td>
+                      <td className="setCompareCell ">
+                        {formatString(dataA.ceo_name)}
+                      </td>
+                      <td className="setCompareCell">
+                        {formatString(dataB.ceo_name)}
+                      </td>
                     </tr>
                   </tbody>
                 </table>

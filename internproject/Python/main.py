@@ -171,10 +171,23 @@ def get_stock_data(ticker: str):
         "extracted_at": current_timestamp
     }
     
-    # Save the stock data to a JSON file
+    try:
+        with open("stock_data.json", "r") as json_file:
+            existing_data = json.load(json_file)
+    except (FileNotFoundError, json.JSONDecodeError):
+        existing_data = {}
+
+
+    existing_data[ticker] = stock_data
+
+
+    if len(existing_data) > 2:
+        existing_data.clear()
+
+
     with open("stock_data.json", "w") as json_file:
-        json.dump(stock_data, json_file)
-    
+        json.dump(existing_data, json_file, indent=4)
+
     return stock_data
 
 

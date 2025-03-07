@@ -18,10 +18,6 @@ public interface PreferenceRepo extends JpaRepository<Preference, Integer>{
 	@Query("select p from Preference p where p.receiveEmail = true")
 	List<Preference> findSubscriber();
 	
-//	@Modifying
-//	@Transactional
-//	@Query("update Preference p set p.emailSchedule = ?2, p.receiveEmail = ?3 where p.user.id = ?1")
-//	void update(int userID,String cronNotation,boolean receiveEmail);
 	
 	@Query("select p from Preference p where p.user.id = ?1")
 	Preference findByUserID(int userID);

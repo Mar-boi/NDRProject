@@ -1,9 +1,7 @@
 package com.tni.project.internproject.service;
 
-import java.net.PasswordAuthentication;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -12,9 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
+
 import com.tni.project.internproject.model.Industry;
 import com.tni.project.internproject.model.Preference;
 import com.tni.project.internproject.model.User;
@@ -26,7 +22,6 @@ import com.tni.project.internproject.repo.UserRepo;
 import com.tni.project.internproject.util.CronUtil;
 import com.tni.project.internship.dto.UserSetting;
 
-import ch.qos.logback.classic.pattern.Util;
 
 @Service
 public class UserService {

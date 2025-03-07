@@ -30,7 +30,6 @@ public interface UserRepo extends CrudRepository<User, Integer>{
 	@Query("update User u set u.userName = ?1, u.userEmail = ?2 , u.userPass = ?3 where u.userID = ?4 ")
 	void updateProfile(String username, String email, String newPass, int userID);
 	
-	// Not used yet
 	@Query("select u from User u where u.userName = ?1 and u.userID != ?2")
 	Optional<User> findOtherByUsername(String username, int userID);
 	

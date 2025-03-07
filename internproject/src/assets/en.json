@@ -72,6 +72,9 @@
   "enter_code": "Enter ticker or code",
   "type_in_companies_info": "Type in companies symbol to start comparing!",
   "loading": "Loading data, please wait...",
+  "loading2": "Loading...",
+  "no_stock_data": "No stock data available",
+  "error_fetch_stock_data": "Error fetching stock data. Please try again.",
   "as_of_date": "As of",
   "market_value": "Market Value",
   "enterprise_value": "Enterprise Value",
@@ -128,4 +131,6 @@
   "newPasswordLength": "New password must contain at least 8 characters",
   "updateSuccessful": "Update Successful",
   "minDay":"You must select at least one day"
+
+
 }

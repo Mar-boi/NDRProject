@@ -172,10 +172,10 @@ function Table() {
                     </div>
                     <div className="createTableLine"></div>
                     <div style={{ paddingLeft: 10 }}>
-                      {previousClosePrice === null || chartData.length === 0 ? (
+                      {previousClosePrice === null || chartData.length === 0? (
                         <div>
                           <p style={{ fontSize: "28px", fontWeight: "bold" }}>
-                            Loading...
+                            {translations["loading2"]}
                           </p>
                         </div>
                       ) : (
@@ -273,7 +273,7 @@ function Table() {
                     </div>
                     <div>
                       {loading ? (
-                        <p style={{ textAlign: "center" }}>Loading...</p>
+                        <p style={{ textAlign: "center" }}>{translations["loading"]}</p>
                       ) : chartData.length > 0 ? (
                         <ResponsiveContainer width="100%" height={240}>
                           <AreaChart
@@ -376,7 +376,7 @@ function Table() {
                         </ResponsiveContainer>
                       ) : (
                         <p style={{ textAlign: "center" }}>
-                          No stock data available
+                          {translations["no_stock_data"]}
                         </p>
                       )}
                     </div>

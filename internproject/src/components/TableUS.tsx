@@ -113,6 +113,12 @@ export default function TableUS({
     }
   };
 
+  useEffect(() => {
+    if(currentPage > totalPages) {
+      setCurrentPage(1);
+    }
+  }, [entriesPerPage])
+
   const getIndustryTranslation = (industryID: number, language: Language) => {
     const industry = industries[industryID];
     return industry ? industry[language] : "Unknown Industry";

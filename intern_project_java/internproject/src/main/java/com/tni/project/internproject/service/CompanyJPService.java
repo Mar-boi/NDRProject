@@ -158,12 +158,10 @@ public class CompanyJPService implements CompanyService<CompanyJP> {
 				industryString = "Other";
 			}
 			
-			
 			 Industry industry = inRepo.findByIndustryName(industryString);
 			return industry;
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
