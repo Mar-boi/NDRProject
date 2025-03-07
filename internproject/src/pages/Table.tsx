@@ -73,6 +73,7 @@ function Table() {
   useEffect(() => {
     if (selectedCompany.symbol) {
       fetchChartData();
+      window.scrollTo(0, 0)
     }
   }, [selectedCompany, timeRange]);
 

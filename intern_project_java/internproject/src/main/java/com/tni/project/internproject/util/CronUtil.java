@@ -44,6 +44,7 @@ public final class CronUtil {
 		return true;
 		
 	}
+	
 	public static String getDaysCronNotation(List<Integer> days) {
 		
 		days = days.stream()
@@ -51,10 +52,8 @@ public final class CronUtil {
                 .distinct()  // Removes duplicates
                 .collect(Collectors.toList());
 
-		
 		Collections.sort(days);
 		
-	
 		// If no days are selected, return "0"
 		if (days.size() == 0) {
 			return "0";

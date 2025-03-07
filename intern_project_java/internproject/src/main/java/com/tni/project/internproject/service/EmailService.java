@@ -82,13 +82,6 @@ public class EmailService {
 			helper.setFrom("bank200074@gmail.com");
 			helper.setTo(user.getUserEmail());
 			helper.setSubject("IPO Companies Update: " + getDate());
-
-//			try (var inputStream = Objects.requireNonNull(
-//					EmailService.class.getResourceAsStream("/templates/output_" + user.getUserID() + ".html"))) {
-//				helper.setText(new String(inputStream.readAllBytes(), StandardCharsets.UTF_8), true);
-//			} catch (Exception e) {
-//				System.out.println(e.getMessage());
-//			}
 			
 			helper.setText(emailContent, true);
 

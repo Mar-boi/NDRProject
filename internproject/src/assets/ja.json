@@ -82,19 +82,23 @@
   "sector": "セクター",
   "industry_td": "産業",
   "ceo": "CEO",
+
   "income_statement": "損益計算書",
   "revenue": "売上高",
   "operating_expenses": "営業費用",
   "operating_income": "営業利益",
   "gross_profit": "粗利益",
+
   "balance_sheet": "貸借対照表",
   "inventory": "在庫",
   "equity": "自己資本",
+
   "cash_flow": "キャッシュフロー",
   "cash_flow_operations": "営業キャッシュフロー",
   "capital_expenditures": "設備投資",
   "cash_flow_investing": "投資活動によるキャッシュフロー",
   "free_cash_flow": "フリーキャッシュフロー",
+  
   "basic_materials": "素材",
   "blank_check": "ブランクチェック",
   "consumer_goods": "消費財",
