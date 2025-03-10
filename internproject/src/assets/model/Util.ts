@@ -17,10 +17,10 @@ export const formatNumber = (value: number, currency?: string) => {
     formattedValue = (positiveValue / 1_000_000).toFixed(1) + "M";
   } else if (positiveValue >= 1_000) {
     formattedValue = (positiveValue / 1)
-      .toFixed(0)
+      .toFixed(2)
       .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   } else {
-    formattedValue = positiveValue.toFixed();
+    formattedValue = positiveValue.toFixed(2);
   }
 
   let formatText = isNegative ? "$-" + formattedValue : "$" + formattedValue;

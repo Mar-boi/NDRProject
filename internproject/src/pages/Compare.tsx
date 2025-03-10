@@ -57,7 +57,7 @@ const Compare = () => {
 
   const fetchStockData = async () => {
     if (!symbolA || !symbolB) {
-      showAlert("Please enter both ticker!", "warning");
+      showAlert("Please enter both ticker!", "danger");
       return;
     }
 

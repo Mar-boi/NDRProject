@@ -50,7 +50,7 @@ public class UserService {
 			boolean receiveEmail) {
 
 		// check email validation 
-		// check if the email already exists
+		// check if the email already existsฆ
 		if (userRepo.findByUserEmail(email) != null) {
 			return buildErrorResponse("emailTaken", HttpStatus.BAD_REQUEST);
 		}

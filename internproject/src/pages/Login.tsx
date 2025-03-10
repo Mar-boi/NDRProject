@@ -68,7 +68,7 @@ const getValidationRules = () => ({
   return (
    
     <>
-      <div className="">
+      <div className="" style={{paddingBottom: 79}}>
         <div className="setBg">
         <h1
             className="setTextAlignmentCenter"
