@@ -50,16 +50,25 @@ class StockDataResponse(BaseModel):
     marketcap: Optional[float]
     enterprisevalue: Optional[float]
     priceEpsCurrentYear: Optional[float]
+
     revenue: Optional[float]
-    operatingExpense: Optional[float]  # Fix here (was: operateingExpenses)
-    operatingIncome: Optional[float]
     grossProfits: Optional[float]
+    operatingExpense: Optional[float]
+    operatingIncome: Optional[float]
+    netIncome: Optional[float]
+    netIncomeMargin: Optional[float]
+
     inventory: Optional[float]
-    equity: Optional[float]
+    totalAssets: Optional[float]
+    totalLiabilities: Optional[float]
+    stakeholdersEquity: Optional[float]
+    debToEquity: Optional[float]
+
     operatingCashflow: Optional[float]
-    capitalExpenditure: Optional[float]
+    financingCashflow: Optional[float]
     investingCashflow: Optional[float]
     freeCashflow: Optional[float]
+
     sector: str
     industry: str
     ceo_name: str
@@ -99,17 +108,23 @@ def get_stock_data(ticker: str):
     
     # Data from Incomestmt
     revenue = info.get('totalRevenue')
+    grossProfits = info.get('grossProfits')
     operatingExpense = incomestmt.loc["Operating Expense"].iloc[0] if "Operating Expense" in incomestmt.index else None
     operatingIncome = incomestmt.loc["Operating Income"].iloc[0] if "Operating Income" in incomestmt.index else None
-    grossProfits = info.get('grossProfits')
+    netIncome = incomestmt.loc["Net Income"].iloc[0] if "Net Income" in incomestmt.index else None
+    netIncomeMargin = (netIncome / revenue) * 100
+
     
     # Data from Balance sheet
     inventory = balancesheet.loc["Inventory"].iloc[0] if "Inventory" in balancesheet.index else None
-    equity = balancesheet.loc["Stockholders Equity"].iloc[0] if "Stockholders Equity" in balancesheet.index else None
+    totalAssets = balancesheet.loc["Total Assets"].iloc[0] if "Total Assets" in balancesheet.index else None
+    totalLiabilities = balancesheet.loc["Total Liabilities Net Minority Interest"].iloc[0] if "Total Liabilities Net Minority Interest" in balancesheet.index else None
+    stakeholdersEquity = balancesheet.loc["Stockholders Equity"].iloc[0] if "Stockholders Equity" in balancesheet.index else None
+    debToEquity = totalLiabilities / stakeholdersEquity
     
     # Data from cashflow
     operatingCashflow = info.get('operatingCashflow')
-    capitalExpenditure = cashflow.loc["Capital Expenditure"].iloc[0] if "Capital Expenditure" in cashflow.index else None
+    financingCashflow = cashflow.loc["Financing Cash Flow"].iloc[0] if "Financing Cash Flow" in cashflow.index else None
     investingCashflow = cashflow.loc["Investing Cash Flow"].iloc[0] if "Investing Cash Flow" in cashflow.index else None
     freeCashflow = info.get('freeCashflow')
 
@@ -135,12 +150,12 @@ def get_stock_data(ticker: str):
             grossProfits = grossProfits / yen_to_usd_rate
         if inventory:
             inventory = inventory / yen_to_usd_rate
-        if equity:
-            equity = equity / yen_to_usd_rate
+        if stakeholdersEquity:
+            stakeholdersEquity = stakeholdersEquity / yen_to_usd_rate
         if operatingCashflow:
             operatingCashflow = operatingCashflow / yen_to_usd_rate
-        if capitalExpenditure:
-            capitalExpenditure = capitalExpenditure / yen_to_usd_rate
+        if financingCashflow:
+            financingCashflow = financingCashflow / yen_to_usd_rate
         if investingCashflow:
             investingCashflow = investingCashflow / yen_to_usd_rate
         if freeCashflow:
@@ -157,16 +172,25 @@ def get_stock_data(ticker: str):
         "industry": info.get("industry"),
         "ceo_name": ceo_name,
         "ceo_title": ceo_title,
+
         "revenue": revenue,
+        "grossProfits": grossProfits,
         "operatingExpense": operatingExpense,
         "operatingIncome": operatingIncome,
-        "grossProfits": grossProfits,
+        "netIncome": netIncome,
+        "netIncomeMargin": netIncomeMargin,
+
         "inventory": inventory,
-        "equity": equity,
+        "totalAssets": totalAssets,
+        "totalLiabilities": totalLiabilities,
+        "stakeholdersEquity": stakeholdersEquity,
+        "debToEquity": debToEquity,
+
         "operatingCashflow": operatingCashflow,
-        "capitalExpenditure": capitalExpenditure,
+        "financingCashflow": financingCashflow,
         "investingCashflow": investingCashflow,
         "freeCashflow": freeCashflow,
+
         "yen_to_usd_rate": yen_to_usd_rate,  # Include Yen to USD rate
         "extracted_at": current_timestamp
     }
@@ -211,7 +235,7 @@ def format_date_for_period(date, period):
     return date.strftime("%Y/%m/%d")  # Default format
 
 @app.get("/stockHistory/{ticker}")
-async def get_stock_history(ticker: str, period: str = Query("6mo", enum=["7d", "5d", "1mo", "6mo"])):  # Set default to "6mo"
+async def get_stock_history(ticker: str, period: str = Query("6mo", enum=["7d", "1mo", "6mo"])):  # Set default to "6mo"
     try:
         # Use the period parameter for the history method
         stock = yf.Ticker(ticker)

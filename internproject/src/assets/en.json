@@ -85,18 +85,23 @@
   
   "income_statement": "Income Statement",
   "revenue": "Revenue",
+  "gross_profit": "Gross Profit",
   "operating_expenses": "Operating Expenses",
   "operating_income": "Operating Income",
-  "gross_profit": "Gross Profit",
+  "net_income": "Net Income",
+  "net_income_margin": "Net Income Margin",
   
   "balance_sheet": "Balance Sheet",
   "inventory": "Inventory",
+  "total_assets": "Total Assets",
+  "total_liabilities": "Total Liabilities",
   "equity": "Equity",
+  "deb_to_equity": "Deb-To-Equity",
   
   "cash_flow": "Cash Flow",
   "cash_flow_operations": "Cash Flow from Operations",
-  "capital_expenditures": "Capital Expenditures",
-  "cash_flow_investing": "Cash Flow from Investing Activities",
+  "cash_flow_financing": "Cash Flow from Financial Activities",
+  "cash_flow_investing": "Cash Flow from Investment",
   "free_cash_flow": "Free Cash Flow",
   
   "basic_materials": "Basic Materials",

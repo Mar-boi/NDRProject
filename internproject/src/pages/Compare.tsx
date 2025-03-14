@@ -1,6 +1,7 @@
 import "../styles/Compare.css";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "../assets/context/TranslationContext";
+import { formatNumber } from "../assets/model/Util";
 
 const Compare = () => {
   const [symbolA, setSymbolA] = useState("");
@@ -19,27 +20,6 @@ const Compare = () => {
 
   const formatString = (value: string) => (value === null ? "N/A" : value);
 
-  const formatNumber = (value: number) => {
-    if (value === null || value === undefined) return "-";
-
-    const isNegative = value < 0;
-    const positiveValue = Math.abs(value);
-    let formattedValue = "";
-
-    if (positiveValue >= 1_000_000_000_000) {
-      formattedValue = (positiveValue / 1_000_000_000_000).toFixed(1) + "T";
-    } else if (positiveValue >= 1_000_000_000) {
-      formattedValue = (positiveValue / 1_000_000_000).toFixed(1) + "B";
-    } else if (positiveValue >= 1_000_000) {
-      formattedValue = (positiveValue / 1_000_000).toFixed(1) + "M";
-    } else if (positiveValue >= 1_000) {
-      formattedValue = (positiveValue / 1_000).toFixed(2);
-    } else {
-      formattedValue = positiveValue.toFixed(2);
-    }
-
-    return isNegative ? "$-" + formattedValue : "$" + formattedValue;
-  };
 
   const handleInputChange1 = (event: any) => {
     setSymbolA(event.target.value);
@@ -299,6 +279,16 @@ const Compare = () => {
                       </td>
                     </tr>
                     <tr>
+                      <td>{translations["gross_profit"]}</td>
+
+                      <td className="setCompareCell">
+                        {formatNumber(dataA.grossProfits)}
+                      </td>
+                      <td className="setCompareCell">
+                        {formatNumber(dataB.grossProfits)}
+                      </td>
+                    </tr>
+                    <tr>
                       <td>{translations["operating_expenses"]}</td>
 
                       <td className="setCompareCell">
@@ -310,7 +300,6 @@ const Compare = () => {
                     </tr>
                     <tr>
                       <td>{translations["operating_income"]}</td>
-
                       <td className="setCompareCell">
                         {formatNumber(dataA.operatingIncome)}
                       </td>
@@ -319,12 +308,21 @@ const Compare = () => {
                       </td>
                     </tr>
                     <tr>
-                      <td>{translations["gross_profit"]}</td>
+                      <td>{translations["net_income"]}</td>
                       <td className="setCompareCell">
-                        {formatNumber(dataA.grossProfits)}
+                        {formatNumber(dataA.netIncome)}
                       </td>
                       <td className="setCompareCell">
-                        {formatNumber(dataB.grossProfits)}
+                        {formatNumber(dataB.netIncome)}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>{translations["net_income_margin"]}</td>
+                      <td className="setCompareCell">
+                        {(formatNumber(dataA.netIncomeMargin,"-"))}%
+                      </td>
+                      <td className="setCompareCell">
+                        {(formatNumber(dataB.netIncomeMargin,"-"))}%
                       </td>
                     </tr>
                   </tbody>
@@ -357,12 +355,39 @@ const Compare = () => {
                       </td>
                     </tr>
                     <tr>
-                      <td>{translations["equity"]}</td>
+                      <td>{translations["total_assets"]}</td>
                       <td className="setCompareCell">
-                        {formatNumber(dataA.equity)}
+                        {formatNumber(dataA.totalAssets)}
                       </td>
                       <td className="setCompareCell">
-                        {formatNumber(dataB.equity)}
+                        {formatNumber(dataB.totalAssets)}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>{translations["total_liabilities"]}</td>
+                      <td className="setCompareCell">
+                        {formatNumber(dataA.totalLiabilities)}
+                      </td>
+                      <td className="setCompareCell">
+                        {formatNumber(dataB.totalLiabilities)}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>{translations["equity"]}</td>
+                      <td className="setCompareCell">
+                        {formatNumber(dataA.stakeholdersEquity)}
+                      </td>
+                      <td className="setCompareCell">
+                        {formatNumber(dataB.stakeholdersEquity)}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>{translations["deb_to_equity"]}</td>
+                      <td className="setCompareCell">
+                        {(formatNumber(dataA.debToEquity, "-"))}
+                      </td>
+                      <td className="setCompareCell">
+                        {(formatNumber(dataB.debToEquity, "-"))}
                       </td>
                     </tr>
                   </tbody>
@@ -395,12 +420,12 @@ const Compare = () => {
                       </td>
                     </tr>
                     <tr>
-                      <td>{translations["capital_expenditures"]}</td>
+                      <td>{translations["cash_flow_financing"]}</td>
                       <td className="setCompareCell">
-                        {formatNumber(dataA.capitalExpenditure)}
+                        {formatNumber(dataA.financingCashflow)}
                       </td>
                       <td className="setCompareCell">
-                        {formatNumber(dataB.capitalExpenditure)}
+                        {formatNumber(dataB.financingCashflow)}
                       </td>
                     </tr>
                     <tr>

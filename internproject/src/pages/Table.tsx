@@ -443,7 +443,7 @@ function Table() {
                   >
                     {translations["switch_btn"]}
                     {": "}
-                    {translations[isJP ? "jp" : "us"]}
+                    {translations[!isJP ? "jp" : "us"]}
                   </button>
                 </div>
                 <div className="" style={{ paddingLeft: 600 }}>

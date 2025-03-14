@@ -23,6 +23,10 @@ export const formatNumber = (value: number, currency?: string) => {
     formattedValue = positiveValue.toFixed(2);
   }
 
+  if(currency==="-") {
+    return formattedValue;
+  }
+
   let formatText = isNegative ? "$-" + formattedValue : "$" + formattedValue;
   if (currency) {
     formatText = formatText.replace("$", currency);

@@ -226,8 +226,6 @@ public class EmailService {
 		for (CompanyUS company : companies) {
 			Element newRow = doc.createElement("tr");
 			newRow.addClass("tableBody");
-//			newRow.attr("background-color", "#ececec")
-//				.attr("border-bottom", "1px solid #dddddd");
 			newRow.attr("style","background-color: #ececec;border-bottom:1px solid #dddddd");
 
 			newRow.appendElement("td").attr("style", "width: 40%; padding: 0.2rem").appendElement("b").text(company.getName());
