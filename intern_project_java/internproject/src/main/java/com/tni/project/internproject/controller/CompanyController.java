@@ -29,7 +29,7 @@ public class CompanyController {
 
 	}
 
-	//@Scheduled(cron = "0 0 * * * *")
+	@Scheduled(cron = "0 0 * * * *")
 	public void saveToDB() {
 		System.out.println("Fetching and saving...");
 		service.saveToDB();

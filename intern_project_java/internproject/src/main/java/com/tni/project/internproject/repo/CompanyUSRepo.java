@@ -29,7 +29,7 @@ public interface CompanyUSRepo extends JpaRepository<CompanyUS, Integer> {
 	@NativeQuery("Select * from us_companies where datediff(sysdate(), offer_date) <= 7")
 	List<CompanyUS> fetchLastWeek();
 
-	@Query("select c from CompanyUS c where c.industry.id = ?1 order by c.returnRate desc limit 5")
+	@Query("select c from CompanyUS c where c.industry.id = ?1 order by c.returnRate desc limit 3")
 	List<CompanyUS> fetchTopIndustry(int industry);
 	
 	
