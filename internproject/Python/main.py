@@ -1,4 +1,5 @@
 
+import pandas as pd
 import yfinance as yf
 from fastapi import FastAPI, Query
 from pydantic import BaseModel
@@ -234,31 +235,78 @@ def format_date_for_period(date, period):
         return date.strftime("%b")  # MMM for other months
     return date.strftime("%Y/%m/%d")  # Default format
 
+# @app.get("/stockHistory/{ticker}")
+# async def get_stock_history(ticker: str, period: str = Query("6mo", enum=["7d", "1mo", "6mo"])):  # Set default to "6mo"
+#     try:
+#         # Use the period parameter for the history method
+#         stock = yf.Ticker(ticker)
+#         history = stock.history(period=period)  # Get data based on the selected period
+
+#         if history.empty:
+#             return {"error": "No data found for this ticker"}
+
+#         # Extract relevant data (date and closing price)
+#         stock_data = [
+#             {"date": str(date.date()), "close": round(row["Close"], 2)}
+#             for date, row in history.iterrows()
+#         ]
+
+#         return stock_data
+    
+#         # Format the dates based on the selected period
+#         formatted_data = [
+#             {"date": date.strftime("%Y/%m/%d"), "close": round(row["Close"], 2)}
+#             for date, row in history.iterrows()
+#         ]
+        
+#         return formatted_data
+
+#     except Exception as e:
+#         return {"error": str(e)}
+
 @app.get("/stockHistory/{ticker}")
-async def get_stock_history(ticker: str, period: str = Query("6mo", enum=["7d", "1mo", "6mo"])):  # Set default to "6mo"
+async def get_stock_history(ticker: str, period: str = Query("6mo", enum=["7d", "1mo", "6mo"])):
     try:
-        # Use the period parameter for the history method
         stock = yf.Ticker(ticker)
-        history = stock.history(period=period)  # Get data based on the selected period
+
+        # Fetch a longer period to ensure enough data for both 20-day and 50-day SMAs
+        if period == "7d":
+            extended_period = "3mo"  # To cover enough data for SMA calculations
+        elif period == "1mo":
+            extended_period = "4mo"  # Fetch more data to ensure SMA calculations
+        else:  # For 6mo, fetch at least 8 months
+            extended_period = "9mo"
+
+        # Fetch historical data with the extended period
+        history = stock.history(period=extended_period)
 
         if history.empty:
             return {"error": "No data found for this ticker"}
 
-        # Extract relevant data (date and closing price)
+        # Calculate the 20-day and 50-day Simple Moving Averages (SMA)
+        history["SMA_10"] = history["Close"].rolling(window=10).mean()
+        history["SMA_20"] = history["Close"].rolling(window=20).mean()
+
+        # Ensure we have enough data for the requested period (cut extra data)
+        if period == "7d":
+            history = history.iloc[-7:]  # Keep only the last 7 days
+        elif period == "1mo":
+            history = history.iloc[-20:]  # Keep only the last 1 month (20 days)
+        elif period == "6mo":
+            history = history.iloc[-120:]  # Keep only the last 6 months (120 days)
+
+        # Extract relevant data (date, closing price, and both SMAs)
         stock_data = [
-            {"date": str(date.date()), "close": round(row["Close"], 2)}
+            {
+                "date": str(date.date()), 
+                "close": round(row["Close"], 2),
+                "sma_10": None if pd.isna(row["SMA_10"]) else round(row["SMA_10"], 2),
+                "sma_20": None if pd.isna(row["SMA_20"]) else round(row["SMA_20"], 2)
+            }
             for date, row in history.iterrows()
         ]
 
         return stock_data
-    
-        # Format the dates based on the selected period
-        formatted_data = [
-            {"date": date.strftime("%Y/%m/%d"), "close": round(row["Close"], 2)}
-            for date, row in history.iterrows()
-        ]
-        
-        return formatted_data
 
     except Exception as e:
         return {"error": str(e)}

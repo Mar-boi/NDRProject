@@ -22,6 +22,7 @@ public class Preference {
 	private int preferenceID;
 	private boolean receiveEmail;
 	private String emailSchedule;
+	private String market;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "userID")
@@ -35,6 +36,7 @@ public class Preference {
 		this.receiveEmail = receiveEmail;
 		this.emailSchedule = "0 0 8 * * *";
 		this.user = user;
+		this.market = "us";
 	}
 
 	public int getPreferenceID() {
@@ -68,13 +70,24 @@ public class Preference {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+	
+
+	public String getMarket() {
+		return market;
+	}
+
+	public void setMarket(String market) {
+		this.market = market;
+	}
 
 	@Override
 	public String toString() {
 		return "Preference [preferenceID=" + preferenceID + ", receiveEmail=" + receiveEmail + ", emailSchedule="
-				+ emailSchedule + ", user=" + user + "]";
+				+ emailSchedule + ", market=" + market + ", user=" + user + "]";
 	}
-	
+
+
 	
 	
 	

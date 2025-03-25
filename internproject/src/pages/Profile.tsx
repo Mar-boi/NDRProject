@@ -7,11 +7,11 @@ import { useNavigate } from "react-router-dom";
 import { days, industries } from "../assets/model/model";
 import { useTranslation } from "../assets/context/TranslationContext";
 
-
 export const Profile = () => {
   const navigate = useNavigate();
   const [activeDays, setActiveDays] = useState<number[]>([]); // Track an array of active days
   const [selectedIndustries, setSelectedIndustries] = useState<number[]>([]);
+  const [market, setMarket] = useState("");
 
   const [hour, setHour] = useState(0);
   const [min, setMin] = useState(0);
@@ -51,6 +51,7 @@ export const Profile = () => {
         setActiveDays(response.data.days);
         setReceiveEmail(response.data.receiveEmail);
         setSelectedIndustries(response.data.industries);
+        //setMarket(response.data.market);
       } catch (e) {
         console.log(e);
       }
@@ -86,7 +87,7 @@ export const Profile = () => {
       email: email,
       userID: user?.userId,
       password: password,
-      newPassword: newPassword
+      newPassword: newPassword,
     };
     console.log(updateProfile);
     axios
@@ -97,7 +98,7 @@ export const Profile = () => {
         showAlert(translations["updateSuccessful"], "success");
 
         // in case there's no user, return early
-        if (!user) return; 
+        if (!user) return;
         const updatedUser = { ...user!, username }; // Create updated user object
         login(updatedUser); // Update the AuthContext state
       })
@@ -114,7 +115,7 @@ export const Profile = () => {
     // Prevent form default submission behavior
     event.preventDefault();
 
-    if(!checkDays()) {
+    if (!checkDays()) {
       return;
     }
 
@@ -140,17 +141,17 @@ export const Profile = () => {
         } else {
           console.error("An error occurred:", e);
         }
-      })
+      });
   };
 
   const checkDays = () => {
-    if(activeDays.length == 0 && receiveEmail) {
+    if (activeDays.length == 0 && receiveEmail) {
       showAlert(translations["minDay"], "danger");
       return false;
     } else {
       return true;
     }
-  }
+  };
 
   const showAlert = (message: string, type: "success" | "danger") => {
     setAlertMessage(message);
@@ -265,6 +266,67 @@ export const Profile = () => {
           <div>
             <form action="">
               <h1>{translations["email"]}</h1>
+
+              <h4>Market</h4>
+              <p>Select a source country for your update email</p>
+              {/* Market Dropdown*/}
+              <div  className="dropdown" style = {{paddingBottom: "16px"}}>
+              <button
+                      className="btn dropdown-toggle"
+                      type="button"
+                      id="dropdownMenuButton"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                      style={{
+                        marginLeft: "10px",
+                        backgroundColor: "#2e3e8b",
+                        color: "#FFFFFF",
+                        border: "none",
+                        padding: "8px 16px",
+                        borderRadius: "5px",
+                        fontSize: "20px",
+                      }}
+                    >
+                      {translations[market]}
+                    </button>
+
+                    <ul
+                      className="dropdown-menu"
+                      aria-labelledby="dropdownMenuButton"
+                      style={{
+                        borderRadius: "5px",
+                        padding: "5px 0",
+                        marginTop: "10px",
+                      }}
+                    >
+                      <li>
+                        <a
+                          className="dropdown-item"
+                          onClick={() => setMarket("us")}
+                          style={{
+                            padding: "10px 20px",
+                            fontSize: "16px",
+                          }}
+                        >
+                          {translations["us"]}
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          className="dropdown-item"
+                          onClick={() => setMarket("jp")}
+                          style={{
+                            padding: "10px 20px",
+                            fontSize: "16px",
+                          }}
+                        >
+                           {translations["jp"]}
+                        </a>
+                      </li>
+                    </ul> 
+                </div>
+            
+
               <h4>{translations["days_time"]}</h4>
               <p>{translations["select_days_time"]}</p>
               <div
@@ -346,7 +408,6 @@ export const Profile = () => {
                         fontSize: "20px",
                       }}
                     >
-                     
                       {translations[selectedPeriod]}
                     </button>
 
@@ -390,22 +451,23 @@ export const Profile = () => {
                 {/* Container for the days buttons */}
 
                 <div>
-                  {Object.entries(days).map(([key, day]: [string, { en: string; ja: string }]) => {
-                  
-                  return (
-                    
-                    <label htmlFor="">
-                      <input
-                        key={key}
-                        type="button"
-                        className={`dayBtn ${
-                          activeDays.includes(Number(key)) ? "active" : ""
-                        }`} // Apply active class if the day is in the activeDays array
-                        value={days[+key][language]}
-                        onClick={() => handleDaysClick(Number(key))}
-                      />
-                    </label>
-                  )})}
+                  {Object.entries(days).map(
+                    ([key, day]: [string, { en: string; ja: string }]) => {
+                      return (
+                        <label htmlFor="">
+                          <input
+                            key={key}
+                            type="button"
+                            className={`dayBtn ${
+                              activeDays.includes(Number(key)) ? "active" : ""
+                            }`} // Apply active class if the day is in the activeDays array
+                            value={days[+key][language]}
+                            onClick={() => handleDaysClick(Number(key))}
+                          />
+                        </label>
+                      );
+                    }
+                  )}
                 </div>
               </div>
               <h4>{translations["followed_industry"]}</h4>

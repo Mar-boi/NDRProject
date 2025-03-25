@@ -3,6 +3,7 @@ import axios from "axios";
 import Moment from "moment";
 import "../styles/Table.css";
 import importData from "../assets/sampleData.json";
+import smaData from "../assets/stock_sma.json";
 import Japan from "../components/TableJP";
 import US from "../components/TableUS";
 import {
@@ -13,6 +14,8 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
+  Line,
+  ComposedChart,
 } from "recharts";
 import { columns, CompanyData } from "../assets/model/model";
 import { useTranslation } from "../assets/context/TranslationContext";
@@ -41,11 +44,11 @@ function Table() {
   );
   const [lineColor, setLineColor] = useState("#2e3e8b");
   const [selectedRange, setSelectedRange] = useState("7d");
+  const [isSMA10, setIsSMA10] = useState(true);
+  const [isSMA20, setIsSMA20] = useState(true);
   const [isJP, setIsJP] = useState(false);
   const [market, setMarket] = useState<string>("");
   const { translations, language } = useTranslation();
-  
-
 
   // Fetching data for the first time
   useEffect(() => {
@@ -59,7 +62,7 @@ function Table() {
       setCompany(response.data);
       setFilteredCompany(response.data.companyUS);
     } catch {
-      alert("Fail to fetch")
+      alert("Fail to fetch");
       console.log("Fail to fetch");
     }
 
@@ -68,15 +71,13 @@ function Table() {
     // setFilteredCompany(importData.companyUS);
   };
 
-
   // Updating chart
   useEffect(() => {
     if (selectedCompany.symbol) {
       fetchChartData();
-      window.scrollTo(0, 0)
+      window.scrollTo(0, 0);
     }
   }, [selectedCompany, timeRange]);
-
 
   // Method for fetching chart
   const fetchChartData = async () => {
@@ -103,6 +104,7 @@ function Table() {
       );
 
       setChartData(response.data);
+      //setChartData(smaData);
 
       if (response.data && response.data.length >= 2) {
         const previousPrice = response.data[response.data.length - 2].close;
@@ -111,6 +113,14 @@ function Table() {
         const currentPrice = response.data[response.data.length - 1].close;
         setLineColor(currentPrice > previousPrice ? "green" : "red");
       }
+
+      // if (smaData && smaData.length >= 2) {
+      //   const previousPrice = smaData[smaData.length - 2].close;
+      //   setPreviousClosePrice(previousPrice);
+
+      //   const currentPrice = smaData[smaData.length - 1].close;
+      //   setLineColor(currentPrice > previousPrice ? "green" : "red");
+      // }
     } catch {
       console.log("Failed to fetch stock history");
       setChartData([]);
@@ -134,7 +144,7 @@ function Table() {
 
   const closeChart = () => {
     setSelectedCompany([]);
-  }
+  };
 
   return (
     <>
@@ -162,18 +172,18 @@ function Table() {
                           paddingTop: 15,
                         }}
                       >
-                        {/* Chart Title */}
-                        {" "}
-                        {
-                         selectedCompany.name
-                        }{" "}
-                        ({selectedCompany.symbol})
+                        {/* Chart Title */} {selectedCompany.name} (
+                        {selectedCompany.symbol})
                       </h3>
-                      <button type="button" className="btn-close p-4 text-center" onClick={() => closeChart()}></button>
+                      <button
+                        type="button"
+                        className="btn-close p-4 text-center"
+                        onClick={() => closeChart()}
+                      ></button>
                     </div>
                     <div className="createTableLine"></div>
                     <div style={{ paddingLeft: 10 }}>
-                      {previousClosePrice === null || chartData.length === 0? (
+                      {previousClosePrice === null || chartData.length === 0 ? (
                         <div>
                           <p style={{ fontSize: "28px", fontWeight: "bold" }}>
                             {translations["loading2"]}
@@ -181,54 +191,91 @@ function Table() {
                         </div>
                       ) : (
                         selectedCompany && (
-                          <div>
+                          <div className="d-flex flex-column">
                             <p>
-                              <span
-                                style={{
-                                  fontSize: "28px",
-                                  fontWeight: "bold",
-                                }}
-                              >
-                                {formatNumber(previousClosePrice, selectedCompany.market ?"￥":undefined)}
-                              </span>
-                              {previousClosePrice && chartData.length > 0 && (
+                              <div>
                                 <span
                                   style={{
-                                    color:
-                                      chartData[chartData.length - 1].close >
-                                      previousClosePrice
-                                        ? "green"
-                                        : "red",
-                                    fontSize: "24px",
-                                    paddingLeft: 5,
+                                    fontSize: "28px",
                                     fontWeight: "bold",
                                   }}
                                 >
-                                  {chartData[chartData.length - 1].close >
-                                  previousClosePrice
-                                    ? "+" +
-                                      (
-                                        chartData[chartData.length - 1].close -
-                                        previousClosePrice
-                                      ).toFixed(2)
-                                    : (
-                                        chartData[chartData.length - 1].close -
-                                        previousClosePrice
-                                      ).toFixed(2)}
-                                  &nbsp; (
-                                  {(
-                                    ((chartData[chartData.length - 1].close -
-                                      previousClosePrice) /
-                                      previousClosePrice) *
-                                    100
-                                  ).toFixed(2)}
-                                  %)
+                                  {formatNumber(
+                                    previousClosePrice,
+                                    selectedCompany.market ? "￥" : undefined
+                                  )}
                                 </span>
-                              )}
-                              <br />
+                                {previousClosePrice && chartData.length > 0 && (
+                                  <span
+                                    style={{
+                                      color:
+                                        chartData[chartData.length - 1].close >
+                                        previousClosePrice
+                                          ? "green"
+                                          : "red",
+                                      fontSize: "24px",
+                                      paddingLeft: 5,
+                                      fontWeight: "bold",
+                                    }}
+                                  >
+                                    {chartData[chartData.length - 1].close >
+                                    previousClosePrice
+                                      ? "+" +
+                                        (
+                                          chartData[chartData.length - 1]
+                                            .close - previousClosePrice
+                                        ).toFixed(2)
+                                      : (
+                                          chartData[chartData.length - 1]
+                                            .close - previousClosePrice
+                                        ).toFixed(2)}
+                                    &nbsp; (
+                                    {(
+                                      ((chartData[chartData.length - 1].close -
+                                        previousClosePrice) /
+                                        previousClosePrice) *
+                                      100
+                                    ).toFixed(2)}
+                                    %)
+                                  </span>
+                                )}
+                              </div>
+
+                            
                               <span style={{ fontSize: 14 }}>
                                 {translations["at_close_yesterday"]}
                               </span>
+
+                              <br />
+                            
+                              <div className="form-switch">
+                                <input
+                                  className="form-check-input"
+                                  type="checkbox"
+                                  role="switch"
+                                  checked={isSMA10}
+                                  onChange={() => setIsSMA10(!isSMA10)}
+                                  style={{
+                                    backgroundColor: isSMA10
+                                      ? "#caa034"
+                                      : "white",
+                                  }}
+                                />
+                                <label style={{ marginLeft: 10 }}>SMA 10</label>
+                              </div>
+
+                              <div className="form-switch">
+                                <input
+                                  className="form-check-input"
+                                  type="checkbox"
+                                  role="switch"
+                                  checked={isSMA20}
+                                  onChange={() => setIsSMA20(!isSMA20)}
+                                />
+                                <label style={{ marginLeft: 10 }}>SMA 20</label>
+                              </div>
+
+                             
                             </p>
                           </div>
                         )
@@ -238,11 +285,11 @@ function Table() {
                     <div style={{ paddingLeft: 10, marginTop: 10 }}>
                       <button
                         className="selectChartBtn"
-                        onClick={() => handleTimeRangeChange("7D")}
+                        onClick={() => handleTimeRangeChange("7d")}
                         style={{
                           backgroundColor:
-                            selectedRange === "7D" ? "#2e3e8b" : "",
-                          color: selectedRange === "7D" ? "white" : "",
+                            selectedRange === "7d" ? "#2e3e8b" : "",
+                          color: selectedRange === "7d" ? "white" : "",
                         }}
                       >
                         {translations["7D"]}
@@ -274,10 +321,12 @@ function Table() {
                     </div>
                     <div>
                       {loading ? (
-                        <p style={{ textAlign: "center" }}>{translations["loading"]}</p>
+                        <p style={{ textAlign: "center" }}>
+                          {translations["loading"]}
+                        </p>
                       ) : chartData.length > 0 ? (
                         <ResponsiveContainer width="100%" height={240}>
-                          <AreaChart
+                          <ComposedChart
                             data={chartData}
                             margin={{ top: 20, right: 20, left: 80 }}
                           >
@@ -314,36 +363,25 @@ function Table() {
                                     )
                                   : null;
 
-                                if (timeRange === "7d") {
+                                if (timeRange === "7d")
                                   return dateMoment.format("M/DD");
-                                }
-
-                                if (timeRange === "1mo") {
+                                if (timeRange === "1mo")
                                   return dateMoment.date() <= 3
                                     ? dateMoment.format("MMM'YY")
                                     : dateMoment.format("DD");
-                                }
-
                                 if (timeRange === "6mo") {
-                                  // Show year only in early January
                                   if (
                                     dateMoment.month() === 0 &&
                                     dateMoment.date() <= 2
-                                  ) {
+                                  )
                                     return dateMoment.format("YYYY");
-                                  }
-
-                                  // Show month abbreviation only once per month
                                   if (
                                     !prevDate ||
                                     prevDate.month() !== dateMoment.month()
-                                  ) {
+                                  )
                                     return dateMoment.format("MMM");
-                                  }
-
                                   return "";
                                 }
-
                                 return dateMoment.format("M/DD");
                               }}
                               interval={0}
@@ -355,7 +393,12 @@ function Table() {
                             />
                             <Tooltip
                               formatter={(value, name) =>
-                                name === "close" ? formatNumber(+value, selectedCompany.market ?"￥":undefined) : value
+                                name === "close" || name === "SMA 20"
+                                  ? formatNumber(
+                                      +value,
+                                      selectedCompany.market ? "￥" : undefined
+                                    )
+                                  : value
                               }
                               labelFormatter={(value) =>
                                 `Date: ${formatDate(value, language)}`
@@ -365,6 +408,36 @@ function Table() {
                                 color: "black",
                               }}
                             />
+
+                            {/* SMA 20 Line Chart */}
+                            {isSMA10 &&
+                              chartData.some(
+                                (item) => item.sma_10 !== null
+                              ) && (
+                                <Line
+                                  type="monotone"
+                                  dataKey="sma_10"
+                                  stroke="#caa034"
+                                  strokeWidth={1}
+                                  dot={false}
+                                />
+                              )}
+
+                            {/* SMA 50 Line Chart */}
+                            {isSMA20 &&
+                              chartData.some(
+                                (item) => item.sma_20 !== null
+                              ) && (
+                                <Line
+                                  type="monotone"
+                                  dataKey="sma_20"
+                                  stroke="blue"
+                                  strokeWidth={1}
+                                  dot={false}
+                                />
+                              )}
+
+                            {/* Closing Price Area Chart */}
                             <Area
                               type="monotone"
                               dataKey="close"
@@ -373,7 +446,7 @@ function Table() {
                               fill="url(#colorClose)"
                               dot={false}
                             />
-                          </AreaChart>
+                          </ComposedChart>
                         </ResponsiveContainer>
                       ) : (
                         <p style={{ textAlign: "center" }}>
