@@ -63,7 +63,7 @@ public class EmailService {
 		// 2.1 return a industry list of the user (temp)
 		System.out.println("List for" + user.getUserName() + ": " + industryList);
 
-		// 2.2 Pull info from DB (Web scrape would be inefficient with many users)
+		// 2.2 Pull info from DB
 		// 2.3 Call a method in this class to write an email, a normal one
 		String emailContent =  writeMail(user);
 

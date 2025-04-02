@@ -109,12 +109,14 @@ public class UserService {
 			userSetting.setUserID(userID);
 			userSetting.setUsername(user.getUserName());
 			userSetting.setReceiveEmail(pref.isReceiveEmail());
+			userSetting.setMarket(pref.getMarket());
 
 			String cron = pref.getEmailSchedule();
 			userSetting.setHour(CronUtil.getHour(cron));
 			userSetting.setMin(CronUtil.getMin(cron));
 			userSetting.setPeriod(CronUtil.getPeriod(cron));
 			userSetting.setDays(CronUtil.getDays(cron));
+		
 
 			userSetting.setIndustries(industry);
 
@@ -125,7 +127,7 @@ public class UserService {
 	}
 
 	public ResponseEntity<?> updatePreference(List<Integer> days, int hour, int min, String period,
-			boolean receiveEmail, List<Integer> industries, int userID) {
+			boolean receiveEmail, List<Integer> industries, String market, int userID) {
 
 		try {
 
@@ -145,6 +147,7 @@ public class UserService {
 			// Update the preference
 			oldPref.setEmailSchedule(cronNotation);
 			oldPref.setReceiveEmail(receiveEmail);
+			oldPref.setMarket(market);
 
 			// Save preference to the DB (better than using our own method probably because
 			// of cache)

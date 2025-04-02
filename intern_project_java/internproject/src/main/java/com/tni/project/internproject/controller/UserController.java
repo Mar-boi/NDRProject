@@ -68,10 +68,11 @@ public class UserController {
 		 String period = (String) requestBody.get("period");
 		 boolean receiveEmail = (Boolean) requestBody.get("receiveEmail");
 		 List<Integer> industries = (List<Integer>) requestBody.get("industries");
+		 String market = (String) requestBody.get("market");
 		 int userID =  (Integer) requestBody.get("userID");
 		 
 		 
-		 return service.updatePreference(days,hour,min,period,receiveEmail,industries,userID);
+		 return service.updatePreference(days,hour,min,period,receiveEmail,industries,market,userID);
 		
 	}
 	

@@ -51,7 +51,7 @@ export const Profile = () => {
         setActiveDays(response.data.days);
         setReceiveEmail(response.data.receiveEmail);
         setSelectedIndustries(response.data.industries);
-        //setMarket(response.data.market);
+        setMarket(response.data.market);
       } catch (e) {
         console.log(e);
       }
@@ -126,6 +126,7 @@ export const Profile = () => {
       period: selectedPeriod.toLowerCase(),
       receiveEmail: receiveEmail,
       industries: selectedIndustries,
+      market: market,
       userID: user?.userId,
     };
     console.log(updatePref); // Log to check the data

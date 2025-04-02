@@ -14,6 +14,7 @@ public class UserSetting {
 	private List<Integer> days;
 	private boolean receiveEmail;
 	private List<Integer> industries;
+	private String market;
 	
 	
 	
@@ -25,7 +26,7 @@ public class UserSetting {
 	
 
 	public UserSetting(int userID, String username, String email, int hour, int min, String period, List<Integer> days,
-			boolean receiveEmail, List<Integer> industries) {
+			boolean receiveEmail, List<Integer> industries, String market) {
 		super();
 		this.userID = userID;
 		this.username = username;
@@ -36,6 +37,7 @@ public class UserSetting {
 		this.days = days;
 		this.receiveEmail = receiveEmail;
 		this.industries = industries;
+		this.market = market;
 	}
 
 
@@ -96,6 +98,14 @@ public class UserSetting {
 
 	public void setDays(List<Integer> days) {
 		this.days = days;
+	}
+	
+	public String getMarket() {
+		return market;
+	}
+	
+	public void setMarket(String market) {
+		this.market = market;
 	}
 	
 	
